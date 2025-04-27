@@ -50,7 +50,7 @@ if (isset($_SESSION['error_message'])) {
 				<div class="text-end pt-3">
 					<a href="#experience" class="btn btn-azmog rounded-5 mx-1">Mes experiences</a>
 					<a href="#projet" class="btn btn-azmog rounded-5 mx-1">Projets</a>
-					<a href="pages/construction/construction.html" class="btn btn-azmog rounded-5 mx-1">Veille technologique</a>
+					<a href="pages/veille.php" class="btn btn-azmog rounded-5 mx-1">Veille technologique</a>
 					<a href="#contact" class="btn btn-azmog rounded-5 mx-1">Contact</a>
 				</div>
 			</div>
@@ -63,11 +63,18 @@ if (isset($_SESSION['error_message'])) {
 			<div class="intro-wrap">
 				<!--TITRE-->
 				<h1 class="titre-adam-h1 text-center text-white">Adam Marzuk</h1>
-
 				<!--TXT ANIME-->
 				<div class="text-anim text-light">
 					<p id="typingtext"></p>
 				</div>
+				<div>
+					<p> 📩
+						<a href="mailto:marzukadam@gmail.com" style="text-decoration: underline; color: inherit;">
+							marzukadam@gmail.com
+						</a>
+					</p>
+				</div>
+
 
 
 
@@ -94,6 +101,8 @@ if (isset($_SESSION['error_message'])) {
 										<a href="https://cv-en.adam-marzuk.fr" target="_blank" class="button-cv text-center">CV EN</a>
 									</div>
 								</div>
+							</div>
+							<div>
 							</div>
 						</div>
 					</div>
@@ -180,6 +189,10 @@ if (isset($_SESSION['error_message'])) {
 				<h1 slot="header">Flowtech</h1>
 				<p slot="content">Projet de création d'une entreprise fictive FlowTech spécialisée dans le montage de PC, réalisé en JavaScript, PHP, HTML et CSS. Cliquez dessu pour découvrir !</p>
 			</card>
+			<card id="digiweek-card" data-image="img-projet/digiweek.jpg">
+				<h1 slot="header">Conférencier Digiweek</h1>
+				<p slot="content">Prise de parole sur les intelligences Artificielles.</p>
+			</card>
 		</div>
 
 		<!--===============SECTION Lycee===========-->
@@ -214,6 +227,10 @@ if (isset($_SESSION['error_message'])) {
 			<card data-image="img-projet/Compteur.png">
 				<h1 slot="header">Compteur</h1>
 				<p slot="content">J'ai conçu une application pour les tablettes android du musée<br />permettant au gardien des salles du musée de comptabiliser le nombre de visiteurs total de la journée et actuel en temps réel.</p>
+			</card>
+			<card data-image="img-projet/Compteur2.png">
+				<h1 slot="header">Gestion base</h1>
+				<p slot="content">J'ai conçu un logiciel permettant d'ajouter des espèces dans le musée.</p>
 			</card>
 		</div>
 		<!-- partial -->

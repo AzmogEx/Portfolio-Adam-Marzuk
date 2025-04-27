@@ -67,7 +67,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 	background-color: #7611a6;
 	border-radius: 20px;
 	padding: 5px;
-	margin-right: 10px; /* Ajoutez de la marge à droite pour espacer du côté de l'image */
+	margin-right: 10px;
 	color: #fff;
 	display: flex;
 	align-items: center;
@@ -543,3 +543,77 @@ p + p {
 #contact {
 	font-family: "Star Wars", sans-serif;
 }
+
+        /* FRIZE CHRONOLOGIQUE */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: white;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container.left {
+            left: 0;
+        }
+
+        .timeline-container.right {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #292929;
+            position: relative;
+            border-radius: 6px;
+            color: white;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #292929;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-container::after {
+                left: 60px;
+            }
+
+            .timeline::after {
+                left: 60px;
+            }
+        }

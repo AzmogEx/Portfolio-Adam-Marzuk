@@ -12696,7 +12696,7 @@ p + p {
   top: 0;
   bottom: 0;
   left: 50%;
-  margin-left: -3px;
+  transform: translateX(-50%);
 }
 
 .timeline-container {
@@ -12708,10 +12708,12 @@ p + p {
 
 .timeline-container.left {
   left: 0;
+  text-align: right; /* Pour aligner à droite */
 }
 
 .timeline-container.right {
   left: 50%;
+  text-align: left; /* Pour aligner à gauche */
 }
 
 .timeline-content {
@@ -12720,6 +12722,8 @@ p + p {
   position: relative;
   border-radius: 6px;
   color: white;
+  display: inline-block; /* Important pour que text-align fonctionne */
+  max-width: 90%;
 }
 
 .timeline-container::after {
@@ -12727,7 +12731,6 @@ p + p {
   position: absolute;
   width: 25px;
   height: 25px;
-  right: -17px;
   background-color: white;
   border: 4px solid #292929;
   top: 15px;
@@ -12735,20 +12738,28 @@ p + p {
   z-index: 1;
 }
 
-.right::after {
-  left: -16px;
+.timeline-container.left::after {
+  right: -12px; /* Ajuste un peu pour que la pastille colle à la ligne */
 }
 
+.timeline-container.right::after {
+  left: -12px;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
   .timeline-container {
     width: 100%;
     padding-left: 70px;
     padding-right: 25px;
+    text-align: left;
   }
   .timeline-container::after {
     left: 60px;
+    right: auto;
   }
   .timeline::after {
     left: 60px;
+    transform: none;
   }
 }/*# sourceMappingURL=style.css.map */

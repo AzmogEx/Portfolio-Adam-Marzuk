@@ -1,3 +1,3 @@
 document.getElementById("flowtech-card").addEventListener("click", function () {
-	window.open("https://flowtech-sio.fr", "_blank");
+	window.open("https://flowtech.adam-marzuk.fr", "_blank");
 });

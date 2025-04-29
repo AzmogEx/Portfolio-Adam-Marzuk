@@ -88,8 +88,10 @@
                 <div class="timeline-container left mb-4">
                     <div class="timeline-content">
                         <h3>Octobre 2023</h3>
-                        <p>Avancées en cryptographie quantum-proof : adoption de normes post-quantiques dans des
-                            systèmes commerciaux et gouvernementaux.</p>                    </div>
+                        <p>Avancées en cryptographie quantique quantum-proof : adoption de normes post-quantiques dans des
+                            systèmes commerciaux et gouvernementaux.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="timeline-container right mb-4">
@@ -162,6 +164,7 @@
             <div class="row mt-5">
                 <h3 class="text-white mb-4">📰 Sources de ma veille</h3>
                 <ul class="text-white">
+                    <li><a href="https://freshrss.org/index.html" target="_blank" style="color: #0dcaf0;">FLUX RSS</a></li>
                     <li><a href="https://quantum-computing.ibm.com/" target="_blank" style="color: #0dcaf0;">IBM Quantum
                             Computing</a></li>
                     <li><a href="https://research.google/teams/applied-science/quantum/" target="_blank"

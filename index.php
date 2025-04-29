@@ -185,18 +185,22 @@ if (isset($_SESSION['error_message'])) {
 				<h1 slot="header">Région de France</h1>
 				<p slot="content">J'ai créé un logiciel permettant de lister toutes les régions, départements et villes de France avec un affichage cartographique et des coordonnées.</p>
 			</card>
+			<card id="kit-card" data-image="img-projet/kit-ia.png">
+				<h1 slot="header">KIT IA</h1>
+				<p slot="content">Nous avons développer un kit de prévention sur les ia pour une table ronde autour des intelligence artificielle durant la digiweek de 2024.</p>
+			</card>
 			<card id="flowtech-card" data-image="img-projet/flowtech.png">
-				<h1 slot="header">Flowtech</h1>
+				<h1 slot="header">Flowtech AP1 - AP4</h1>
 				<p slot="content">Projet de création d'une entreprise fictive FlowTech spécialisée dans le montage de PC, réalisé en JavaScript, PHP, HTML et CSS. Cliquez dessu pour découvrir !</p>
 			</card>
-			<card id="digiweek-card" data-image="img-projet/digiweek.jpg">
+			<card data-image="img-projet/digiweek.jpg">
 				<h1 slot="header">Conférencier Digiweek</h1>
 				<p slot="content">Prise de parole sur les intelligences Artificielles.</p>
 			</card>
 		</div>
 
 		<!--===============SECTION Lycee===========-->
-		<div id="lycee">
+		<!-- <div id="lycee">
 			<h1 id="stages-id" class="heading-4 stages-class text-light text-left border-bottom border-light border-5 titre-section"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
 				&nbsp;Stages Lycee</h1>
 
@@ -214,13 +218,13 @@ if (isset($_SESSION['error_message'])) {
 					<p slot="content">J'ai appris la pose d'adhésifs sur des lettres, le lancement d'impressions sur les différentes machines, les découpes, etc.</p>
 				</card>
 			</div>
-		</div>
+		</div> -->
 		<!--============== SECTION CARD BTS===========-->
 		<h1 id="stages-id" class="heading-4 stages-class text-light text-left border-bottom border-light border-5 titre-section"><i class="fa fa-university" aria-hidden="true"></i>
 			&nbsp;Stages BT S</h1>
 
 		<div id="bts" class="container-card-projet">
-			<card data-image="img-projet/Zoovengers.png">
+			<card id="zoovengers-card" data-image="img-projet/Zoovengers.png">
 				<h1 slot="header">Zoovengers</h1>
 				<p slot="content">J'ai conçu une application mobile pour le muséum <br />C'est un escape game pour les visiteurs. Elle est développée en Dart avec l'aide du framework Flutter.</p>
 			</card>
@@ -259,9 +263,11 @@ if (isset($_SESSION['error_message'])) {
 		</script>
 
 		<!--NAVBAR-->
-		<script src="js/nav.js"></script>
-		<script src="js/slide.js"></script>
-		<script src="js/flowtech.js"></script>
+		<script src="/js/nav.js"></script>
+		<script src="/js/slide.js"></script>
+		<script src="/js/flowtech.js"></script>
+		<script src="/js/kit-ia.js"></script>
+		<script src="/js/zoovengers.js"></script>
 
 		<!---GSAP--->
 		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

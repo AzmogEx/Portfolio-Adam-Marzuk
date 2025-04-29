@@ -51,7 +51,7 @@ if (isset($_SESSION['error_message'])) {
 					<a href="#experience" class="btn btn-azmog rounded-5 mx-1">Mes experiences</a>
 					<a href="#projet" class="btn btn-azmog rounded-5 mx-1">Projets</a>
 					<a href="pages/veille.php" class="btn btn-azmog rounded-5 mx-1">Veille technologique</a>
-					<a href="#contact" class="btn btn-azmog rounded-5 mx-1">Contact</a>
+                    <a href="/pages/glpi.php" class="btn btn-azmog rounded-5 mx-1">GLPI</a>
 				</div>
 			</div>
 		</nav>
@@ -228,7 +228,7 @@ if (isset($_SESSION['error_message'])) {
 				<h1 slot="header">Compteur</h1>
 				<p slot="content">J'ai conçu une application pour les tablettes android du musée<br />permettant au gardien des salles du musée de comptabiliser le nombre de visiteurs total de la journée et actuel en temps réel.</p>
 			</card>
-			<card data-image="img-projet/Compteur2.png">
+			<card data-image="img-projet/musee.png">
 				<h1 slot="header">Gestion base</h1>
 				<p slot="content">J'ai conçu un logiciel permettant d'ajouter des espèces dans le musée.</p>
 			</card>

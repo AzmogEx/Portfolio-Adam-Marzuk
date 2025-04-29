@@ -21,7 +21,8 @@
                     </svg>
                 </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 pt-3" style="font-size: 18px">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 pt-3"
+                    style="font-size: 18px">
                     <li><a href="/index.php" class="nav-link px-2 text-secondary">Accueil</a></li>
                     <li><a href="/#lycee" class="nav-link px-2 text-white">Stages</a></li>
                     <li><a href="/#projet-nav" class="nav-link px-2 text-white">Projets</a></li>
@@ -32,7 +33,7 @@
                     <a href="/#projet" class="btn btn-azmog rounded-5 mx-1">Projets</a>
                     <a href="" class="btn btn-azmog rounded-5 mx-1">Veille
                         technologique</a>
-                    <a href="/#contact" class="btn btn-azmog rounded-5 mx-1">Contact</a>
+                    <a href="/pages/glpi.php" class="btn btn-azmog rounded-5 mx-1">GLPI</a>
                 </div>
             </div>
         </nav>
@@ -41,7 +42,7 @@
 
     <section class="section text-light">
         <div class="text-center pt-5">
-            <h1 class="titre-adam-h1 text-white pt-5">Veille Technologique</h1>
+            <h1 class="titre-adam-h1 text-white">Veille Technologique</h1>
             <p class="lead text-white">Ordinateurs Quantiques : état de l'art et évolutions</p>
         </div>
 
@@ -49,7 +50,8 @@
             <div class="container col-xxl-8 px-4 py-5">
                 <div class="row flex-lg-row align-items-center g-5 py-5">
                     <div class="col-12 col-lg-6">
-                        <img src="/img/pc-quantic.jpg" class="d-block mx-lg-auto img-fluid rounded-3" alt="Ordinateurs Quantiques" loading="lazy" />
+                        <img src="/img/pc-quantic.jpg" class="d-block mx-lg-auto img-fluid rounded-3"
+                            alt="Ordinateurs Quantiques" loading="lazy" />
                     </div>
 
                     <div class="col-lg-6 text-start">
@@ -82,30 +84,49 @@
             <h2 class="text-white mt-5 mb-4"><i class="fas fa-history"></i> Evolution majeure entre 2024 et 2025</h2>
 
             <div class="timeline">
+
                 <div class="timeline-container left mb-4">
                     <div class="timeline-content">
-                        <h3>2024</h3>
-                        <p>Google présente la puce quantique Willow, capable de résoudre en 5 minutes des problèmes
-                            infaisables par des superordinateurs classiques.</p>
-                    </div>
+                        <h3>Octobre 2023</h3>
+                        <p>Avancées en cryptographie quantum-proof : adoption de normes post-quantiques dans des
+                            systèmes commerciaux et gouvernementaux.</p>                    </div>
                 </div>
+
                 <div class="timeline-container right mb-4">
                     <div class="timeline-content">
-                        <h3>2024</h3>
+                        <h3>Septembre 2024</h3>
                         <p>Microsoft et Quantinuum créent 12 qubits logiques fiables à partir de 30 qubits physiques,
                             réduisant les erreurs de 800 fois.</p>
                     </div>
                 </div>
+
                 <div class="timeline-container left mb-4">
                     <div class="timeline-content">
-                        <h3>2025</h3>
-                        <p>Microsoft dévoile Majorana 1, la première puce quantique topologique utilisant des états
-                            de Majorana pour plus de stabilité.</p>
+                        <h3>Décembre 2024</h3>
+                        <p>Google dévoile la puce quantique Willow, réalisant des calculs ultra-rapides avec correction
+                            d'erreurs améliorée.</p>
                     </div>
                 </div>
+
                 <div class="timeline-container right mb-4">
                     <div class="timeline-content">
-                        <h3>2025</h3>
+                        <h3>Février 2025</h3>
+                        <p>Amazon Web Services présente Ocelot, une puce quantique utilisant les cat qubits pour
+                            simplifier la correction d'erreurs.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left mb-4">
+                    <div class="timeline-content">
+                        <h3>Février 2025</h3>
+                        <p>Microsoft dévoile Majorana 1, la première puce quantique topologique utilisant des états de
+                            Majorana pour plus de stabilité.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right mb-4">
+                    <div class="timeline-content">
+                        <h3>Avril 2025</h3>
                         <p>Toshiba transmet des messages quantiques sécurisés sur 254 km via un réseau télécom
                             commercial sans équipements cryogéniques lourds.</p>
                     </div>
@@ -143,8 +164,10 @@
                 <ul class="text-white">
                     <li><a href="https://quantum-computing.ibm.com/" target="_blank" style="color: #0dcaf0;">IBM Quantum
                             Computing</a></li>
-                    <li><a href="https://research.google/teams/applied-science/quantum/" target="_blank" style="color: #0dcaf0;">Google Quantum AI</a></li>
-                    <li><a href="https://www.sciencedaily.com/news/computers_math/quantum_computing/" target="_blank" style="color: #0dcaf0;">Science Daily - Quantum Computing</a></li>
+                    <li><a href="https://research.google/teams/applied-science/quantum/" target="_blank"
+                            style="color: #0dcaf0;">Google Quantum AI</a></li>
+                    <li><a href="https://www.sciencedaily.com/news/computers_math/quantum_computing/" target="_blank"
+                            style="color: #0dcaf0;">Science Daily - Quantum Computing</a></li>
                 </ul>
             </div>
 

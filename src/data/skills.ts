@@ -4,6 +4,7 @@ export const skills: Skill[] = [
   // Langages de programmation
   { name: 'JavaScript', category: 'language', level: 'advanced', icon: '🟨' },
   { name: 'TypeScript', category: 'language', level: 'advanced', icon: '🔷' },
+  { name: 'C#', category: 'language', level: 'expert', icon: '⚡' },
   { name: 'Python', category: 'language', level: 'intermediate', icon: '🐍' },
   { name: 'Java', category: 'language', level: 'intermediate', icon: '☕' },
   { name: 'PHP', category: 'language', level: 'intermediate', icon: '🐘' },
@@ -23,13 +24,10 @@ export const skills: Skill[] = [
   { name: 'MySQL', category: 'tool', level: 'intermediate', icon: '🗄️' },
   { name: 'PostgreSQL', category: 'tool', level: 'intermediate', icon: '🐘' },
   { name: 'MongoDB', category: 'tool', level: 'intermediate', icon: '🍃' },
-  { name: 'VS Code', category: 'tool', level: 'expert', icon: '💙' },
   { name: 'Figma', category: 'tool', level: 'intermediate', icon: '🎨' },
-  { name: 'Postman', category: 'tool', level: 'intermediate', icon: '📮' },
-  
+  { name: 'Proxmox', category: 'tool', level: 'advanced', icon: '💻' },
+
   // Méthodologies & Gestion de projet
   { name: 'Agile/Scrum', category: 'other', level: 'intermediate', icon: '🔄' },
   { name: 'Kanban', category: 'other', level: 'intermediate', icon: '📋' },
-  { name: 'Jira', category: 'tool', level: 'intermediate', icon: '🎯' },
-  { name: 'Trello', category: 'tool', level: 'advanced', icon: '📌' },
 ]

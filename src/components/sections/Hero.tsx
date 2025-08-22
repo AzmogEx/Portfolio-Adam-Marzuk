@@ -66,7 +66,7 @@ const Hero = () => {
               </div>
               <div className="flex items-center text-white/60">
                 <Mail size={20} className="mr-2 text-purple-400" />
-                <span>adam.marzuk@email.com</span>
+                <span>contact@adam-marzuk.fr</span>
               </div>
             </motion.div>
 

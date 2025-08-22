@@ -6,7 +6,7 @@ export const skills: Skill[] = [
   { name: 'TypeScript', category: 'language', level: 'advanced', icon: '🔷' },
   { name: 'C#', category: 'language', level: 'expert', icon: '⚡' },
   { name: 'Python', category: 'language', level: 'intermediate', icon: '🐍' },
-  { name: 'Java', category: 'language', level: 'intermediate', icon: '☕' },
+  { name: 'Java', category: 'language', level: 'advanced', icon: '☕' },
   { name: 'PHP', category: 'language', level: 'intermediate', icon: '🐘' },
   { name: 'C++', category: 'language', level: 'beginner', icon: '⚡' },
 

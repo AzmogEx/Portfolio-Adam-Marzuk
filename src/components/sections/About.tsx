@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { skills } from '@/data/skills'
-import { Skill } from '@/types'
-import React from 'react'
+import { motion } from "framer-motion";
+import { skills } from "@/data/skills";
+import { Skill } from "@/types";
+import React from "react";
 import {
   SiJavascript,
   SiTypescript,
@@ -21,10 +21,10 @@ import {
   SiPhp,
   SiCplusplus,
   SiProxmox,
-} from 'react-icons/si'
-import { DiScrum } from 'react-icons/di'
-import { MdViewKanban } from 'react-icons/md'
-import { TbBrandCSharp } from 'react-icons/tb'
+} from "react-icons/si";
+import { DiScrum } from "react-icons/di";
+import { MdViewKanban } from "react-icons/md";
+import { TbBrandCSharp } from "react-icons/tb";
 
 const About = () => {
   // Mapping des compétences vers leurs vraies icônes
@@ -33,8 +33,8 @@ const About = () => {
       JavaScript: <SiJavascript className="text-yellow-400" />,
       TypeScript: <SiTypescript className="text-blue-400" />,
       React: <SiReact className="text-cyan-400" />,
-      'Vue.js': <SiVuedotjs className="text-green-400" />,
-      'Node.js': <SiNodedotjs className="text-green-500" />,
+      "Vue.js": <SiVuedotjs className="text-green-400" />,
+      "Node.js": <SiNodedotjs className="text-green-500" />,
       Git: <SiGit className="text-orange-500" />,
       Docker: <SiDocker className="text-blue-500" />,
       MySQL: <SiMysql className="text-blue-600" />,
@@ -44,67 +44,71 @@ const About = () => {
       Python: <SiPython className="text-blue-400" />,
       Java: <SiOpenjdk className="text-red-500" />,
       PHP: <SiPhp className="text-purple-600" />,
-      'C++': <SiCplusplus className="text-blue-600" />,
-      'C#': <TbBrandCSharp className="text-blue-600" />,
+      "C++": <SiCplusplus className="text-blue-600" />,
+      "C#": <TbBrandCSharp className="text-blue-600" />,
       Proxmox: <SiProxmox className="text-blue-600" />,
-      'Agile/Scrum': <DiScrum className="text-blue-400" />,
+      "Agile/Scrum": <DiScrum className="text-blue-400" />,
       Kanban: <MdViewKanban className="text-orange-400" />,
-    }
+    };
     return (
       iconMap[skillName] || (
-        <span className="text-2xl">{skills.find(s => s.name === skillName)?.icon}</span>
+        <span className="text-2xl">
+          {skills.find((s) => s.name === skillName)?.icon}
+        </span>
       )
-    )
-  }
+    );
+  };
 
   // Fonction pour obtenir la taille selon le niveau de maîtrise
-  const getSizeFromLevel = (level: Skill['level']) => {
+  const getSizeFromLevel = (level: Skill["level"]) => {
     switch (level) {
-      case 'expert':
-        return 'w-20 h-20' // 80px
-      case 'advanced':
-        return 'w-[70px] h-[70px]' // 70px
-      case 'intermediate':
-        return 'w-15 h-15' // 60px
-      case 'beginner':
-        return 'w-12 h-12' // 48px
+      case "expert":
+        return "w-20 h-20"; // 80px
+      case "advanced":
+        return "w-[70px] h-[70px]"; // 70px
+      case "intermediate":
+        return "w-15 h-15"; // 60px
+      case "beginner":
+        return "w-12 h-12"; // 48px
       default:
-        return 'w-15 h-15'
+        return "w-15 h-15";
     }
-  }
+  };
 
   // Positions aléatoires avec espacement minimal garanti (distance > 12% entre chaque bulle)
   const cloudPositions = [
-    { top: '8%', left: '15%' },
-    { top: '12%', left: '45%' },
-    { top: '16%', left: '75%' },
-    { top: '28%', left: '25%' },
-    { top: '32%', left: '60%' },
-    { top: '36%', left: '88%' },
-    { top: '48%', left: '12%' },
-    { top: '52%', left: '42%' },
-    { top: '56%', left: '72%' },
-    { top: '68%', left: '18%' },
-    { top: '72%', left: '52%' },
-    { top: '76%', left: '82%' },
-    { top: '88%', left: '28%' },
-    { top: '92%', left: '65%' },
-    { top: '24%', left: '8%' },
-    { top: '44%', left: '90%' },
-    { top: '64%', left: '35%' },
-    { top: '84%', left: '48%' },
-  ]
+    { top: "8%", left: "15%" },
+    { top: "12%", left: "45%" },
+    { top: "16%", left: "75%" },
+    { top: "28%", left: "25%" },
+    { top: "32%", left: "60%" },
+    { top: "36%", left: "88%" },
+    { top: "48%", left: "12%" },
+    { top: "52%", left: "42%" },
+    { top: "56%", left: "72%" },
+    { top: "68%", left: "18%" },
+    { top: "72%", left: "52%" },
+    { top: "76%", left: "82%" },
+    { top: "88%", left: "28%" },
+    { top: "92%", left: "65%" },
+    { top: "24%", left: "8%" },
+    { top: "44%", left: "90%" },
+    { top: "64%", left: "35%" },
+    { top: "84%", left: "48%" },
+  ];
 
   // Filtrer les compétences principales (expert, advanced et quelques intermediate stratégiques)
   const mainSkills = skills
     .filter(
-      skill =>
-        skill.level === 'expert' ||
-        skill.level === 'advanced' ||
-        (skill.level === 'intermediate' &&
-          ['Vue.js', 'Node.js', 'Docker', 'MySQL', 'Python', 'PHP'].includes(skill.name))
+      (skill) =>
+        skill.level === "expert" ||
+        skill.level === "advanced" ||
+        (skill.level === "intermediate" &&
+          ["Vue.js", "Node.js", "Docker", "MySQL", "Python", "PHP"].includes(
+            skill.name
+          ))
     )
-    .slice(0, 12) // Augmenter à 12 pour remplir le nuage
+    .slice(0, 12); // Augmenter à 12 pour remplir le nuage
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -118,7 +122,8 @@ const About = () => {
             À propos de <span className="gradient-text">moi</span>
           </h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Découvrez mon parcours, mes compétences et ma passion pour l&apos;informatique
+            Découvrez mon parcours, mes compétences et ma passion pour
+            l&apos;informatique
           </p>
         </motion.div>
 
@@ -130,16 +135,17 @@ const About = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-white mb-6">Mon parcours</h3>
-        <p className="text-white/80 leading-relaxed">
-  Étudiant en 2ème année de BUT Informatique à L&apos;IUT d&apos;Orléans, je me spécialise dans le
-  développement d&apos;applications. Ma passion pour les technologies web et
-  l&apos;intelligence artificielle m&apos;a conduit à explorer diverses technologies et
-  frameworks modernes.
-        </p>
             <p className="text-white/80 leading-relaxed">
-              J&apos;ai acquis une expérience pratique grâce à des stages en entreprise et des
-              projets personnels, me permettant de développer une approche complète du développement
-              full-stack.
+              Étudiant en 2ème année de BUT Informatique à L&apos;IUT
+              d&apos;Orléans, je me spécialise dans le développement
+              d&apos;applications. Ma passion pour les technologies web et
+              l&apos;intelligence artificielle m&apos;a conduit à explorer
+              diverses technologies et frameworks modernes.
+            </p>
+            <p className="text-white/80 leading-relaxed">
+              J&apos;ai acquis une expérience pratique grâce à des stages en
+              entreprise et des projets personnels, me permettant de développer
+              une approche complète du développement full-stack.
             </p>
           </motion.div>
 
@@ -154,8 +160,8 @@ const About = () => {
             </h3>
             <div className="relative h-96 md:h-80 px-8 py-4">
               {mainSkills.map((skill, index) => {
-                const sizeClasses = getSizeFromLevel(skill.level)
-                const position = cloudPositions[index % cloudPositions.length]
+                const sizeClasses = getSizeFromLevel(skill.level);
+                const position = cloudPositions[index % cloudPositions.length];
                 return (
                   <motion.div
                     key={skill.name}
@@ -174,27 +180,32 @@ const About = () => {
                     transition={{
                       // Animation d'entrée
                       opacity: { duration: 0.8, delay: index * 0.15 },
-                      scale: { duration: 0.8, delay: index * 0.15, type: 'spring', bounce: 0.4 },
+                      scale: {
+                        duration: 0.8,
+                        delay: index * 0.15,
+                        type: "spring",
+                        bounce: 0.4,
+                      },
                       rotate: { duration: 0.8, delay: index * 0.15 },
                       // Animation de flottement
                       y: {
                         duration: 4 + (index % 4) * 0.5,
                         repeat: Infinity,
-                        ease: 'easeInOut',
+                        ease: "easeInOut",
                         delay: index * 0.3,
                       },
                       x: {
                         duration: 6 + (index % 3) * 0.8,
                         repeat: Infinity,
-                        ease: 'easeInOut',
+                        ease: "easeInOut",
                         delay: index * 0.2,
                       },
                     }}
                     style={{
-                      position: 'absolute',
+                      position: "absolute",
                       top: position.top,
                       left: position.left,
-                      transform: 'translate(-50%, -50%)',
+                      transform: "translate(-50%, -50%)",
                     }}
                     className="group cursor-pointer z-10 hover:z-50"
                   >
@@ -216,22 +227,22 @@ const About = () => {
                       </div>
                     </div>
                   </motion.div>
-                )
+                );
               })}
               {/* Particules flottantes d'arrière-plan placées aléatoirement */}
               {[
-                { top: '15%', left: '12%' },
-                { top: '35%', left: '88%' },
-                { top: '62%', left: '8%' },
-                { top: '28%', left: '65%' },
-                { top: '78%', left: '23%' },
-                { top: '45%', left: '92%' },
-                { top: '85%', left: '47%' },
-                { top: '18%', left: '34%' },
-                { top: '56%', left: '71%' },
-                { top: '92%', left: '15%' },
-                { top: '8%', left: '78%' },
-                { top: '72%', left: '56%' },
+                { top: "15%", left: "12%" },
+                { top: "35%", left: "88%" },
+                { top: "62%", left: "8%" },
+                { top: "28%", left: "65%" },
+                { top: "78%", left: "23%" },
+                { top: "45%", left: "92%" },
+                { top: "85%", left: "47%" },
+                { top: "18%", left: "34%" },
+                { top: "56%", left: "71%" },
+                { top: "92%", left: "15%" },
+                { top: "8%", left: "78%" },
+                { top: "72%", left: "56%" },
               ].map((pos, i) => (
                 <motion.div
                   key={`particle-${i}`}
@@ -245,7 +256,7 @@ const About = () => {
                     duration: 4 + Math.random() * 2,
                     repeat: Infinity,
                     delay: i * 0.3,
-                    ease: 'easeInOut',
+                    ease: "easeInOut",
                   }}
                   style={{
                     top: pos.top,
@@ -258,7 +269,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

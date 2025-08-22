@@ -118,7 +118,7 @@ const About = () => {
             À propos de <span className="gradient-text">moi</span>
           </h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Découvrez mon parcours, mes compétences et ma passion pour l'informatique
+            Découvrez mon parcours, mes compétences et ma passion pour l&apos;informatique
           </p>
         </motion.div>
 
@@ -131,7 +131,7 @@ const About = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-6">Mon parcours</h3>
             <p className="text-white/80 leading-relaxed">
-              Étudiant en 2ème année de BUT Informatique à L'IUT d'Orleans, je me spécialise dans le
+              Étudiant en 2ème année de BUT Informatique à L&apos;IUT d'Orleans, je me spécialise dans le
               développement d&apos;applications. Ma passion pour les technologies web et
               l&apos;intelligence artificielle m&apos;a conduit à explorer diverses technologies et
               frameworks modernes.

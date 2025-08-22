@@ -5,7 +5,7 @@
 /.next
 /out
 
-# Variables d'environnement (SÉCURITÉ CRITIQUE)
+# Variables d'environnement
 .env
 .env.local
 .env.development.local
@@ -16,9 +16,6 @@
 *.db
 *.db-journal
 *.db-wal
-
-# Uploads utilisateur
-/public/uploads
 
 # TypeScript
 *.tsbuildinfo

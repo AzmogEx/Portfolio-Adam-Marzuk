@@ -130,12 +130,12 @@ const About = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-white mb-6">Mon parcours</h3>
-            <p className="text-white/80 leading-relaxed">
-              Étudiant en 2ème année de BUT Informatique à L&apos;IUT d&apos;Orleans, je me spécialise dans le
-              développement d&apos;applications. Ma passion pour les technologies web et
-              l&apos;intelligence artificielle m&apos;a conduit à explorer diverses technologies et
-              frameworks modernes.
-            </p>
+        <p className="text-white/80 leading-relaxed">
+  Étudiant en 2ème année de BUT Informatique à L&apos;IUT d&apos;Orléans, je me spécialise dans le
+  développement d&apos;applications. Ma passion pour les technologies web et
+  l&apos;intelligence artificielle m&apos;a conduit à explorer diverses technologies et
+  frameworks modernes.
+        </p>
             <p className="text-white/80 leading-relaxed">
               J&apos;ai acquis une expérience pratique grâce à des stages en entreprise et des
               projets personnels, me permettant de développer une approche complète du développement

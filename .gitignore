@@ -2,3 +2,5 @@
 .DS_Store
 /.next
 CLAUDE.md
+/.claude
+/generated/prisma

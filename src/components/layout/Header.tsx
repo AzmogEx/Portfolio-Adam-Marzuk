@@ -71,7 +71,7 @@ const Header = () => {
             <motion.a
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              href="https://github.com/adammarzuk"
+              href="https://github.com/AzmogEx"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-white/80 hover:text-white transition-colors duration-300"
@@ -82,7 +82,7 @@ const Header = () => {
             <motion.a
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              href="https://linkedin.com/in/adammarzuk"
+              href="https://www.linkedin.com/in/adam-marzuk-93804828a/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-white/80 hover:text-white transition-colors duration-300"
@@ -158,7 +158,7 @@ const Header = () => {
               <div className="border-t border-white/20 pt-2 mt-2">
                 <div className="flex items-center justify-center space-x-4 py-2">
                   <a
-                    href="https://github.com/adammarzuk"
+                    href="https://github.com/AzmogEx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 text-white/80 hover:text-white transition-colors duration-300"
@@ -166,7 +166,7 @@ const Header = () => {
                     <Github size={20} />
                   </a>
                   <a
-                    href="https://linkedin.com/in/adammarzuk"
+                    href="https://www.linkedin.com/in/adam-marzuk-93804828a/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 text-white/80 hover:text-white transition-colors duration-300"

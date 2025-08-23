@@ -1,9 +1,65 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { contactSchema, type ContactFormData } from '@/lib/validations'
+import { useState } from 'react'
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema)
+  })
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true)
+    setSubmitMessage(null)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage({
+          type: 'success',
+          message: result.message || 'Message envoyé avec succès !'
+        })
+        reset()
+      } else {
+        setSubmitMessage({
+          type: 'error',
+          message: result.error || 'Une erreur est survenue'
+        })
+      }
+    } catch (error) {
+      setSubmitMessage({
+        type: 'error',
+        message: 'Erreur de connexion. Veuillez réessayer.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -38,7 +94,7 @@ const Contact = () => {
                   <div>
                     <p className="text-white font-medium">Email</p>
                     <a 
-                      href="mailto:adam.marzuk@email.com"
+                      href="mailto:contact@adam-marzuk.fr"
                       className="text-white/70 hover:text-white transition-colors"
                     >
                       contact@adam-marzuk.fr
@@ -90,19 +146,50 @@ const Contact = () => {
           >
             <h3 className="text-xl font-bold text-white mb-6">Envoyez-moi un message</h3>
             
-            <form className="space-y-6">
+            {/* Message de statut */}
+            {submitMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
+                  submitMessage.type === 'success'
+                    ? 'bg-green-500/20 border border-green-500/30'
+                    : 'bg-red-500/20 border border-red-500/30'
+                }`}
+              >
+                {submitMessage.type === 'success' ? (
+                  <CheckCircle className="text-green-400" size={20} />
+                ) : (
+                  <AlertCircle className="text-red-400" size={20} />
+                )}
+                <p className={`text-sm ${
+                  submitMessage.type === 'success' ? 'text-green-300' : 'text-red-300'
+                }`}>
+                  {submitMessage.message}
+                </p>
+              </motion.div>
+            )}
+            
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
                     Nom *
                   </label>
                   <input
+                    {...register('name')}
                     type="text"
                     id="name"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all duration-300"
+                    className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:bg-white/15 transition-all duration-300 ${
+                      errors.name 
+                        ? 'border-red-400 focus:border-red-400' 
+                        : 'border-white/20 focus:border-blue-400'
+                    }`}
                     placeholder="Votre nom"
                   />
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
+                  )}
                 </div>
                 
                 <div>
@@ -110,12 +197,19 @@ const Contact = () => {
                     Email *
                   </label>
                   <input
+                    {...register('email')}
                     type="email"
                     id="email"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all duration-300"
+                    className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:bg-white/15 transition-all duration-300 ${
+                      errors.email 
+                        ? 'border-red-400 focus:border-red-400' 
+                        : 'border-white/20 focus:border-blue-400'
+                    }`}
                     placeholder="votre@email.com"
                   />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -124,12 +218,19 @@ const Contact = () => {
                   Sujet *
                 </label>
                 <input
+                  {...register('subject')}
                   type="text"
                   id="subject"
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all duration-300"
+                  className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:bg-white/15 transition-all duration-300 ${
+                    errors.subject 
+                      ? 'border-red-400 focus:border-red-400' 
+                      : 'border-white/20 focus:border-blue-400'
+                  }`}
                   placeholder="Sujet de votre message"
                 />
+                {errors.subject && (
+                  <p className="text-red-400 text-sm mt-1">{errors.subject.message}</p>
+                )}
               </div>
 
               <div>
@@ -137,21 +238,43 @@ const Contact = () => {
                   Message *
                 </label>
                 <textarea
+                  {...register('message')}
                   id="message"
                   rows={5}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all duration-300 resize-none"
+                  className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:bg-white/15 transition-all duration-300 resize-none ${
+                    errors.message 
+                      ? 'border-red-400 focus:border-red-400' 
+                      : 'border-white/20 focus:border-blue-400'
+                  }`}
                   placeholder="Votre message..."
                 />
+                {errors.message && (
+                  <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+                )}
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 type="submit"
-                className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-4 font-semibold rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center space-x-2 ${
+                  isSubmitting
+                    ? 'bg-gray-600 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:shadow-xl'
+                } text-white`}
               >
-                Envoyer le message
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Envoi en cours...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    <span>Envoyer le message</span>
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>

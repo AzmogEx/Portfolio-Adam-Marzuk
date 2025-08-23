@@ -99,7 +99,7 @@ const AdminDashboard = () => {
         >
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
-            <p className="text-white/70">Manage your portfolio projects</p>
+            <p className="text-white/70">Gérez votre portfolio et vos expériences</p>
             <p className="text-white/50 text-sm mt-1">👤 Connecté en tant que <span className="text-blue-400">Azmog</span></p>
           </div>
           
@@ -135,6 +135,57 @@ const AdminDashboard = () => {
               <LogOut size={16} />
               <span>Logout</span>
             </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Navigation Sections */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="mb-8"
+        >
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Section Projets */}
+            <div className="glass-card p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h2 className="text-xl font-bold text-white mb-1">Projets</h2>
+                  <p className="text-white/70 text-sm">Gérez vos réalisations</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl text-blue-400">💼</span>
+                  <span className="text-white/70 text-sm">{projects.length} projet{projects.length !== 1 ? 's' : ''}</span>
+                </div>
+              </div>
+              <Link
+                href="/admin/projects/new"
+                className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg text-blue-400 hover:text-blue-300 transition-all duration-300"
+              >
+                <Plus size={16} />
+                <span>Nouveau projet</span>
+              </Link>
+            </div>
+
+            {/* Section Expériences */}
+            <div className="glass-card p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h2 className="text-xl font-bold text-white mb-1">Expériences</h2>
+                  <p className="text-white/70 text-sm">Gérez votre parcours</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl text-purple-400">🎓</span>
+                </div>
+              </div>
+              <Link
+                href="/admin/experiences"
+                className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-lg text-purple-400 hover:text-purple-300 transition-all duration-300"
+              >
+                <Settings size={16} />
+                <span>Gérer les expériences</span>
+              </Link>
+            </div>
           </div>
         </motion.div>
 

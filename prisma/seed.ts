@@ -74,6 +74,84 @@ async function main() {
     })
     console.log(`Project created: ${project.title}`)
   }
+
+  // Seeder les expériences
+  console.log('Seeding experiences...')
+  
+  const existingExperiences = [
+    {
+      title: 'Développeur Full-Stack - Stagiaire',
+      company: 'TechCorp Solutions',
+      location: 'Paris, France',
+      startDate: '2024-04',
+      endDate: '2024-06',
+      description: JSON.stringify([
+        'Développement d\'une application web de gestion de projets en React et Node.js',
+        'Mise en place d\'une API REST avec authentification JWT',
+        'Intégration de tests unitaires avec Jest et React Testing Library',
+        'Collaboration en équipe Agile avec participation aux daily stands et sprint reviews'
+      ]),
+      technologies: JSON.stringify(['React', 'Node.js', 'Express', 'MongoDB', 'Jest', 'Git']),
+      type: 'work',
+      featured: true,
+      order: 1
+    },
+    {
+      title: 'Développeur Web - Stagiaire',
+      company: 'Digital Agency Pro',
+      location: 'Lyon, France',
+      startDate: '2023-05',
+      endDate: '2023-07',
+      description: JSON.stringify([
+        'Création de sites web responsives pour des clients variés',
+        'Développement front-end avec Vue.js et intégration d\'APIs',
+        'Optimisation SEO et performances web',
+        'Maintenance et mise à jour de sites existants'
+      ]),
+      technologies: JSON.stringify(['Vue.js', 'JavaScript', 'SCSS', 'PHP', 'WordPress', 'Figma']),
+      type: 'work',
+      featured: false,
+      order: 2
+    },
+    {
+      title: 'BUT Informatique - Réalisation d\'applications',
+      company: 'IUT de Informatique',
+      location: 'France',
+      startDate: '2022-09',
+      endDate: '2025-06',
+      description: JSON.stringify([
+        'Formation en développement d\'applications avec spécialisation en technologies web modernes, bases de données, et gestion de projet.'
+      ]),
+      technologies: JSON.stringify([]),
+      type: 'education',
+      featured: true,
+      order: 1
+    },
+    {
+      title: 'Baccalauréat Scientifique',
+      company: 'Lycée Victor Hugo',
+      location: 'France',
+      startDate: '2019-09',
+      endDate: '2022-06',
+      description: JSON.stringify([
+        'Spécialité Mathématiques et Numérique et Sciences Informatiques (NSI)'
+      ]),
+      technologies: JSON.stringify([]),
+      type: 'education',
+      featured: false,
+      order: 2
+    }
+  ]
+
+  // Supprimer les expériences existantes et créer les nouvelles
+  await prisma.experience.deleteMany()
+  
+  for (const expData of existingExperiences) {
+    const experience = await prisma.experience.create({
+      data: expData
+    })
+    console.log(`Experience created: ${experience.title} (${experience.type})`)
+  }
 }
 
 main()

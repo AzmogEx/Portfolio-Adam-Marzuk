@@ -2,7 +2,7 @@ import Header from '@/components/layout/Header'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Projects from '@/components/sections/Projects'
-import Experience from '@/components/sections/Experience'
+import ExperienceDynamic from '@/components/sections/ExperienceDynamic'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/layout/Footer'
 
@@ -14,7 +14,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
-        <Experience />
+        <ExperienceDynamic />
         <Contact />
       </main>
       <Footer />

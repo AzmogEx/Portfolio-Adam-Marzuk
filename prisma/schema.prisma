@@ -31,3 +31,19 @@ model Project {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Experience {
+  id           String   @id @default(cuid())
+  title        String   // Poste occupé ou diplôme
+  company      String   // Entreprise ou école
+  location     String   // Lieu
+  startDate    String   // Date début (format YYYY-MM)
+  endDate      String?  // Date fin (optionnel pour "Présent")
+  description  String   // Array JSON des descriptions/détails
+  technologies String   // Array JSON des technologies (pour expériences pro)
+  type         String   @default("work") // "work" pour expérience, "education" pour formation
+  order        Int      @default(0)     // Pour réorganisation
+  featured     Boolean  @default(false) // Pour mise en avant
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

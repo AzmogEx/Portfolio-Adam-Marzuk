@@ -62,7 +62,7 @@ const AdminLogin = () => {
             </motion.div>
             <h1 className="text-2xl font-bold text-white mb-2">Admin Login</h1>
             <p className="text-white/70">
-              Accès au panel d'administration du portfolio
+              Accès au panel d&apos;administration du portfolio
             </p>
           </div>
 
@@ -157,7 +157,7 @@ const AdminLogin = () => {
               className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-lg text-white/70 hover:text-white transition-all duration-300 text-sm"
             >
               <Home size={16} />
-              Retour à l'accueil
+              Retour à l&apos;accueil
             </Link>
           </motion.div>
           </form>

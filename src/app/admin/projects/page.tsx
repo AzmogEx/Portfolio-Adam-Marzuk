@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Plus, Edit2, Trash2, ExternalLink, Github, Search } from 'lucide-react'
+import { Plus, Edit2, Trash2, ExternalLink, Github, Search, Rocket } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -124,7 +124,7 @@ const ProjectsPage = () => {
                   </div>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-4xl">🚀</span>
+                    <Rocket className="text-blue-400" size={48} />
                   </div>
                 )}
               </div>

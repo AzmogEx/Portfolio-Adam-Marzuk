@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Building } from 'lucide-react'
+import { Calendar, MapPin, Building, GraduationCap } from 'lucide-react'
 
 // Interface pour les expériences récupérées de l'API
 interface ExperienceAPI {
@@ -181,7 +181,7 @@ const ExperienceDynamic = () => {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
-              🎓 Formation
+              <GraduationCap className="inline" size={20} /> Formation
             </h3>
             
             <div className="space-y-8">

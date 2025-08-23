@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ExperienceUpdateSchema } from '@/lib/validators'
+import { safeJsonParse } from '@/lib/utils'
 
 // GET - Récupérer une expérience spécifique
 export async function GET(
@@ -25,8 +26,8 @@ export async function GET(
     return NextResponse.json({
       experience: {
         ...experience,
-        description: JSON.parse(experience.description),
-        technologies: JSON.parse(experience.technologies)
+        description: safeJsonParse(experience.description, []),
+        technologies: safeJsonParse(experience.technologies, [])
       }
     })
   } catch (error) {
@@ -105,8 +106,8 @@ export async function PUT(
       message: 'Experience updated successfully',
       experience: {
         ...updatedExperience,
-        description: JSON.parse(updatedExperience.description),
-        technologies: JSON.parse(updatedExperience.technologies)
+        description: safeJsonParse(updatedExperience.description, []),
+        technologies: safeJsonParse(updatedExperience.technologies, [])
       }
     })
 

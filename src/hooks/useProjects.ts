@@ -1,20 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-
-interface Project {
-  id: string
-  title: string
-  description: string
-  image: string | null
-  technologies: string[]
-  githubUrl: string | null
-  liveUrl: string | null
-  featured: boolean
-  order: number
-  createdAt: string
-  updatedAt: string
-}
+import { Project } from '@/types'
+import { ApiService } from '@/lib/api'
+import { ERROR_MESSAGES, CONFIRMATION_MESSAGES } from '@/lib/constants'
 
 export const useProjects = () => {
   const [projects, setProjects] = useState<Project[]>([])
@@ -24,41 +13,33 @@ export const useProjects = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/projects')
-      const data = await response.json()
+      const result = await ApiService.getProjects()
       
-      if (response.ok) {
-        setProjects(data.projects)
+      if (result.success && result.data) {
+        setProjects(result.data.projects)
         setError('')
       } else {
-        setError('Failed to fetch projects')
+        setError(result.error || ERROR_MESSAGES.FETCH_PROJECTS_FAILED)
       }
     } catch (err) {
-      setError('Network error')
+      setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
     }
   }
 
   const deleteProject = async (id: string, title: string) => {
-    if (!confirm(`Êtes-vous sûr de vouloir supprimer "${title}" ? Cette action est irréversible.`)) {
+    if (!confirm(CONFIRMATION_MESSAGES.DELETE_PROJECT(title))) {
       return false
     }
 
-    try {
-      const response = await fetch(`/api/projects/${id}`, {
-        method: 'DELETE',
-      })
+    const result = await ApiService.deleteProject(id)
 
-      if (response.ok) {
-        await fetchProjects() // Recharger la liste
-        return true
-      } else {
-        alert('Failed to delete project')
-        return false
-      }
-    } catch (err) {
-      alert('Network error')
+    if (result.success) {
+      await fetchProjects() // Recharger la liste
+      return true
+    } else {
+      alert(result.error || ERROR_MESSAGES.DELETE_PROJECT_FAILED)
       return false
     }
   }

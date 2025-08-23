@@ -2,22 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Github, ExternalLink } from 'lucide-react'
+import { Github, ExternalLink, Rocket } from 'lucide-react'
 import Image from 'next/image'
-
-interface Project {
-  id: string
-  title: string
-  description: string
-  image: string | null
-  technologies: string[]
-  githubUrl: string | null
-  liveUrl: string | null
-  featured: boolean
-  order: number
-  createdAt: string
-  updatedAt: string
-}
+import { Project } from '@/types'
+import { ApiService } from '@/lib/api'
+import { ERROR_MESSAGES, LOADING_MESSAGES, EMPTY_STATE_MESSAGES } from '@/lib/constants'
 
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([])
@@ -26,16 +15,15 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/api/projects')
-      const data = await response.json()
+      const result = await ApiService.getProjects()
       
-      if (response.ok) {
-        setProjects(data.projects)
+      if (result.success && result.data) {
+        setProjects(result.data.projects)
       } else {
-        setError('Failed to load projects')
+        setError(result.error || ERROR_MESSAGES.FETCH_PROJECTS_FAILED)
       }
     } catch (err) {
-      setError('Network error while loading projects')
+      setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
     }
@@ -50,7 +38,7 @@ const Projects = () => {
       <section id="projects" className="section-padding relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <div className="text-white/70 text-lg">Loading projects...</div>
+            <div className="text-white/70 text-lg">{LOADING_MESSAGES.LOADING_PROJECTS}</div>
           </div>
         </div>
       </section>
@@ -113,7 +101,7 @@ const Projects = () => {
                     </div>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-4xl">🚀</span>
+                      <Rocket className="text-blue-400" size={48} />
                     </div>
                   )}
                 </div>

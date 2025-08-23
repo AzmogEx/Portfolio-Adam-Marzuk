@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ProjectSchema } from '@/lib/validators'
+import { safeJsonParse } from '@/lib/utils'
 
 // GET - Fetch all projects (public)
 export async function GET(request: NextRequest) {
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
     // Parse technologies JSON string back to array
     const formattedProjects = projects.map(project => ({
       ...project,
-      technologies: JSON.parse(project.technologies)
+      technologies: safeJsonParse(project.technologies, [])
     }))
 
     return NextResponse.json({ projects: formattedProjects })
@@ -67,7 +68,7 @@ export async function POST(request: NextRequest) {
     // Return project with parsed technologies
     const formattedProject = {
       ...project,
-      technologies: JSON.parse(project.technologies)
+      technologies: safeJsonParse(project.technologies, [])
     }
 
     return NextResponse.json(

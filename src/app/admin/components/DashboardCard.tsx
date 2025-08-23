@@ -9,7 +9,7 @@ interface DashboardCardProps {
   description: string
   icon: string | React.ReactNode
   stats?: string
-  action: {
+  action?: {
     label: string
     href: string
     icon?: LucideIcon
@@ -55,7 +55,7 @@ const DashboardCard = ({
   }
 
   const currentVariant = variants[variant]
-  const ActionIcon = action.icon || ArrowRight
+  const ActionIcon = action?.icon || ArrowRight
 
   return (
     <motion.div
@@ -89,13 +89,15 @@ const DashboardCard = ({
       </div>
 
       {/* Action Button */}
-      <Link
-        href={action.href}
-        className={`flex items-center justify-center gap-2 w-full py-3 px-4 border rounded-lg transition-all duration-300 ${currentVariant.bg} ${currentVariant.text}`}
-      >
-        <ActionIcon size={16} />
-        <span className="font-medium">{action.label}</span>
-      </Link>
+      {action && (
+        <Link
+          href={action.href}
+          className={`flex items-center justify-center gap-2 w-full py-3 px-4 border rounded-lg transition-all duration-300 ${currentVariant.bg} ${currentVariant.text}`}
+        >
+          <ActionIcon size={16} />
+          <span className="font-medium">{action.label}</span>
+        </Link>
+      )}
     </motion.div>
   )
 }

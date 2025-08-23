@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ExperienceSchema } from '@/lib/validators'
+import { safeJsonParse } from '@/lib/utils'
 
 // GET - Récupérer toutes les expériences (public)
 export async function GET(request: NextRequest) {
@@ -24,8 +25,8 @@ export async function GET(request: NextRequest) {
     // Parse des champs JSON en arrays
     const formattedExperiences = experiences.map(exp => ({
       ...exp,
-      description: JSON.parse(exp.description),
-      technologies: JSON.parse(exp.technologies)
+      description: safeJsonParse(exp.description, []),
+      technologies: safeJsonParse(exp.technologies, [])
     }))
 
     return NextResponse.json({ experiences: formattedExperiences })
@@ -81,8 +82,8 @@ export async function POST(request: NextRequest) {
       message: 'Experience created successfully',
       experience: {
         ...experience,
-        description: JSON.parse(experience.description),
-        technologies: JSON.parse(experience.technologies)
+        description: safeJsonParse(experience.description, []),
+        technologies: safeJsonParse(experience.technologies, [])
       }
     }, { status: 201 })
 

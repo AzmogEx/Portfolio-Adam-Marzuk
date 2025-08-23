@@ -6,20 +6,7 @@ import { motion } from 'framer-motion'
 import { Save, X, Upload, ArrowLeft, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-
-interface Project {
-  id: string
-  title: string
-  description: string
-  image: string | null
-  technologies: string[]
-  githubUrl: string | null
-  liveUrl: string | null
-  featured: boolean
-  order: number
-  createdAt: string
-  updatedAt: string
-}
+import { Project } from '@/types'
 
 const EditProject = () => {
   const [formData, setFormData] = useState({

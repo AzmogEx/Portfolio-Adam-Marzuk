@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ProjectUpdateSchema } from '@/lib/validators'
+import { safeJsonParse } from '@/lib/utils'
 
 // GET - Fetch single project (public)
 export async function GET(
@@ -24,7 +25,7 @@ export async function GET(
     // Parse technologies JSON string back to array
     const formattedProject = {
       ...project,
-      technologies: JSON.parse(project.technologies)
+      technologies: safeJsonParse(project.technologies, [])
     }
 
     return NextResponse.json({ project: formattedProject })
@@ -88,7 +89,7 @@ export async function PUT(
     // Return project with parsed technologies
     const formattedProject = {
       ...project,
-      technologies: JSON.parse(project.technologies)
+      technologies: safeJsonParse(project.technologies, [])
     }
 
     return NextResponse.json(

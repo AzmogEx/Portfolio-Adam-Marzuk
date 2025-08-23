@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowDown, Mail, MapPin } from 'lucide-react'
+import Image from 'next/image'
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -106,10 +107,13 @@ const Hero = () => {
             <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96">
               {/* Placeholder pour photo */}
               <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full border-4 border-white/10 flex items-center justify-center">
-                <img 
+                <Image 
                   src="/assets/images/profile.png" 
                   alt="Adam Marzuk" 
-                  className="w-100 h-100 object-cover rounded-full"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover rounded-full"
+                  priority
                 />              
               </div>
               

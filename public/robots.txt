@@ -1,0 +1,20 @@
+# Robots.txt pour Portfolio Adam Marzuk
+# Permet l'indexation du portfolio public tout en protégeant l'espace admin
+
+User-agent: *
+
+# Autoriser l'indexation du site public
+Allow: /
+
+# Interdire l'indexation de l'espace administration
+Disallow: /admin/
+
+# Interdire l'indexation des API endpoints
+Disallow: /api/
+
+# Interdire l'indexation des fichiers de configuration potentiels
+Disallow: /_next/
+Disallow: /.next/
+
+# Sitemap (à ajouter plus tard si nécessaire)
+# Sitemap: https://votre-domaine.com/sitemap.xml

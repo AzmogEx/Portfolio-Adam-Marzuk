@@ -14,8 +14,10 @@ function verifySimpleToken(token: string): boolean {
     const payload = JSON.parse(atob(parts[1]))
     const now = Math.floor(Date.now() / 1000)
     
-    return payload.exp > now
-  } catch {
+    if (!payload.exp || payload.exp <= now) return false
+    
+    return true
+  } catch (error) {
     return false
   }
 }

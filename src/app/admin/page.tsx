@@ -63,11 +63,15 @@ const AdminDashboard = () => {
   }
 
   const handleLogout = async () => {
+    if (!confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) return
+    
     try {
       await fetch('/api/auth/logout', { method: 'POST' })
       router.push('/admin/login')
+      router.refresh()
     } catch (err) {
       console.error('Logout error:', err)
+      alert('Erreur lors de la déconnexion')
     }
   }
 
@@ -96,6 +100,7 @@ const AdminDashboard = () => {
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
             <p className="text-white/70">Manage your portfolio projects</p>
+            <p className="text-white/50 text-sm mt-1">👤 Connecté en tant que <span className="text-blue-400">Azmog</span></p>
           </div>
           
           <div className="flex gap-3">

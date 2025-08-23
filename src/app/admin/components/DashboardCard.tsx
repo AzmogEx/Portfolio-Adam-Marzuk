@@ -2,20 +2,17 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { LucideIcon } from 'lucide-react'
+import { LucideIcon, ArrowRight } from 'lucide-react'
 
 interface DashboardCardProps {
   title: string
   description: string
   icon: string | React.ReactNode
-  stats?: {
-    label: string
-    value: string | number
-  }
+  stats?: string
   action: {
     label: string
     href: string
-    icon: LucideIcon
+    icon?: LucideIcon
   }
   variant?: 'primary' | 'secondary' | 'success' | 'warning'
   delay?: number
@@ -58,7 +55,7 @@ const DashboardCard = ({
   }
 
   const currentVariant = variants[variant]
-  const ActionIcon = action.icon
+  const ActionIcon = action.icon || ArrowRight
 
   return (
     <motion.div
@@ -85,8 +82,7 @@ const DashboardCard = ({
           {/* Stats */}
           {stats && (
             <div className="text-right">
-              <div className="text-2xl font-bold text-white">{stats.value}</div>
-              <div className="text-white/60 text-sm">{stats.label}</div>
+              <div className="text-lg font-bold text-white">{stats}</div>
             </div>
           )}
         </div>

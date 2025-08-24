@@ -89,7 +89,7 @@ const Footer = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://linkedin.com/in/adammarzuk"
+                  href="https://www.linkedin.com/in/adam-marzuk-93804828a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-white/5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"

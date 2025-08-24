@@ -90,7 +90,7 @@ const Experience = () => {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
-              <GraduationCap className="inline" size={20} /> Formation
+              <GraduationCap className="mr-3 text-purple-400" size={24} /> Formation
             </h3>
             
             <div className="space-y-8">

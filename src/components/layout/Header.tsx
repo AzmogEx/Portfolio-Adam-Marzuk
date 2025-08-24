@@ -2,12 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, Sun, Moon, Github, Linkedin, FileText } from 'lucide-react'
-import { useTheme } from '@/hooks/useTheme'
+import { Menu, X, Github, Linkedin, FileText } from 'lucide-react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
 
   const navItems = [
     { name: 'Accueil', href: '#hero' },
@@ -102,28 +100,10 @@ const Header = () => {
               <span>Mon CV</span>
             </motion.a>
 
-            {/* Toggle thème */}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={toggleTheme}
-              className="p-2 text-white/80 hover:text-white transition-colors duration-300"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
           </div>
 
           {/* Menu Mobile */}
-          <div className="md:hidden flex items-center space-x-2">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={toggleTheme}
-              className="p-2 text-white/80 hover:text-white transition-colors duration-300"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-            
+          <div className="md:hidden">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}

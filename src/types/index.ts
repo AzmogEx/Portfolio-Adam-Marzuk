@@ -43,4 +43,3 @@ export interface ContactForm {
   message: string;
 }
 
-export type Theme = 'light' | 'dark';

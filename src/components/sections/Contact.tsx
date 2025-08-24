@@ -115,7 +115,7 @@ const Contact = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://github.com/adammarzuk"
+                  href="https://github.com/AzmogEx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-white/5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"

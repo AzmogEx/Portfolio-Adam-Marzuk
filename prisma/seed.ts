@@ -28,7 +28,7 @@ async function main() {
       description: 'Application e-commerce complète avec gestion des produits, panier, commandes et paiements. Interface moderne et responsive.',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop',
       technologies: JSON.stringify(['React', 'TypeScript', 'Node.js', 'MongoDB', 'Stripe']),
-      githubUrl: 'https://github.com/adammarzuk',
+      githubUrl: 'https://github.com/AzmogEx',
       liveUrl: 'https://demo.adam-marzuk.fr',
       featured: true,
       order: 1
@@ -38,7 +38,7 @@ async function main() {
       description: 'API REST pour la gestion de tâches avec authentification JWT, CRUD complet et documentation Swagger.',
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
       technologies: JSON.stringify(['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Swagger']),
-      githubUrl: 'https://github.com/adammarzuk',
+      githubUrl: 'https://github.com/AzmogEx',
       liveUrl: null,
       featured: true,
       order: 2
@@ -48,7 +48,7 @@ async function main() {
       description: 'Tableau de bord analytique avec graphiques interactifs, filtres avancés et export de données.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
       technologies: JSON.stringify(['Vue.js', 'Chart.js', 'Laravel', 'MySQL']),
-      githubUrl: 'https://github.com/adammarzuk',
+      githubUrl: 'https://github.com/AzmogEx',
       liveUrl: 'https://analytics.adam-marzuk.fr',
       featured: false,
       order: 3
@@ -58,7 +58,7 @@ async function main() {
       description: 'Application mobile de suivi fitness avec tracking des exercices, objectifs et statistiques.',
       image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
       technologies: JSON.stringify(['React Native', 'Firebase', 'Redux', 'Expo']),
-      githubUrl: 'https://github.com/adammarzuk',
+      githubUrl: 'https://github.com/AzmogEx',
       liveUrl: null,
       featured: false,
       order: 4

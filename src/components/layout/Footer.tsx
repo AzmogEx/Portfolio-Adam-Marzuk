@@ -6,6 +6,13 @@ import { Github, Linkedin, Mail, Heart } from 'lucide-react'
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <footer className="bg-black/20 border-t border-white/10 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -32,14 +39,20 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white">Navigation</h4>
             <nav className="space-y-2">
-              {['Accueil', 'À propos', 'Projets', 'Expériences', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="block text-white/60 hover:text-white transition-colors duration-300"
+              {[
+                { name: 'Accueil', href: '#hero' },
+                { name: 'À propos', href: '#about' },
+                { name: 'Projets', href: '#projects' },
+                { name: 'Parcours', href: '#experiences' },
+                { name: 'Contact', href: '#contact' }
+              ].map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="block w-full text-left text-white/60 hover:text-white transition-colors duration-300"
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </button>
               ))}
             </nav>
           </motion.div>
@@ -65,7 +78,7 @@ const Footer = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://github.com/adammarzuk"
+                  href="https://github.com/AzmogEx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-white/5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"

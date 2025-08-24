@@ -18,20 +18,16 @@ export interface Experience {
   company: string;
   location: string;
   startDate: string;
-  endDate?: string;
+  endDate?: string | null;
   description: string[];
   technologies: string[];
+  type: 'work' | 'education';
+  featured: boolean;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface Education {
-  id: string;
-  degree: string;
-  school: string;
-  location: string;
-  startDate: string;
-  endDate?: string;
-  description?: string;
-}
 
 export interface Skill {
   name: string;

@@ -28,7 +28,7 @@ export const useAuth = () => {
       }
     } catch (err) {
       setUser(null)
-      setError('Error fetching user info')
+      setError(err instanceof Error ? err.message : 'Erreur lors de la récupération des informations utilisateur')
     } finally {
       setLoading(false)
     }

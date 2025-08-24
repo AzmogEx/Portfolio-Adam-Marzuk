@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { ContactFormData } from './validations'
+import { ContactFormData } from './validators'
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Github, ExternalLink, Rocket } from 'lucide-react'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ const Projects = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       const result = await ApiService.getProjects()
       
@@ -27,11 +27,11 @@ const Projects = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fetchProjects()
-  }, [])
+  }, [fetchProjects])
 
   if (loading) {
     return (

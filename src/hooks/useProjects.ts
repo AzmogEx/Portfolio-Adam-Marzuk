@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Project } from '@/types'
 import { ApiService } from '@/lib/api'
 import { ERROR_MESSAGES, CONFIRMATION_MESSAGES } from '@/lib/constants'
@@ -10,7 +10,7 @@ export const useProjects = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       setLoading(true)
       const result = await ApiService.getProjects()
@@ -26,7 +26,7 @@ export const useProjects = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   const deleteProject = async (id: string, title: string) => {
     if (!confirm(CONFIRMATION_MESSAGES.DELETE_PROJECT(title))) {
@@ -46,7 +46,7 @@ export const useProjects = () => {
 
   useEffect(() => {
     fetchProjects()
-  }, [])
+  }, [fetchProjects])
 
   // Statistiques dérivées
   const stats = {

@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Enhanced JWT verification for Edge Runtime
-function verifySimpleToken(token: string): boolean {
+// Secure JWT verification with signature validation for Edge Runtime
+function verifyJWTToken(token: string): boolean {
   try {
     if (!token) return false
+    
+    const JWT_SECRET = process.env.JWT_SECRET
+    if (!JWT_SECRET) {
+      console.error('JWT_SECRET not found in middleware')
+      return false
+    }
     
     // Check JWT structure (header.payload.signature)
     const parts = token.split('.')
@@ -18,13 +24,15 @@ function verifySimpleToken(token: string): boolean {
     try {
       const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')))
       if (!header.alg || !header.typ || header.typ !== 'JWT') return false
+      if (header.alg !== 'HS256') return false // Ensure correct algorithm
     } catch (headerError) {
       return false
     }
     
     // Decode and validate payload
+    let payload
     try {
-      const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')))
+      payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')))
       const now = Math.floor(Date.now() / 1000)
       
       // Check required fields
@@ -37,12 +45,34 @@ function verifySimpleToken(token: string): boolean {
       
       // Check issued at time (not too far in the future)
       if (payload.iat > now + 300) return false // Allow 5 minutes clock skew
-      
-      return true
     } catch (parseError) {
       return false
     }
+    
+    // CRITICAL: Verify signature using HMAC SHA256
+    const crypto = require('crypto')
+    const header = parts[0]
+    const payloadPart = parts[1]
+    const signature = parts[2]
+    
+    // Create expected signature
+    const data = `${header}.${payloadPart}`
+    const expectedSignature = crypto
+      .createHmac('sha256', JWT_SECRET)
+      .update(data)
+      .digest('base64url')
+    
+    // Constant-time comparison to prevent timing attacks
+    if (signature.length !== expectedSignature.length) return false
+    
+    let result = 0
+    for (let i = 0; i < signature.length; i++) {
+      result |= signature.charCodeAt(i) ^ expectedSignature.charCodeAt(i)
+    }
+    
+    return result === 0
   } catch (error) {
+    console.error('JWT verification error:', error)
     return false
   }
 }
@@ -60,7 +90,7 @@ export function middleware(request: NextRequest) {
     // Check for auth token
     const token = request.cookies.get('admin-token')?.value
     
-    if (!token || !verifySimpleToken(token)) {
+    if (!token || !verifyJWTToken(token)) {
       // Redirect to login page
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
@@ -73,7 +103,7 @@ export function middleware(request: NextRequest) {
       pathname.startsWith('/api/upload')) {
     const token = request.cookies.get('admin-token')?.value
     
-    if (!token || !verifySimpleToken(token)) {
+    if (!token || !verifyJWTToken(token)) {
       return NextResponse.json(
         { error: 'Authentication required' },
         { status: 401 }

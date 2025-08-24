@@ -1,9 +1,13 @@
 import { z } from 'zod'
 
+// ===== AUTHENTICATION SCHEMAS =====
+
 export const LoginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
   password: z.string().min(1, 'Password is required'),
 })
+
+// ===== PROJECT SCHEMAS =====
 
 export const ProjectSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
@@ -17,6 +21,8 @@ export const ProjectSchema = z.object({
 })
 
 export const ProjectUpdateSchema = ProjectSchema.partial()
+
+// ===== EXPERIENCE SCHEMAS =====
 
 export const ExperienceSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
@@ -33,8 +39,40 @@ export const ExperienceSchema = z.object({
 
 export const ExperienceUpdateSchema = ExperienceSchema.partial()
 
+// ===== CONTACT SCHEMAS =====
+
+export const ContactSchema = z.object({
+  name: z
+    .string()
+    .min(2, 'Le nom doit contenir au moins 2 caractères')
+    .max(100, 'Le nom ne peut pas dépasser 100 caractères')
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le nom contient des caractères invalides'),
+  
+  email: z
+    .string()
+    .email('Veuillez entrer une adresse email valide')
+    .max(254, 'L\'adresse email est trop longue'),
+  
+  subject: z
+    .string()
+    .min(5, 'Le sujet doit contenir au moins 5 caractères')
+    .max(200, 'Le sujet ne peut pas dépasser 200 caractères')
+    .regex(/^[a-zA-ZÀ-ÿ0-9\s\-_.,!?]+$/, 'Le sujet contient des caractères invalides'),
+  
+  message: z
+    .string()
+    .min(20, 'Le message doit contenir au moins 20 caractères')
+    .max(2000, 'Le message ne peut pas dépasser 2000 caractères')
+})
+
+// ===== TYPE EXPORTS =====
+
 export type LoginInput = z.infer<typeof LoginSchema>
 export type ProjectInput = z.infer<typeof ProjectSchema>
 export type ProjectUpdateInput = z.infer<typeof ProjectUpdateSchema>
 export type ExperienceInput = z.infer<typeof ExperienceSchema>
 export type ExperienceUpdateInput = z.infer<typeof ExperienceUpdateSchema>
+export type ContactFormData = z.infer<typeof ContactSchema>
+
+// ===== LEGACY ALIASES (for backward compatibility) =====
+export const contactSchema = ContactSchema

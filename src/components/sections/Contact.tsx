@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { contactSchema, type ContactFormData } from '@/lib/validations'
+import { contactSchema, type ContactFormData } from '@/lib/validators'
 import { useState } from 'react'
 
 const Contact = () => {
@@ -53,7 +53,7 @@ const Contact = () => {
     } catch (error) {
       setSubmitMessage({
         type: 'error',
-        message: 'Erreur de connexion. Veuillez réessayer.'
+        message: error instanceof Error ? error.message : 'Erreur de connexion. Veuillez réessayer.'
       })
     } finally {
       setIsSubmitting(false)

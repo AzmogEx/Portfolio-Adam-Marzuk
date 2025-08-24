@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { contactSchema } from '@/lib/validations'
+import { contactSchema } from '@/lib/validators'
 import { sendContactEmail } from '@/lib/email'
 import { rateLimit } from '@/lib/rate-limit'
 

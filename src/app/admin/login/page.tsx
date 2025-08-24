@@ -36,7 +36,7 @@ const AdminLogin = () => {
         setError(data.error || "Login failed");
       }
     } catch (err) {
-      setError("Network error. Please try again.");
+      setError(err instanceof Error ? err.message : "Erreur de réseau. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }

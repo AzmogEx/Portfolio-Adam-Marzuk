@@ -1,73 +1,52 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
-interface Experience {
-  id: string
-  title: string
-  company: string
-  location: string
-  startDate: string
-  endDate?: string | null
-  description: string[]
-  technologies: string[]
-  type: 'work' | 'education'
-  featured: boolean
-  order: number
-  createdAt: string
-  updatedAt: string
-}
+import { useState, useEffect, useCallback } from 'react'
+import { Experience } from '@/types'
+import { ApiService } from '@/lib/api'
+import { ERROR_MESSAGES, CONFIRMATION_MESSAGES } from '@/lib/constants'
 
 export const useExperiences = () => {
   const [experiences, setExperiences] = useState<Experience[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchExperiences = async () => {
+  const fetchExperiences = useCallback(async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/experiences')
-      const data = await response.json()
+      const result = await ApiService.getExperiences()
       
-      if (response.ok) {
-        setExperiences(data.experiences)
+      if (result.success && result.data) {
+        setExperiences(result.data.experiences)
         setError('')
       } else {
-        setError('Failed to fetch experiences')
+        setError(result.error || ERROR_MESSAGES.FETCH_EXPERIENCES_FAILED)
       }
     } catch (err) {
-      setError('Network error')
+      setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   const deleteExperience = async (id: string, title: string) => {
-    if (!confirm(`Êtes-vous sûr de vouloir supprimer "${title}" ? Cette action est irréversible.`)) {
+    if (!confirm(CONFIRMATION_MESSAGES.DELETE_EXPERIENCE(title))) {
       return false
     }
 
-    try {
-      const response = await fetch(`/api/experiences/${id}`, {
-        method: 'DELETE',
-      })
+    const result = await ApiService.deleteExperience(id)
 
-      if (response.ok) {
-        await fetchExperiences() // Recharger la liste
-        return true
-      } else {
-        alert('Failed to delete experience')
-        return false
-      }
-    } catch (err) {
-      alert('Network error')
+    if (result.success) {
+      await fetchExperiences() // Recharger la liste
+      return true
+    } else {
+      alert(result.error || ERROR_MESSAGES.DELETE_EXPERIENCE_FAILED)
       return false
     }
   }
 
   useEffect(() => {
     fetchExperiences()
-  }, [])
+  }, [fetchExperiences])
 
   // Statistiques dérivées
   const stats = {

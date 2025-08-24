@@ -1,4 +1,4 @@
-import { Project } from '@/types'
+import { Project, Experience } from '@/types'
 import { ERROR_MESSAGES } from './constants'
 
 /**
@@ -123,6 +123,35 @@ export class ApiService {
   static async getCurrentUser(): Promise<{ data?: { user: { username: string; id: string } }; error?: string; success: boolean }> {
     return this.request<{ user: { username: string; id: string } }>('/api/auth/me')
   }
+
+  // Experiences API
+  static async getExperiences(): Promise<{ data?: { experiences: Experience[] }; error?: string; success: boolean }> {
+    return this.request<{ experiences: Experience[] }>('/api/experiences')
+  }
+
+  static async getExperience(id: string): Promise<{ data?: { experience: Experience }; error?: string; success: boolean }> {
+    return this.request<{ experience: Experience }>(`/api/experiences/${id}`)
+  }
+
+  static async createExperience(experienceData: Partial<Experience>): Promise<{ data?: { experience: Experience }; error?: string; success: boolean }> {
+    return this.request<{ experience: Experience }>('/api/experiences', {
+      method: 'POST',
+      body: JSON.stringify(experienceData),
+    })
+  }
+
+  static async updateExperience(id: string, experienceData: Partial<Experience>): Promise<{ data?: { experience: Experience }; error?: string; success: boolean }> {
+    return this.request<{ experience: Experience }>(`/api/experiences/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(experienceData),
+    })
+  }
+
+  static async deleteExperience(id: string): Promise<{ success: boolean; error?: string }> {
+    return this.request(`/api/experiences/${id}`, {
+      method: 'DELETE',
+    })
+  }
 }
 
 // Convenience functions for backwards compatibility
@@ -132,3 +161,10 @@ export const createProject = (data: Partial<Project>) => ApiService.createProjec
 export const updateProject = (id: string, data: Partial<Project>) => ApiService.updateProject(id, data)
 export const deleteProject = (id: string) => ApiService.deleteProject(id)
 export const uploadFile = (file: File) => ApiService.uploadFile(file)
+
+// Experiences convenience functions
+export const fetchExperiences = () => ApiService.getExperiences()
+export const fetchExperience = (id: string) => ApiService.getExperience(id)
+export const createExperience = (data: Partial<Experience>) => ApiService.createExperience(data)
+export const updateExperience = (id: string, data: Partial<Experience>) => ApiService.updateExperience(id, data)
+export const deleteExperience = (id: string) => ApiService.deleteExperience(id)

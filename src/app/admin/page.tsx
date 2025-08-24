@@ -9,7 +9,7 @@ import { useExperiences } from '@/hooks/useExperiences'
 
 const AdminDashboard = () => {
   const { projects, loading: projectsLoading, stats: projectStats } = useProjects()
-  const { experiences, loading: experiencesLoading, stats: experienceStats } = useExperiences()
+  const { experiences: _experiences, loading: experiencesLoading, stats: experienceStats } = useExperiences()
 
   const isLoading = projectsLoading || experiencesLoading
 

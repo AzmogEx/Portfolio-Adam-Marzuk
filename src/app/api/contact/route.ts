@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     const validatedData = contactSchema.parse(body)
     
     // Vérifications anti-spam supplémentaires
-    const { name, email, subject, message } = validatedData
+    const { name, subject, message } = validatedData
     
     // Détecter des patterns suspects
     const suspiciousPatterns = [
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { 
           error: 'Données invalides.',
-          details: (error as any).issues.map((issue: any) => ({
+          details: (error as { issues: { path: string[]; message: string }[] }).issues.map((issue) => ({
             field: issue.path.join('.'),
             message: issue.message
           }))

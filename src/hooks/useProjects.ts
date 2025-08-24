@@ -21,7 +21,7 @@ export const useProjects = () => {
       } else {
         setError(result.error || ERROR_MESSAGES.FETCH_PROJECTS_FAILED)
       }
-    } catch (err) {
+    } catch (_err) {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)

@@ -28,7 +28,7 @@ const AdminExperiences = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [filterType, setFilterType] = useState<'all' | 'work' | 'education'>('all')
-  const router = useRouter()
+  const _router = useRouter()
 
   // Fonction pour récupérer les expériences
   const fetchExperiences = async () => {
@@ -43,7 +43,7 @@ const AdminExperiences = () => {
       } else {
         setError('Failed to fetch experiences')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error')
     } finally {
       setLoading(false)
@@ -66,7 +66,7 @@ const AdminExperiences = () => {
       } else {
         alert('Failed to delete experience')
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Network error')
     }
   }

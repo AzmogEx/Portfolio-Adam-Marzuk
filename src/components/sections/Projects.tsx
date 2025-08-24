@@ -6,7 +6,7 @@ import { Github, ExternalLink, Rocket } from 'lucide-react'
 import Image from 'next/image'
 import { Project } from '@/types'
 import { ApiService } from '@/lib/api'
-import { ERROR_MESSAGES, LOADING_MESSAGES, EMPTY_STATE_MESSAGES } from '@/lib/constants'
+import { ERROR_MESSAGES, LOADING_MESSAGES } from '@/lib/constants'
 
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([])
@@ -22,7 +22,7 @@ const Projects = () => {
       } else {
         setError(result.error || ERROR_MESSAGES.FETCH_PROJECTS_FAILED)
       }
-    } catch (err) {
+    } catch (_err) {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)

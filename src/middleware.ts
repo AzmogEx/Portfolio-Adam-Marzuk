@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Secure JWT verification with signature validation for Edge Runtime
-function verifyJWTToken(token: string): boolean {
+async function verifyJWTToken(token: string): Promise<boolean> {
   try {
     if (!token) return false
     
@@ -25,7 +25,7 @@ function verifyJWTToken(token: string): boolean {
       const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')))
       if (!header.alg || !header.typ || header.typ !== 'JWT') return false
       if (header.alg !== 'HS256') return false // Ensure correct algorithm
-    } catch (headerError) {
+    } catch (_headerError) {
       return false
     }
     
@@ -45,22 +45,32 @@ function verifyJWTToken(token: string): boolean {
       
       // Check issued at time (not too far in the future)
       if (payload.iat > now + 300) return false // Allow 5 minutes clock skew
-    } catch (parseError) {
+    } catch (_parseError) {
       return false
     }
     
-    // CRITICAL: Verify signature using HMAC SHA256
-    const crypto = require('crypto')
+    // CRITICAL: Verify signature using Web Crypto API (Edge Runtime compatible)
     const header = parts[0]
     const payloadPart = parts[1]
     const signature = parts[2]
     
-    // Create expected signature
+    // Create expected signature using Web Crypto API
     const data = `${header}.${payloadPart}`
-    const expectedSignature = crypto
-      .createHmac('sha256', JWT_SECRET)
-      .update(data)
-      .digest('base64url')
+    const encoder = new TextEncoder()
+    
+    const key = await crypto.subtle.importKey(
+      'raw',
+      encoder.encode(JWT_SECRET),
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
+    )
+    
+    const signatureBuffer = await crypto.subtle.sign('HMAC', key, encoder.encode(data))
+    const expectedSignature = btoa(String.fromCharCode(...new Uint8Array(signatureBuffer)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '')
     
     // Constant-time comparison to prevent timing attacks
     if (signature.length !== expectedSignature.length) return false
@@ -77,7 +87,7 @@ function verifyJWTToken(token: string): boolean {
   }
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Check if it's an admin route
@@ -90,7 +100,7 @@ export function middleware(request: NextRequest) {
     // Check for auth token
     const token = request.cookies.get('admin-token')?.value
     
-    if (!token || !verifyJWTToken(token)) {
+    if (!token || !(await verifyJWTToken(token))) {
       // Redirect to login page
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
@@ -103,7 +113,7 @@ export function middleware(request: NextRequest) {
       pathname.startsWith('/api/upload')) {
     const token = request.cookies.get('admin-token')?.value
     
-    if (!token || !verifyJWTToken(token)) {
+    if (!token || !(await verifyJWTToken(token))) {
       return NextResponse.json(
         { error: 'Authentication required' },
         { status: 401 }

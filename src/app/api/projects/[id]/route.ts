@@ -74,7 +74,7 @@ export async function PUT(
     }
 
     // Prepare update data
-    const updateData: any = { ...data }
+    const updateData: Record<string, unknown> = { ...data }
     if (data.technologies) {
       updateData.technologies = JSON.stringify(data.technologies)
     }

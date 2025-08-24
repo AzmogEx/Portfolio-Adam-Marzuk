@@ -32,7 +32,7 @@ export function generateToken(payload: { userId: string; username: string }): st
 export function verifyToken(token: string): JWTPayload | null {
   try {
     return jwt.verify(token, JWT_SECRET!) as JWTPayload
-  } catch (error) {
+  } catch (_error) {
     return null
   }
 }

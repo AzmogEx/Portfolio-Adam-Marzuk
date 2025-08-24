@@ -21,7 +21,7 @@ export const useExperiences = () => {
       } else {
         setError(result.error || ERROR_MESSAGES.FETCH_EXPERIENCES_FAILED)
       }
-    } catch (err) {
+    } catch (_err) {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)

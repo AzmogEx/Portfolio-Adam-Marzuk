@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { Save, X, Upload, ArrowLeft, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Project } from '@/types'
+import type { Project as _Project } from '@/types'
 
 const EditProject = () => {
   const [formData, setFormData] = useState({
@@ -66,7 +66,7 @@ const EditProject = () => {
       } else {
         alert(data.error || 'Upload failed')
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Network error during upload')
     } finally {
       setUploading(false)
@@ -100,7 +100,7 @@ const EditProject = () => {
       } else {
         setError(data.error || 'Failed to update project')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.')
     } finally {
       setLoading(false)
@@ -122,7 +122,7 @@ const EditProject = () => {
       } else {
         alert('Failed to delete project')
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Network error')
     }
   }
@@ -149,7 +149,7 @@ const EditProject = () => {
         } else {
           setError('Failed to fetch project')
         }
-      } catch (err) {
+      } catch (_err) {
         setError('Network error')
       } finally {
         setInitialLoading(false)

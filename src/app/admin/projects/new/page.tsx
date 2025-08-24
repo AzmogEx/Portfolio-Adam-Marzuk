@@ -62,7 +62,7 @@ const NewProject = () => {
       } else {
         alert(data.error || 'Upload failed')
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Network error during upload')
     } finally {
       setUploading(false)
@@ -96,7 +96,7 @@ const NewProject = () => {
       } else {
         setError(data.error || 'Failed to create project')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.')
     } finally {
       setLoading(false)

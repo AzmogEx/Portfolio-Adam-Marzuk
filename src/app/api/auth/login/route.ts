@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { authenticate, generateToken, setAuthCookie } from '@/lib/auth'
+import { authenticate, generateToken } from '@/lib/auth'
 import { LoginSchema } from '@/lib/validators'
 import { rateLimit } from '@/lib/rate-limit'
 

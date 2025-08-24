@@ -173,7 +173,7 @@ const EditExperience = () => {
       } else {
         setError(data.error || 'Failed to update experience')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.')
     } finally {
       setLoading(false)
@@ -196,7 +196,7 @@ const EditExperience = () => {
       } else {
         alert('Failed to delete experience')
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Network error')
     }
   }

@@ -119,7 +119,7 @@ const NewExperience = () => {
       } else {
         setError(data.error || 'Failed to create experience')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.')
     } finally {
       setLoading(false)

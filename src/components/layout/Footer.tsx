@@ -95,12 +95,9 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="border-t border-white/10 pt-8 mt-8"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-center">
+          <div className="text-center">
             <p className="text-white/50 text-sm">
               © {currentYear} Adam Marzuk. Tous droits réservés.
-            </p>
-            <p className="flex items-center text-white/50 text-sm mt-2 sm:mt-0">
-              Fait avec <Heart size={16} className="mx-1 text-red-400" /> et Next.js
             </p>
           </div>
         </motion.div>

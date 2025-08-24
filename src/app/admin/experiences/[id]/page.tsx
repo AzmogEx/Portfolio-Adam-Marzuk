@@ -59,39 +59,37 @@ const EditExperience = () => {
   const [error, setError] = useState('')
   const router = useRouter()
 
-  // Charger les données de l'expérience
-  const fetchExperience = async () => {
-    try {
-      const response = await fetch(`/api/experiences/${experienceId}`)
-      const data = await response.json()
-      
-      if (response.ok) {
-        const exp = data.experience
-        setExperience(exp)
-        setFormData({
-          title: exp.title,
-          company: exp.company,
-          location: exp.location,
-          startDate: exp.startDate,
-          endDate: exp.endDate || '',
-          description: exp.description.length > 0 ? exp.description : [''],
-          technologies: exp.technologies || [],
-          type: exp.type,
-          featured: exp.featured,
-          order: exp.order
-        })
-        setError('')
-      } else {
-        setError('Failed to fetch experience')
-      }
-    } catch (err) {
-      setError('Network error')
-    } finally {
-      setInitialLoading(false)
-    }
-  }
-
   useEffect(() => {
+    const fetchExperience = async () => {
+      try {
+        const response = await fetch(`/api/experiences/${experienceId}`)
+        const data = await response.json()
+        
+        if (response.ok) {
+          const exp = data.experience
+          setExperience(exp)
+          setFormData({
+            title: exp.title,
+            company: exp.company,
+            location: exp.location,
+            startDate: exp.startDate?.split('T')[0] || '',
+            endDate: exp.endDate?.split('T')[0] || '',
+            description: exp.description || [],
+            technologies: exp.technologies || [],
+            type: exp.type,
+            featured: exp.featured,
+            order: exp.order
+          })
+        } else {
+          alert(`Error: ${data.error || 'Failed to load experience'}`)
+        }
+      } catch (error) {
+        console.error('Error fetching experience:', error)
+        alert('Network error')
+      } finally {
+        setInitialLoading(false)
+      }
+    }
     fetchExperience()
   }, [experienceId])
 

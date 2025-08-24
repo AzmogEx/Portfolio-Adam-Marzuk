@@ -22,7 +22,7 @@ const ProjectsPage = () => {
   const handleDeleteProject = async (id: string, title: string) => {
     if (!confirm(`Êtes-vous sûr de vouloir supprimer "${title}" ?`)) return
     
-    const success = await deleteProject(id)
+    const success = await deleteProject(id, title)
     if (!success) {
       alert('Erreur lors de la suppression du projet')
     }
@@ -221,7 +221,7 @@ const ProjectsPage = () => {
           className="text-center py-12"
         >
           <div className="text-white/50 text-lg mb-2">
-            Aucun projet trouvé pour "{searchTerm}"
+            Aucun projet trouvé pour &quot;{searchTerm}&quot;
           </div>
           <button
             onClick={() => setSearchTerm('')}
@@ -258,7 +258,7 @@ const ProjectsPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center text-white/60 text-sm"
         >
-          {filteredProjects.length} résultat{filteredProjects.length !== 1 ? 's' : ''} trouvé{filteredProjects.length !== 1 ? 's' : ''} pour "{searchTerm}"
+          {filteredProjects.length} résultat{filteredProjects.length !== 1 ? 's' : ''} trouvé{filteredProjects.length !== 1 ? 's' : ''} pour &quot;{searchTerm}&quot;
         </motion.div>
       )}
     </div>

@@ -28,33 +28,6 @@ const EditProject = () => {
   const params = useParams()
   const projectId = params.id as string
 
-  const fetchProject = async () => {
-    try {
-      const response = await fetch(`/api/projects/${projectId}`)
-      const data = await response.json()
-      
-      if (response.ok) {
-        const project = data.project
-        setFormData({
-          title: project.title,
-          description: project.description,
-          image: project.image || '',
-          technologies: project.technologies,
-          githubUrl: project.githubUrl || '',
-          liveUrl: project.liveUrl || '',
-          featured: project.featured,
-          order: project.order,
-        })
-      } else {
-        setError('Failed to fetch project')
-      }
-    } catch (err) {
-      setError('Network error')
-    } finally {
-      setInitialLoading(false)
-    }
-  }
-
   const handleAddTechnology = () => {
     if (techInput.trim() && !formData.technologies.includes(techInput.trim())) {
       setFormData({
@@ -155,6 +128,33 @@ const EditProject = () => {
   }
 
   useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`)
+        const data = await response.json()
+        
+        if (response.ok) {
+          const project = data.project
+          setFormData({
+            title: project.title,
+            description: project.description,
+            image: project.image || '',
+            technologies: project.technologies || [],
+            githubUrl: project.githubUrl || '',
+            liveUrl: project.liveUrl || '',
+            featured: project.featured,
+            order: project.order
+          })
+          setError('')
+        } else {
+          setError('Failed to fetch project')
+        }
+      } catch (err) {
+        setError('Network error')
+      } finally {
+        setInitialLoading(false)
+      }
+    }
     fetchProject()
   }, [projectId])
 

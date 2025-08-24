@@ -34,7 +34,7 @@ const AdminDashboard = () => {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
-        <p className="text-white/70">Vue d'ensemble de votre portfolio</p>
+        <p className="text-white/70">Vue d&apos;ensemble de votre portfolio</p>
       </motion.div>
 
       {/* Quick Stats */}

@@ -4,8 +4,8 @@ export interface Project {
   description: string;
   image: string | null;
   technologies: string[];
-  githubUrl: string | null;
-  liveUrl: string | null;
+  githubUrl?: string | null;
+  liveUrl?: string | null;
   featured: boolean;
   order: number;
   createdAt: string;

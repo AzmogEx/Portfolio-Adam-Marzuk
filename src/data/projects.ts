@@ -1,6 +1,6 @@
 import { Project } from '@/types'
 
-export const projects: Project[] = [
+export const projects: Omit<Project, 'order' | 'createdAt' | 'updatedAt'>[] = [
   {
     id: '1',
     title: 'Projet E-commerce',

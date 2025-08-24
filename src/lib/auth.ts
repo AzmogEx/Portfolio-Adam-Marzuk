@@ -26,12 +26,12 @@ export async function verifyPassword(password: string, hashedPassword: string): 
 }
 
 export function generateToken(payload: { userId: string; username: string }): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' })
+  return jwt.sign(payload, JWT_SECRET!, { expiresIn: '7d' })
 }
 
 export function verifyToken(token: string): JWTPayload | null {
   try {
-    return jwt.verify(token, JWT_SECRET) as JWTPayload
+    return jwt.verify(token, JWT_SECRET!) as JWTPayload
   } catch (error) {
     return null
   }

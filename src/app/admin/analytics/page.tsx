@@ -58,7 +58,7 @@ const AnalyticsPage = () => {
         </div>
         <p className="text-white/60 text-sm">
           Cette section contiendra des statistiques détaillées sur les visites, les interactions 
-          avec vos projets, et d'autres métriques utiles pour optimiser votre portfolio.
+          avec vos projets, et d&apos;autres métriques utiles pour optimiser votre portfolio.
         </p>
       </motion.div>
 

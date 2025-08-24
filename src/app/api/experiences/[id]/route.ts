@@ -7,10 +7,10 @@ import { safeJsonParse } from '@/lib/utils'
 // GET - Récupérer une expérience spécifique
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
 
     const experience = await prisma.experience.findUnique({
       where: { id }
@@ -42,13 +42,13 @@ export async function GET(
 // PUT - Modifier une expérience (admin uniquement)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Vérification d'authentification
     await requireAuth()
 
-    const { id } = params
+    const { id } = await params
     const body = await request.json()
     
     const validation = ExperienceUpdateSchema.safeParse(body)
@@ -123,13 +123,13 @@ export async function PUT(
 // DELETE - Supprimer une expérience (admin uniquement)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Vérification d'authentification
     await requireAuth()
 
-    const { id } = params
+    const { id } = await params
 
     // Vérifier que l'expérience existe
     const existingExperience = await prisma.experience.findUnique({

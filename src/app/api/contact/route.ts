@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     // Récupérer l'IP du client pour le rate limiting
     const forwarded = request.headers.get('x-forwarded-for')
-    const ip = forwarded ? forwarded.split(/, /)[0] : request.ip || 'unknown'
+    const ip = forwarded ? forwarded.split(/, /)[0] : 'unknown'
     
     // Vérifier le rate limiting (5 messages par 15 minutes par IP)
     const rateLimitResult = rateLimit(ip, 5, 15 * 60 * 1000)

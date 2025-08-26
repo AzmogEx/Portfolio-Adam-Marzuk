@@ -255,7 +255,7 @@ const Tools = () => {
                 <Users className="text-white" size={28} />
               </div>
             </div>
-            <h4 className="text-xl font-bold text-white mb-3">Esprit d'équipe</h4>
+            <h4 className="text-xl font-bold text-white mb-3">Esprit d&apos;équipe</h4>
             <p className="text-white/70 text-sm leading-relaxed">
               Ma capacité d&apos;adaptation et ma communication me permettent de m&apos;intégrer facilement.
             </p>

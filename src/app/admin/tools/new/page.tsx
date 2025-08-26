@@ -200,7 +200,7 @@ const NewTool = () => {
           {/* Ordre */}
           <div>
             <label htmlFor="order" className="block text-sm font-medium text-white/80 mb-2">
-              Ordre d'affichage
+              Ordre d&apos;affichage
             </label>
             <input
               type="number"

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ExperienceUpdateSchema } from '@/lib/validators'
@@ -94,13 +95,16 @@ export async function PUT(
       updateData.technologies = JSON.stringify(data.technologies)
     }
     if (data.type !== undefined) updateData.type = data.type
-    if (data.featured !== undefined) updateData.featured = data.featured
     if (data.order !== undefined) updateData.order = data.order
 
     const updatedExperience = await prisma.experience.update({
       where: { id },
       data: updateData
     })
+
+    // Revalidate pages that show experiences
+    revalidatePath('/')
+    revalidatePath('/admin')
 
     return NextResponse.json({
       message: 'Experience updated successfully',
@@ -146,6 +150,10 @@ export async function DELETE(
     await prisma.experience.delete({
       where: { id }
     })
+
+    // Revalidate pages that show experiences
+    revalidatePath('/')
+    revalidatePath('/admin')
 
     return NextResponse.json({
       message: 'Experience deleted successfully'

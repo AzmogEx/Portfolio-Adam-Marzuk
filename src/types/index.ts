@@ -26,7 +26,6 @@ export interface Experience {
   updatedAt: string;
 }
 
-
 export interface Skill {
   name: string;
   category: 'language' | 'framework' | 'tool' | 'other';

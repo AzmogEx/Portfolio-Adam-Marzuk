@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ExperienceSchema } from '@/lib/validators'
@@ -27,7 +28,14 @@ export async function GET(request: NextRequest) {
       technologies: safeJsonParse(exp.technologies, [])
     }))
 
-    return NextResponse.json({ experiences: formattedExperiences })
+    const response = NextResponse.json({ experiences: formattedExperiences })
+    
+    // Disable caching to ensure fresh data
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+    response.headers.set('Pragma', 'no-cache')
+    response.headers.set('Expires', '0')
+    
+    return response
   } catch (error) {
     console.error('Error fetching experiences:', error)
     return NextResponse.json(
@@ -75,6 +83,10 @@ export async function POST(request: NextRequest) {
         endDate: data.endDate === '' ? null : data.endDate,
       }
     })
+
+    // Revalidate pages that show experiences
+    revalidatePath('/')
+    revalidatePath('/admin')
 
     return NextResponse.json({
       message: 'Experience created successfully',

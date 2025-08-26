@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ProjectUpdateSchema } from '@/lib/validators'
@@ -92,6 +93,10 @@ export async function PUT(
       technologies: safeJsonParse(project.technologies, [])
     }
 
+    // Revalidate pages that show projects
+    revalidatePath('/')
+    revalidatePath('/admin')
+
     return NextResponse.json(
       { success: true, project: formattedProject }
     )
@@ -130,6 +135,10 @@ export async function DELETE(
     await prisma.project.delete({
       where: { id }
     })
+
+    // Revalidate pages that show projects
+    revalidatePath('/')
+    revalidatePath('/admin')
 
     return NextResponse.json(
       { success: true, message: 'Project deleted successfully' }

@@ -2,19 +2,27 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Rocket } from 'lucide-react'
+import { Github, ExternalLink, Rocket, RefreshCw } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Project } from '@/types'
 import { ApiService } from '@/lib/api'
 import { ERROR_MESSAGES, LOADING_MESSAGES } from '@/lib/constants'
 
 const Projects = () => {
+  const router = useRouter()
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchProjects = useCallback(async () => {
+  const fetchProjects = useCallback(async (isRefresh = false) => {
     try {
+      if (isRefresh) {
+        setRefreshing(true)
+        setError('')
+      }
+      
       const result = await ApiService.getProjects()
       
       if (result.success && result.data) {
@@ -26,11 +34,29 @@ const Projects = () => {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
+      setRefreshing(false)
     }
   }, [])
 
+  const handleRefresh = useCallback(async () => {
+    router.refresh()
+    await fetchProjects(true)
+  }, [fetchProjects, router])
+
   useEffect(() => {
     fetchProjects()
+  }, [fetchProjects])
+
+  // Auto-refresh when returning from admin
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchProjects(true)
+      }
+    }
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
   }, [fetchProjects])
 
   if (loading) {
@@ -66,9 +92,11 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Mes <span className="gradient-text">Projets</span>
-          </h2>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Mes <span className="gradient-text">Projets</span>
+            </h2>
+          </div>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
             Découvrez une sélection de mes réalisations et projets personnels
           </p>

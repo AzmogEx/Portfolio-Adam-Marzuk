@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth'
 import { ProjectSchema } from '@/lib/validators'
@@ -20,7 +21,14 @@ export async function GET(request: NextRequest) {
       technologies: safeJsonParse(project.technologies, [])
     }))
 
-    return NextResponse.json({ projects: formattedProjects })
+    const response = NextResponse.json({ projects: formattedProjects })
+    
+    // Disable caching to ensure fresh data
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+    response.headers.set('Pragma', 'no-cache')
+    response.headers.set('Expires', '0')
+    
+    return response
   } catch (error) {
     console.error('Error fetching projects:', error)
     return NextResponse.json(
@@ -66,6 +74,10 @@ export async function POST(request: NextRequest) {
       ...project,
       technologies: safeJsonParse(project.technologies, [])
     }
+
+    // Revalidate pages that show projects
+    revalidatePath('/')
+    revalidatePath('/admin')
 
     return NextResponse.json(
       { success: true, project: formattedProject },

@@ -53,7 +53,6 @@ export const useExperiences = () => {
     total: experiences.length,
     work: experiences.filter(exp => exp.type === 'work').length,
     education: experiences.filter(exp => exp.type === 'education').length,
-    featured: experiences.filter(exp => exp.featured).length,
     recent: experiences.filter(exp => {
       const created = new Date(exp.createdAt)
       const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)

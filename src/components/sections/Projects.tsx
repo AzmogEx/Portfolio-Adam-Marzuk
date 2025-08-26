@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Rocket, RefreshCw } from 'lucide-react'
+import { Github, ExternalLink, Rocket } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Project } from '@/types'
@@ -13,13 +13,13 @@ const Projects = () => {
   const router = useRouter()
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [refreshing, setRefreshing] = useState(false)
+  const [_refreshing, _setRefreshing] = useState(false)
   const [error, setError] = useState('')
 
   const fetchProjects = useCallback(async (isRefresh = false) => {
     try {
       if (isRefresh) {
-        setRefreshing(true)
+        _setRefreshing(true)
         setError('')
       }
       
@@ -34,11 +34,11 @@ const Projects = () => {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
-      setRefreshing(false)
+      _setRefreshing(false)
     }
   }, [])
 
-  const handleRefresh = useCallback(async () => {
+  const _handleRefresh = useCallback(async () => {
     router.refresh()
     await fetchProjects(true)
   }, [fetchProjects, router])

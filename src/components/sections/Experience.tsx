@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Building, GraduationCap, RefreshCw } from 'lucide-react'
+import { Calendar, MapPin, Building, GraduationCap } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Experience as ExperienceType } from '@/types'
 import { ApiService } from '@/lib/api'
@@ -12,13 +12,13 @@ const Experience = () => {
   const router = useRouter()
   const [experiences, setExperiences] = useState<ExperienceType[]>([])
   const [loading, setLoading] = useState(true)
-  const [refreshing, setRefreshing] = useState(false)
+  const [_refreshing, _setRefreshing] = useState(false)
   const [error, setError] = useState('')
 
   const fetchExperiences = useCallback(async (isRefresh = false) => {
     try {
       if (isRefresh) {
-        setRefreshing(true)
+        _setRefreshing(true)
         setError('')
       }
       
@@ -33,11 +33,11 @@ const Experience = () => {
       setError(ERROR_MESSAGES.UNEXPECTED_ERROR)
     } finally {
       setLoading(false)
-      setRefreshing(false)
+      _setRefreshing(false)
     }
   }, [])
 
-  const handleRefresh = useCallback(async () => {
+  const _handleRefresh = useCallback(async () => {
     router.refresh()
     await fetchExperiences(true)
   }, [fetchExperiences, router])

@@ -41,6 +41,7 @@ const Footer = () => {
             <nav className="space-y-2">
               {[
                 { name: 'Accueil', href: '#hero' },
+                { name: 'Outils',  href: '#tools'},
                 { name: 'À propos', href: '#about' },
                 { name: 'Projets', href: '#projects' },
                 { name: 'Parcours', href: '#experiences' },

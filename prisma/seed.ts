@@ -61,14 +61,19 @@ async function main() {
     }
   ]
   
-  // Delete existing projects and create new ones
-  await prisma.project.deleteMany()
+  // Only create projects if none exist (first-time setup)
+  const existingProjectsCount = await prisma.project.count()
   
-  for (const projectData of existingProjects) {
-    const project = await prisma.project.create({
-      data: projectData
-    })
-    console.log(`Project created: ${project.title}`)
+  if (existingProjectsCount === 0) {
+    console.log('No projects found, seeding initial projects...')
+    for (const projectData of existingProjects) {
+      const project = await prisma.project.create({
+        data: projectData
+      })
+      console.log(`Project created: ${project.title}`)
+    }
+  } else {
+    console.log(`Found ${existingProjectsCount} existing projects, skipping project seeding`)
   }
 
   // Seeder les expériences
@@ -135,14 +140,19 @@ async function main() {
     }
   ]
 
-  // Supprimer les expériences existantes et créer les nouvelles
-  await prisma.experience.deleteMany()
+  // Only create experiences if none exist (first-time setup)
+  const existingExperiencesCount = await prisma.experience.count()
   
-  for (const expData of existingExperiences) {
-    const experience = await prisma.experience.create({
-      data: expData
-    })
-    console.log(`Experience created: ${experience.title} (${experience.type})`)
+  if (existingExperiencesCount === 0) {
+    console.log('No experiences found, seeding initial experiences...')
+    for (const expData of existingExperiences) {
+      const experience = await prisma.experience.create({
+        data: expData
+      })
+      console.log(`Experience created: ${experience.title} (${experience.type})`)
+    }
+  } else {
+    console.log(`Found ${existingExperiencesCount} existing experiences, skipping experience seeding`)
   }
 }
 

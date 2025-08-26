@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && npm run db:seed && next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "build:local": "prisma generate && next build",
+    "build:init": "prisma generate && prisma migrate deploy && npm run db:seed && next build",
     "start": "next start",
     "lint": "eslint .",
     "db:seed": "tsx prisma/seed.ts",

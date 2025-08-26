@@ -6,7 +6,7 @@ import { ProjectSchema } from '@/lib/validators'
 import { safeJsonParse } from '@/lib/utils'
 
 // GET - Fetch all projects (public)
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const projects = await prisma.project.findMany({
       orderBy: [

@@ -6,11 +6,8 @@ import {
   Plus, Edit, Trash2, Wrench, Search,
   Monitor, Globe, Database, Terminal,
   Palette, FileCode, Package, Zap,
-  GitBranch, Cloud, Shield, Smartphone,
-  Layers, Settings, Cpu, HardDrive,
-  Camera, Headphones, MessageSquare, Users2,
-  Target, Lightbulb, CheckCircle, Clock,
-  TrendingUp, Award, Star, Puzzle, Code2
+  GitBranch, Cloud, Smartphone,
+  Camera, Code2
 } from 'lucide-react'
 import Link from 'next/link'
 import { Tool } from '@/types'
@@ -117,15 +114,6 @@ const ToolsPage = () => {
     return <span className="text-3xl">{fallbackIcon}</span>
   }
 
-  const getLevelColor = (level: Tool['level']) => {
-    switch (level) {
-      case 'expert': return 'bg-green-500/20 text-green-400'
-      case 'advanced': return 'bg-blue-500/20 text-blue-400'
-      case 'intermediate': return 'bg-yellow-500/20 text-yellow-400'
-      case 'beginner': return 'bg-gray-500/20 text-gray-400'
-      default: return 'bg-gray-500/20 text-gray-400'
-    }
-  }
 
   // Filtrage et recherche
   const categories = ['all', ...Array.from(new Set(tools.map(tool => tool.category)))]

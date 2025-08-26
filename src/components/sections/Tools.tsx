@@ -8,9 +8,8 @@ import {
   Wrench, Heart, Code2, Users, 
   Monitor, Globe, Database, Terminal,
   Palette, FileCode, Package, Zap,
-  GitBranch, Cloud, Shield, Smartphone,
-  Layers, Settings, Cpu, HardDrive,
-  Camera, Headphones, MessageSquare, Users2,
+  GitBranch, Cloud, Smartphone,
+  Camera, MessageSquare, Users2,
   Target, Lightbulb, CheckCircle, Clock,
   TrendingUp, Award, Star, Puzzle
 } from 'lucide-react'
@@ -126,37 +125,6 @@ const Tools = () => {
     fetchData()
   }, [])
 
-  // Fonction pour obtenir la couleur selon le niveau de maîtrise
-  const getLevelColor = (level: Tool['level'] | SoftSkill['level']) => {
-    switch (level) {
-      case 'expert':
-        return 'from-green-500 to-green-600'
-      case 'advanced':
-        return 'from-blue-500 to-blue-600'
-      case 'intermediate':
-        return 'from-yellow-500 to-yellow-600'
-      case 'beginner':
-        return 'from-gray-500 to-gray-600'
-      default:
-        return 'from-gray-500 to-gray-600'
-    }
-  }
-
-  // Fonction pour obtenir l'intensité de la bordure selon le niveau
-  const getLevelBorder = (level: Tool['level'] | SoftSkill['level']) => {
-    switch (level) {
-      case 'expert':
-        return 'border-green-400/60'
-      case 'advanced':
-        return 'border-blue-400/60'
-      case 'intermediate':
-        return 'border-yellow-400/60'
-      case 'beginner':
-        return 'border-gray-400/60'
-      default:
-        return 'border-gray-400/60'
-    }
-  }
 
   return (
     <section id="tools" className="section-padding relative overflow-hidden">
@@ -207,7 +175,7 @@ const Tools = () => {
                     transition: { duration: 0.2 }
                   }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`glass-card p-4 text-center hover:shadow-lg transition-all duration-300 border ${getLevelBorder(tool.level)} group cursor-pointer`}
+                  className="glass-card p-4 text-center hover:shadow-lg transition-all duration-300 border border-white/10 group cursor-pointer"
                 >
                   <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
                     {getToolIcon(tool.name, tool.icon)}
@@ -245,7 +213,7 @@ const Tools = () => {
                     transition: { duration: 0.2 }
                   }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`glass-card p-4 flex items-center gap-4 hover:shadow-lg transition-all duration-300 border ${getLevelBorder(skill.level)} group cursor-pointer`}
+                  className="glass-card p-4 flex items-center gap-4 hover:shadow-lg transition-all duration-300 border border-white/10 group cursor-pointer"
                 >
                   <div className="group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
                     {getSoftSkillIcon(skill.name, skill.icon)}
@@ -277,7 +245,7 @@ const Tools = () => {
             </div>
             <h4 className="text-xl font-bold text-white mb-3">Workflow</h4>
             <p className="text-white/70 text-sm leading-relaxed">
-              J'utilise des outils modernes pour optimiser ma productivité et collaborer efficacement.
+              J&apos;utilise des outils modernes pour optimiser ma productivité et collaborer efficacement.
             </p>
           </div>
 
@@ -289,7 +257,7 @@ const Tools = () => {
             </div>
             <h4 className="text-xl font-bold text-white mb-3">Esprit d'équipe</h4>
             <p className="text-white/70 text-sm leading-relaxed">
-              Ma capacité d'adaptation et ma communication me permettent de m'intégrer facilement.
+              Ma capacité d&apos;adaptation et ma communication me permettent de m&apos;intégrer facilement.
             </p>
           </div>
         </motion.div>

@@ -52,15 +52,6 @@ const SoftSkillsPage = () => {
     }
   }
 
-  const getLevelColor = (level: SoftSkill['level']) => {
-    switch (level) {
-      case 'expert': return 'bg-green-500/20 text-green-400'
-      case 'advanced': return 'bg-blue-500/20 text-blue-400'
-      case 'intermediate': return 'bg-yellow-500/20 text-yellow-400'
-      case 'beginner': return 'bg-gray-500/20 text-gray-400'
-      default: return 'bg-gray-500/20 text-gray-400'
-    }
-  }
 
   // Filtrage et recherche
   const categories = ['all', ...Array.from(new Set(softSkills.map(skill => skill.category)))]

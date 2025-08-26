@@ -109,7 +109,7 @@ const EditTool = () => {
   }
 
   const handleDelete = async () => {
-    if (!confirm(`Êtes-vous sûr de vouloir supprimer l'outil "${tool?.name}" ? Cette action est irréversible.`)) {
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer l&apos;outil "${tool?.name}" ? Cette action est irréversible.`)) {
       return
     }
 
@@ -128,7 +128,7 @@ const EditTool = () => {
   if (initialLoading) {
     return (
       <div className="flex items-center justify-center min-h-96">
-        <div className="text-white text-xl">Chargement de l'outil...</div>
+        <div className="text-white text-xl">Chargement de l&apos;outil...</div>
       </div>
     )
   }
@@ -199,7 +199,7 @@ const EditTool = () => {
           {/* Nom de l'outil */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-              Nom de l'outil *
+              Nom de l&apos;outil *
             </label>
             <input
               type="text"
@@ -279,7 +279,7 @@ const EditTool = () => {
           {/* Ordre */}
           <div>
             <label htmlFor="order" className="block text-sm font-medium text-white/80 mb-2">
-              Ordre d'affichage
+              Ordre d&apos;affichage
             </label>
             <input
               type="number"

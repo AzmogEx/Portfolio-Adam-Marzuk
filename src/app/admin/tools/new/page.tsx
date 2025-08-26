@@ -116,7 +116,7 @@ const NewTool = () => {
           {/* Nom de l'outil */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-              Nom de l'outil *
+              Nom de l&apos;outil *
             </label>
             <input
               type="text"
@@ -192,7 +192,7 @@ const NewTool = () => {
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Description de l'outil et de son utilisation..."
+              placeholder="Description de l&apos;outil et de son utilisation..."
               rows={3}
             />
           </div>

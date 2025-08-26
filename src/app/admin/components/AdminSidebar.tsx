@@ -11,7 +11,9 @@ import {
   BarChart3, 
   Settings,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  Wrench,
+  Heart
 } from 'lucide-react'
 
 interface SidebarItem {
@@ -44,6 +46,16 @@ const AdminSidebar = ({ onLogout }: AdminSidebarProps) => {
       name: 'Expériences',
       href: '/admin/experiences',
       icon: GraduationCap
+    },
+    {
+      name: 'Outils',
+      href: '/admin/tools',
+      icon: Wrench
+    },
+    {
+      name: 'Soft Skills',
+      href: '/admin/soft-skills',
+      icon: Heart
     },
     {
       name: 'Analytics',

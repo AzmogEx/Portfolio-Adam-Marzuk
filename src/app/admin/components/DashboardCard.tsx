@@ -62,37 +62,37 @@ const DashboardCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.6 }}
-      className="glass-card p-6 hover:scale-105 transition-all duration-300"
+      className="glass-card p-6 hover:scale-105 transition-all duration-300 flex flex-col h-full"
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
-          <p className="text-white/70 text-sm">{description}</p>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Icon */}
-          <div className={`p-3 rounded-lg ${currentVariant.iconBg}`}>
+      <div className="flex flex-col space-y-4 mb-4 flex-1">
+        {/* Top row: Title and Icon */}
+        <div className="flex items-start justify-between">
+          <div className="flex-1 min-w-0 pr-3">
+            <h3 className="text-lg font-bold text-white mb-1 truncate">{title}</h3>
+            <p className="text-white/70 text-sm leading-relaxed break-words">{description}</p>
+          </div>
+          <div className={`p-3 rounded-lg ${currentVariant.iconBg} flex-shrink-0`}>
             {typeof icon === 'string' ? (
               <span className="text-2xl">{icon}</span>
             ) : (
               <div className={currentVariant.iconText}>{icon}</div>
             )}
           </div>
-          {/* Stats */}
-          {stats && (
-            <div className="text-right">
-              <div className="text-lg font-bold text-white">{stats}</div>
-            </div>
-          )}
         </div>
+        {/* Bottom row: Stats */}
+        {stats && (
+          <div className="w-full">
+            <div className="text-sm font-medium text-white/80 break-words">{stats}</div>
+          </div>
+        )}
       </div>
 
       {/* Action Button */}
       {action && (
         <Link
           href={action.href}
-          className={`flex items-center justify-center gap-2 w-full py-3 px-4 border rounded-lg transition-all duration-300 ${currentVariant.bg} ${currentVariant.text}`}
+          className={`flex items-center justify-center gap-2 w-full py-3 px-4 border rounded-lg transition-all duration-300 ${currentVariant.bg} ${currentVariant.text} mt-auto`}
         >
           <ActionIcon size={16} />
           <span className="font-medium">{action.label}</span>

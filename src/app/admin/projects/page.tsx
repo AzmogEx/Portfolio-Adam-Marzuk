@@ -48,8 +48,7 @@ const ProjectsPage = () => {
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Gestion des Projets</h1>
           <p className="text-white/70">
-            {projects.length} projet{projects.length !== 1 ? 's' : ''} • 
-            {projects.filter(p => p.featured).length} mis en avant
+            {projects.length} projet{projects.length !== 1 ? 's' : ''}
           </p>
         </div>
         

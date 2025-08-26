@@ -255,11 +255,6 @@ const AdminExperiences = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    {exp.featured && (
-                      <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full">
-                        Mis en avant
-                      </span>
-                    )}
                     
                     <Link
                       href={`/admin/experiences/${exp.id}`}

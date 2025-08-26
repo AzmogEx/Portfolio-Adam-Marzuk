@@ -31,3 +31,50 @@ export const skills: Skill[] = [
   { name: 'Agile/Scrum', category: 'other', level: 'intermediate', icon: '🔄' },
   { name: 'Kanban', category: 'other', level: 'intermediate', icon: '📋' },
 ]
+
+// Outils de travail et workflow
+export const workflowTools: Skill[] = [
+  // IDEs & Éditeurs
+  { name: 'VS Code', category: 'tool', level: 'expert', icon: '💻' },
+  { name: 'IntelliJ IDEA', category: 'tool', level: 'advanced', icon: '🧠' },
+  { name: 'PhpStorm', category: 'tool', level: 'intermediate', icon: '⚡' },
+
+  // Outils de collaboration
+  { name: 'GitHub', category: 'tool', level: 'advanced', icon: '🐙' },
+  { name: 'GitLab', category: 'tool', level: 'intermediate', icon: '🦊' },
+  { name: 'Slack', category: 'tool', level: 'advanced', icon: '💬' },
+  { name: 'Discord', category: 'tool', level: 'expert', icon: '🎮' },
+  { name: 'Trello', category: 'tool', level: 'advanced', icon: '📋' },
+  { name: 'Notion', category: 'tool', level: 'intermediate', icon: '📝' },
+
+  // Outils de test et débogage
+  { name: 'Postman', category: 'tool', level: 'advanced', icon: '📬' },
+  { name: 'Jest', category: 'tool', level: 'intermediate', icon: '🧪' },
+  { name: 'Cypress', category: 'tool', level: 'beginner', icon: '🌲' },
+
+  // Outils DevOps
+  { name: 'GitHub Actions', category: 'tool', level: 'intermediate', icon: '⚙️' },
+  { name: 'Vercel', category: 'tool', level: 'advanced', icon: '🚀' },
+  { name: 'Netlify', category: 'tool', level: 'intermediate', icon: '🌐' },
+]
+
+// Soft Skills et méthodes de travail
+export const softSkills: Skill[] = [
+  // Compétences relationnelles
+  { name: 'Travail en équipe', category: 'other', level: 'expert', icon: '👥' },
+  { name: 'Communication', category: 'other', level: 'advanced', icon: '💬' },
+  { name: 'Cohésion de groupe', category: 'other', level: 'advanced', icon: '🤝' },
+  { name: 'Leadership', category: 'other', level: 'intermediate', icon: '👨‍💼' },
+
+  // Organisation et méthodes
+  { name: 'Gestion de projet', category: 'other', level: 'advanced', icon: '📊' },
+  { name: 'Planification', category: 'other', level: 'advanced', icon: '📅' },
+  { name: 'Résolution de problèmes', category: 'other', level: 'expert', icon: '🔍' },
+  { name: 'Esprit critique', category: 'other', level: 'advanced', icon: '🎯' },
+
+  // Adaptabilité et apprentissage
+  { name: 'Adaptabilité', category: 'other', level: 'expert', icon: '🔄' },
+  { name: 'Apprentissage continu', category: 'other', level: 'expert', icon: '📚' },
+  { name: 'Veille technologique', category: 'other', level: 'advanced', icon: '🔭' },
+  { name: 'Créativité', category: 'other', level: 'advanced', icon: '💡' },
+]

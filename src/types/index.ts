@@ -6,6 +6,7 @@ export interface Project {
   technologies: string[];
   githubUrl?: string | null;
   liveUrl?: string | null;
+  featured: boolean;
   order: number;
   createdAt: string;
   updatedAt: string;
@@ -21,6 +22,30 @@ export interface Experience {
   description: string[];
   technologies: string[];
   type: 'work' | 'education';
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Tool {
+  id: string;
+  name: string;
+  category: string;
+  level: 'expert' | 'advanced' | 'intermediate' | 'beginner';
+  icon: string;
+  description?: string | null;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SoftSkill {
+  id: string;
+  name: string;
+  category: string;
+  level: 'expert' | 'advanced' | 'intermediate' | 'beginner';
+  icon: string;
+  description?: string | null;
   order: number;
   createdAt: string;
   updatedAt: string;

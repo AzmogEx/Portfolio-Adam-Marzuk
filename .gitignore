@@ -29,4 +29,6 @@ CLAUDE.md
 /.claude
 /generated/prisma
 
+#Autres
 /public/uploads
+.vscode

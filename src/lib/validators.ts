@@ -37,6 +37,36 @@ export const ExperienceSchema = z.object({
 
 export const ExperienceUpdateSchema = ExperienceSchema.partial()
 
+// ===== TOOL SCHEMAS =====
+
+export const ToolSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
+  category: z.string().min(1, 'Category is required').max(50, 'Category is too long'),
+  level: z.enum(['expert', 'advanced', 'intermediate', 'beginner'], { 
+    message: 'Level must be expert, advanced, intermediate, or beginner' 
+  }).optional().default('intermediate'),
+  icon: z.string().min(1, 'Icon is required').max(10, 'Icon is too long'),
+  description: z.string().max(500, 'Description is too long').optional().nullable(),
+  order: z.number().int().min(0).optional().default(0),
+})
+
+export const ToolUpdateSchema = ToolSchema.partial()
+
+// ===== SOFT SKILL SCHEMAS =====
+
+export const SoftSkillSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
+  category: z.string().min(1, 'Category is required').max(50, 'Category is too long'),
+  level: z.enum(['expert', 'advanced', 'intermediate', 'beginner'], { 
+    message: 'Level must be expert, advanced, intermediate, or beginner' 
+  }).optional().default('intermediate'),
+  icon: z.string().min(1, 'Icon is required').max(10, 'Icon is too long'),
+  description: z.string().max(500, 'Description is too long').optional().nullable(),
+  order: z.number().int().min(0).optional().default(0),
+})
+
+export const SoftSkillUpdateSchema = SoftSkillSchema.partial()
+
 // ===== CONTACT SCHEMAS =====
 
 export const ContactSchema = z.object({
@@ -70,6 +100,10 @@ export type ProjectInput = z.infer<typeof ProjectSchema>
 export type ProjectUpdateInput = z.infer<typeof ProjectUpdateSchema>
 export type ExperienceInput = z.infer<typeof ExperienceSchema>
 export type ExperienceUpdateInput = z.infer<typeof ExperienceUpdateSchema>
+export type ToolInput = z.infer<typeof ToolSchema>
+export type ToolUpdateInput = z.infer<typeof ToolUpdateSchema>
+export type SoftSkillInput = z.infer<typeof SoftSkillSchema>
+export type SoftSkillUpdateInput = z.infer<typeof SoftSkillUpdateSchema>
 export type ContactFormData = z.infer<typeof ContactSchema>
 
 // ===== LEGACY ALIASES (for backward compatibility) =====

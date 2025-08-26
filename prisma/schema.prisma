@@ -45,3 +45,27 @@ model Experience {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Tool {
+  id          String   @id @default(cuid())
+  name        String   // Nom de l'outil (ex: "VS Code", "GitHub")
+  category    String   // Catégorie (ex: "editor", "collaboration", "testing")
+  level       String   // Niveau de maîtrise ("expert", "advanced", "intermediate", "beginner")
+  icon        String   // Emoji ou identifiant d'icône
+  description String?  // Description optionnelle de l'outil
+  order       Int      @default(0) // Pour réorganisation
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SoftSkill {
+  id          String   @id @default(cuid())
+  name        String   // Nom de la compétence (ex: "Travail en équipe")
+  category    String   // Catégorie (ex: "communication", "leadership", "organization")
+  level       String   // Niveau de maîtrise ("expert", "advanced", "intermediate", "beginner")
+  icon        String   // Emoji ou identifiant d'icône
+  description String?  // Description optionnelle de la compétence
+  order       Int      @default(0) // Pour réorganisation
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

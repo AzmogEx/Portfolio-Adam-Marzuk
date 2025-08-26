@@ -1,4 +1,4 @@
-import { Project, Experience } from '@/types'
+import { Project, Experience, Tool, SoftSkill } from '@/types'
 import { ERROR_MESSAGES } from './constants'
 
 /**
@@ -149,6 +149,64 @@ export class ApiService {
 
   static async deleteExperience(id: string): Promise<{ success: boolean; error?: string }> {
     return this.request(`/api/experiences/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  // Tools API
+  static async getTools(): Promise<{ data?: { tools: Tool[] }; error?: string; success: boolean }> {
+    return this.request<{ tools: Tool[] }>('/api/tools')
+  }
+
+  static async getTool(id: string): Promise<{ data?: { tool: Tool }; error?: string; success: boolean }> {
+    return this.request<{ tool: Tool }>(`/api/tools/${id}`)
+  }
+
+  static async createTool(toolData: Partial<Tool>): Promise<{ data?: { tool: Tool }; error?: string; success: boolean }> {
+    return this.request<{ tool: Tool }>('/api/tools', {
+      method: 'POST',
+      body: JSON.stringify(toolData),
+    })
+  }
+
+  static async updateTool(id: string, toolData: Partial<Tool>): Promise<{ data?: { tool: Tool }; error?: string; success: boolean }> {
+    return this.request<{ tool: Tool }>(`/api/tools/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(toolData),
+    })
+  }
+
+  static async deleteTool(id: string): Promise<{ success: boolean; error?: string }> {
+    return this.request(`/api/tools/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  // Soft Skills API
+  static async getSoftSkills(): Promise<{ data?: { softSkills: SoftSkill[] }; error?: string; success: boolean }> {
+    return this.request<{ softSkills: SoftSkill[] }>('/api/soft-skills')
+  }
+
+  static async getSoftSkill(id: string): Promise<{ data?: { softSkill: SoftSkill }; error?: string; success: boolean }> {
+    return this.request<{ softSkill: SoftSkill }>(`/api/soft-skills/${id}`)
+  }
+
+  static async createSoftSkill(skillData: Partial<SoftSkill>): Promise<{ data?: { softSkill: SoftSkill }; error?: string; success: boolean }> {
+    return this.request<{ softSkill: SoftSkill }>('/api/soft-skills', {
+      method: 'POST',
+      body: JSON.stringify(skillData),
+    })
+  }
+
+  static async updateSoftSkill(id: string, skillData: Partial<SoftSkill>): Promise<{ data?: { softSkill: SoftSkill }; error?: string; success: boolean }> {
+    return this.request<{ softSkill: SoftSkill }>(`/api/soft-skills/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(skillData),
+    })
+  }
+
+  static async deleteSoftSkill(id: string): Promise<{ success: boolean; error?: string }> {
+    return this.request(`/api/soft-skills/${id}`, {
       method: 'DELETE',
     })
   }

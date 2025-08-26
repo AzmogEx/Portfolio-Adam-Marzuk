@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star } from 'lucide-react'
+import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart } from 'lucide-react'
 import Link from 'next/link'
 import DashboardCard from './components/DashboardCard'
 import { useProjects } from '@/hooks/useProjects'
@@ -42,13 +42,12 @@ const AdminDashboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.6 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
       >
         <DashboardCard
           title="Projets"
           description={`${projectStats.total} projet${projectStats.total !== 1 ? 's' : ''} total`}
           icon={<FolderOpen className="text-blue-400" size={24} />}
-          stats={`${projectStats.featured} mis en avant`}
           action={{
             label: "Gérer",
             href: "/admin/projects"
@@ -60,7 +59,6 @@ const AdminDashboard = () => {
           title="Expériences"
           description={`${experienceStats.total} expérience${experienceStats.total !== 1 ? 's' : ''} total`}
           icon={<User className="text-purple-400" size={24} />}
-          stats={`${experienceStats.work} prof. • ${experienceStats.education} formation${experienceStats.education !== 1 ? 's' : ''}`}
           action={{
             label: "Gérer",
             href: "/admin/experiences"
@@ -69,10 +67,31 @@ const AdminDashboard = () => {
         />
 
         <DashboardCard
+          title="Outils"
+          description="Technologies et méthodes"
+          icon={<Wrench className="text-yellow-400" size={24} />}
+          action={{
+            label: "Gérer",
+            href: "/admin/tools"
+          }}
+          variant="warning"
+        />
+
+        <DashboardCard
+          title="Soft Skills"
+          description="Compétences personnelles"
+          icon={<Heart className="text-pink-400" size={24} />}
+          action={{
+            label: "Gérer",
+            href: "/admin/soft-skills"
+          }}
+          variant="secondary"
+        />
+
+        <DashboardCard
           title="Analytics"
           description="Statistiques et métriques"
           icon={<BarChart3 className="text-green-400" size={24} />}
-          stats="Bientôt disponible"
           action={{
             label: "Voir",
             href: "/admin/analytics"
@@ -191,14 +210,9 @@ const AdminDashboard = () => {
                 className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/20 transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-medium text-white text-sm">{project.title}</h3>
-                  {project.featured && (
-                    <span className="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded">
-                      Featured
-                    </span>
-                  )}
+                  <h3 className="font-medium text-white text-sm truncate pr-2">{project.title}</h3>
                 </div>
-                <p className="text-white/60 text-xs mb-3 line-clamp-2">{project.description}</p>
+                <p className="text-white/60 text-xs mb-3 line-clamp-2 break-words">{project.description}</p>
                 <div className="flex gap-2">
                   <Link
                     href={`/admin/projects/${project.id}`}

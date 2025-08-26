@@ -275,10 +275,9 @@ const Tools = () => {
                 <Code2 className="text-white" size={28} />
               </div>
             </div>
-            <h4 className="text-xl font-bold text-white mb-3">Workflow optimisé</h4>
+            <h4 className="text-xl font-bold text-white mb-3">Workflow</h4>
             <p className="text-white/70 text-sm leading-relaxed">
-              J'utilise des outils modernes pour optimiser ma productivité et collaborer efficacement 
-              avec les équipes de développement.
+              J'utilise des outils modernes pour optimiser ma productivité et collaborer efficacement.
             </p>
           </div>
 
@@ -290,8 +289,7 @@ const Tools = () => {
             </div>
             <h4 className="text-xl font-bold text-white mb-3">Esprit d'équipe</h4>
             <p className="text-white/70 text-sm leading-relaxed">
-              Ma capacité d'adaptation et ma communication bienveillante me permettent de m'intégrer 
-              facilement dans n'importe quelle équipe.
+              Ma capacité d'adaptation et ma communication me permettent de m'intégrer facilement.
             </p>
           </div>
         </motion.div>

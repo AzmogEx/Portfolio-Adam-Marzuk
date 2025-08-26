@@ -6,7 +6,7 @@ import { rateLimit } from '@/lib/rate-limit'
 export async function POST(request: NextRequest) {
   try {
     // Apply rate limiting to prevent brute force attacks
-    const ip = request.ip || request.headers.get('X-Forwarded-For') || 'unknown'
+    const ip = request.headers.get('X-Forwarded-For') || request.headers.get('X-Real-IP') || 'unknown'
     const rateLimitResult = rateLimit(ip, 5, 15 * 60 * 1000) // 5 attempts per 15 minutes
     
     if (!rateLimitResult.success) {

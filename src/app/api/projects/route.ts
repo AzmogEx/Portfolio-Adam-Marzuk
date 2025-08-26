@@ -7,11 +7,7 @@ import { safeJsonParse } from '@/lib/utils'
 // GET - Fetch all projects (public)
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
-    const onlyFeatured = searchParams.get('featured') === 'true'
-
     const projects = await prisma.project.findMany({
-      where: onlyFeatured ? { featured: true } : undefined,
       orderBy: [
         { order: 'asc' },
         { createdAt: 'desc' }

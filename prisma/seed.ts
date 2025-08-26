@@ -30,7 +30,6 @@ async function main() {
       technologies: JSON.stringify(['React', 'TypeScript', 'Node.js', 'MongoDB', 'Stripe']),
       githubUrl: 'https://github.com/AzmogEx',
       liveUrl: 'https://demo.adam-marzuk.fr',
-      featured: true,
       order: 1
     },
     {
@@ -40,7 +39,6 @@ async function main() {
       technologies: JSON.stringify(['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Swagger']),
       githubUrl: 'https://github.com/AzmogEx',
       liveUrl: null,
-      featured: true,
       order: 2
     },
     {
@@ -50,7 +48,6 @@ async function main() {
       technologies: JSON.stringify(['Vue.js', 'Chart.js', 'Laravel', 'MySQL']),
       githubUrl: 'https://github.com/AzmogEx',
       liveUrl: 'https://analytics.adam-marzuk.fr',
-      featured: false,
       order: 3
     },
     {
@@ -60,7 +57,6 @@ async function main() {
       technologies: JSON.stringify(['React Native', 'Firebase', 'Redux', 'Expo']),
       githubUrl: 'https://github.com/AzmogEx',
       liveUrl: null,
-      featured: false,
       order: 4
     }
   ]
@@ -93,7 +89,6 @@ async function main() {
       ]),
       technologies: JSON.stringify(['React', 'Node.js', 'Express', 'MongoDB', 'Jest', 'Git']),
       type: 'work',
-      featured: true,
       order: 1
     },
     {
@@ -110,7 +105,6 @@ async function main() {
       ]),
       technologies: JSON.stringify(['Vue.js', 'JavaScript', 'SCSS', 'PHP', 'WordPress', 'Figma']),
       type: 'work',
-      featured: false,
       order: 2
     },
     {
@@ -124,7 +118,6 @@ async function main() {
       ]),
       technologies: JSON.stringify([]),
       type: 'education',
-      featured: true,
       order: 1
     },
     {
@@ -138,7 +131,6 @@ async function main() {
       ]),
       technologies: JSON.stringify([]),
       type: 'education',
-      featured: false,
       order: 2
     }
   ]

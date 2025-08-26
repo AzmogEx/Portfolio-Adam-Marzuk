@@ -16,7 +16,6 @@ const EditProject = () => {
     technologies: [] as string[],
     githubUrl: '',
     liveUrl: '',
-    featured: false,
     order: 0,
   })
   const [techInput, setTechInput] = useState('')
@@ -142,7 +141,6 @@ const EditProject = () => {
             technologies: project.technologies || [],
             githubUrl: project.githubUrl || '',
             liveUrl: project.liveUrl || '',
-            featured: project.featured,
             order: project.order
           })
           setError('')
@@ -363,16 +361,6 @@ const EditProject = () => {
 
               {/* Options */}
               <div className="flex items-center gap-6">
-                <label className="flex items-center gap-2 text-white/80">
-                  <input
-                    type="checkbox"
-                    checked={formData.featured}
-                    onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                    className="w-4 h-4 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-blue-500 focus:ring-2"
-                  />
-                  Featured Project
-                </label>
-                
                 <div className="flex items-center gap-2">
                   <label className="text-white/80">Order:</label>
                   <input

@@ -9,12 +9,10 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const type = searchParams.get('type') // 'work', 'education' ou null pour tout
-    const onlyFeatured = searchParams.get('featured') === 'true'
 
     const experiences = await prisma.experience.findMany({
       where: {
-        ...(type && { type }),
-        ...(onlyFeatured && { featured: true })
+        ...(type && { type })
       },
       orderBy: [
         { order: 'asc' },

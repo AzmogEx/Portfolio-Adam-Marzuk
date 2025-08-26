@@ -45,9 +45,8 @@ export class ApiService {
   }
 
   // Projects API
-  static async getProjects(featured?: boolean): Promise<{ data?: { projects: Project[] }; error?: string; success: boolean }> {
-    const endpoint = featured ? '/api/projects?featured=true' : '/api/projects'
-    return this.request<{ projects: Project[] }>(endpoint)
+  static async getProjects(): Promise<{ data?: { projects: Project[] }; error?: string; success: boolean }> {
+    return this.request<{ projects: Project[] }>('/api/projects')
   }
 
   static async getProject(id: string): Promise<{ data?: { project: Project }; error?: string; success: boolean }> {
@@ -155,7 +154,7 @@ export class ApiService {
 }
 
 // Convenience functions for backwards compatibility
-export const fetchProjects = (featured?: boolean) => ApiService.getProjects(featured)
+export const fetchProjects = () => ApiService.getProjects()
 export const fetchProject = (id: string) => ApiService.getProject(id)
 export const createProject = (data: Partial<Project>) => ApiService.createProject(data)
 export const updateProject = (id: string, data: Partial<Project>) => ApiService.updateProject(id, data)

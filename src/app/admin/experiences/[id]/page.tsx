@@ -17,7 +17,6 @@ interface Experience {
   description: string[]
   technologies: string[]
   type: 'work' | 'education'
-  featured: boolean
   order: number
 }
 
@@ -31,7 +30,6 @@ interface ExperienceForm {
   description: string[]
   technologies: string[]
   type: 'work' | 'education'
-  featured: boolean
   order: number
 }
 
@@ -49,7 +47,6 @@ const EditExperience = () => {
     description: [''],
     technologies: [],
     type: 'work',
-    featured: false,
     order: 0
   })
   
@@ -77,7 +74,6 @@ const EditExperience = () => {
             description: exp.description || [],
             technologies: exp.technologies || [],
             type: exp.type,
-            featured: exp.featured,
             order: exp.order
           })
         } else {
@@ -468,21 +464,6 @@ const EditExperience = () => {
               </div>
             )}
 
-            {/* Options */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  checked={formData.featured}
-                  onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
-                  className="rounded text-blue-500"
-                />
-                <label htmlFor="featured" className="text-white/90">
-                  Mettre en avant cette expérience
-                </label>
-              </div>
-            </div>
 
             {/* Actions */}
             <div className="flex gap-4 pt-6">

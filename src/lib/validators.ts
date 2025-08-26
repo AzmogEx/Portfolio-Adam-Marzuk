@@ -16,7 +16,6 @@ export const ProjectSchema = z.object({
   technologies: z.array(z.string()).min(1, 'At least one technology is required'),
   githubUrl: z.string().url('Invalid GitHub URL').nullable().optional().or(z.literal('')),
   liveUrl: z.string().url('Invalid live URL').nullable().optional().or(z.literal('')),
-  featured: z.boolean().optional().default(false),
   order: z.number().int().min(0).optional().default(0),
 })
 
@@ -33,7 +32,6 @@ export const ExperienceSchema = z.object({
   description: z.array(z.string().min(1, 'Description cannot be empty')).min(1, 'At least one description is required'),
   technologies: z.array(z.string()).optional().default([]),
   type: z.enum(['work', 'education'], { message: 'Type must be either work or education' }),
-  featured: z.boolean().optional().default(false),
   order: z.number().int().min(0).optional().default(0),
 })
 

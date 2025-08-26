@@ -6,7 +6,6 @@ export interface Project {
   technologies: string[];
   githubUrl?: string | null;
   liveUrl?: string | null;
-  featured: boolean;
   order: number;
   createdAt: string;
   updatedAt: string;
@@ -22,7 +21,6 @@ export interface Experience {
   description: string[];
   technologies: string[];
   type: 'work' | 'education';
-  featured: boolean;
   order: number;
   createdAt: string;
   updatedAt: string;

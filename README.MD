@@ -2,8 +2,6 @@
 
 Un portfolio personnel moderne et interactif construit avec Next.js 15, React 19, TypeScript et Tailwind CSS. Ce portfolio présente mes projets, expériences et compétences avec un design responsive et un système de thème sombre/clair.
 
-![Portfolio Screenshot](https://via.placeholder.com/800x400?text=Portfolio+Adam+Marzuk)
-
 ## ✨ Fonctionnalités
 
 - **Design Moderne** : Interface utilisateur épurée et professionnelle
@@ -16,8 +14,8 @@ Un portfolio personnel moderne et interactif construit avec Next.js 15, React 19
 
 ## 🚀 Démo
 
-- **Portfolio Public** : [Votre URL de déploiement]
-- **Panel Admin** : [Votre URL]/admin
+- **Portfolio Public** : https://adam-marzuk.fr
+- **Panel Admin** : https://localhost:3000/admin
 
 ## 🛠️ Technologies Utilisées
 
@@ -52,7 +50,7 @@ Un portfolio personnel moderne et interactif construit avec Next.js 15, React 19
 
 1. **Cloner le repository**
 ```bash
-git clone https://github.com/votre-username/portfolio-adam-marzuk.git
+git clone https://github.com/AzmogEx/portfolio-adam-marzuk.git
 cd portfolio-adam-marzuk
 ```
 
@@ -227,9 +225,9 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 ## 📞 Contact
 
 **Adam Marzuk**
-- Email : [votre-email@example.com]
-- LinkedIn : [Votre profil LinkedIn]
-- Portfolio : [Votre URL de portfolio]
+- Email : contact@adam-marzuk.fr
+- LinkedIn : https://www.linkedin.com/in/adam-marzuk-93804828a/
+- Portfolio : https://adam-marzuk.fr
 
 ---
 

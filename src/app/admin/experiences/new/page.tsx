@@ -371,7 +371,7 @@ const NewExperience = () => {
                 className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Save size={16} />
-                <span>{loading ? 'Création...' : 'Créer l&apos;expérience'}</span>
+                <span>{loading ? 'Création...' : 'Créer l\'expérience'}</span>
               </button>
 
               <Link

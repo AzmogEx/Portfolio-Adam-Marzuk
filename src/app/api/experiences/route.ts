@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
         ...(type && { type })
       },
       orderBy: [
-        { order: 'asc' },
-        { startDate: 'desc' }
+        { startDate: 'desc' },
+        { createdAt: 'desc' }
       ]
     })
 

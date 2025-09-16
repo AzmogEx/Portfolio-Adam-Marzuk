@@ -136,7 +136,7 @@ const About = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-6">Mon parcours</h3>
             <p className="text-white/80 leading-relaxed">
-              Étudiant en Bachelor informatique à CESI Orléans
+              Étudiant en Bachelor informatique au CESI Orléans
               je me spécialise dans le développement
               d&apos;applications. Ma passion pour les technologies web et
               l&apos;intelligence artificielle m&apos;a conduit à explorer

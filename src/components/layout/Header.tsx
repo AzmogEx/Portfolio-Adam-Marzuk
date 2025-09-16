@@ -47,7 +47,7 @@ const Header = () => {
           </motion.div>
 
           {/* Navigation Desktop */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.name}
@@ -64,7 +64,7 @@ const Header = () => {
           </div>
 
           {/* Actions Desktop */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             {/* Liens sociaux */}
             <motion.a
               whileHover={{ scale: 1.1 }}
@@ -104,7 +104,7 @@ const Header = () => {
           </div>
 
           {/* Menu Mobile */}
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -123,7 +123,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/100 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl"
+            className="xl:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/100 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl"
           >
             <div className="p-4 space-y-2">
               {navItems.map((item, index) => (

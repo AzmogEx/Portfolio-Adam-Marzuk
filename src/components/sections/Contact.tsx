@@ -6,8 +6,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { contactSchema, type ContactFormData } from '@/lib/validators'
 import { useState } from 'react'
+import { useContactSettings } from '@/hooks/useContactSettings'
 
 const Contact = () => {
+  const { contactSettings, loading: settingsLoading } = useContactSettings()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState<{
     type: 'success' | 'error'
@@ -41,23 +43,36 @@ const Contact = () => {
       if (response.ok) {
         setSubmitMessage({
           type: 'success',
-          message: result.message || 'Message envoyé avec succès !'
+          message: contactSettings?.successMessage || result.message || 'Message envoyé avec succès !'
         })
         reset()
       } else {
         setSubmitMessage({
           type: 'error',
-          message: result.error || 'Une erreur est survenue'
+          message: contactSettings?.errorMessage || result.error || 'Une erreur est survenue'
         })
       }
     } catch (error) {
       setSubmitMessage({
         type: 'error',
-        message: error instanceof Error ? error.message : 'Erreur de connexion. Veuillez réessayer.'
+        message: contactSettings?.errorMessage || 'Erreur de connexion. Veuillez réessayer.'
       })
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // État de chargement
+  if (settingsLoading) {
+    return (
+      <section id="contact" className="section-padding relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center min-h-96">
+            <div className="text-white text-xl">Chargement...</div>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (

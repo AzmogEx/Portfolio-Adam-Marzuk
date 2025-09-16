@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/validators'
 import { sendContactEmail } from '@/lib/email'
 import { rateLimit } from '@/lib/rate-limit'
+import { prisma } from '@/lib/prisma'
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,13 +51,16 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
-    
-    // Envoyer l'email
-    await sendContactEmail(validatedData)
-    
+
+    // Récupérer les paramètres de contact
+    const contactSettings = await prisma.contactSettings.findFirst()
+
+    // Envoyer l'email avec les paramètres
+    await sendContactEmail(validatedData, contactSettings)
+
     return NextResponse.json(
-      { 
-        message: 'Message envoyé avec succès !',
+      {
+        message: contactSettings?.successMessage || 'Message envoyé avec succès !',
         remaining: rateLimitResult.remaining
       },
       { status: 200 }

@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skills } from "@/data/skills";
-import { Skill } from "@/types";
 import { useAbout } from "@/hooks/useAbout";
+import { useSkills } from "@/hooks/useSkills";
 import React from "react";
 import {
   SiJavascript,
@@ -29,9 +28,10 @@ import { TbBrandCSharp } from "react-icons/tb";
 
 const About = () => {
   const { aboutContent, loading, error } = useAbout()
+  const { skills, loading: skillsLoading, error: skillsError } = useSkills('main')
 
   // État de chargement
-  if (loading) {
+  if (loading || skillsLoading) {
     return (
       <section id="about" className="section-padding relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -47,6 +47,10 @@ const About = () => {
   if (error || !aboutContent) {
     console.error('About content error:', error)
     // Continuer avec les valeurs par défaut en cas d'erreur
+  }
+
+  if (skillsError) {
+    console.error('Skills error:', skillsError)
   }
 
   // Utiliser les données dynamiques ou fallback sur les valeurs par défaut

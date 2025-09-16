@@ -112,6 +112,9 @@ export async function middleware(request: NextRequest) {
       (pathname.startsWith('/api/experiences') && request.method !== 'GET') ||
       (pathname.startsWith('/api/hero') && request.method !== 'GET') ||
       (pathname.startsWith('/api/about') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/footer') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/skills') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/contact-settings') && request.method !== 'GET') ||
       pathname.startsWith('/api/upload')) {
     const token = request.cookies.get('admin-token')?.value
     
@@ -134,6 +137,9 @@ export const config = {
     '/api/experiences/:path*',
     '/api/hero/:path*',
     '/api/about/:path*',
+    '/api/footer/:path*',
+    '/api/skills/:path*',
+    '/api/contact-settings/:path*',
     '/api/upload/:path*'
   ]
 }

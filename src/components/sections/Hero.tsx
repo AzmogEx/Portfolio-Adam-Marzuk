@@ -3,13 +3,45 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Mail, MapPin } from 'lucide-react'
 import Image from 'next/image'
+import { useHero } from '@/hooks/useHero'
 
 const Hero = () => {
+  const { heroContent, loading, error } = useHero()
+
   const scrollToAbout = () => {
     const element = document.querySelector('#about')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  // État de chargement
+  if (loading) {
+    return (
+      <section id="hero" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
+        <div className="text-white text-xl">Chargement...</div>
+      </section>
+    )
+  }
+
+  // État d'erreur avec fallback
+  if (error || !heroContent) {
+    console.error('Hero content error:', error)
+    // Continuer avec les valeurs par défaut en cas d'erreur
+  }
+
+  // Utiliser les données dynamiques ou fallback sur les valeurs par défaut
+  const content = heroContent || {
+    greeting: "Bonjour, je suis",
+    name: "Adam Marzuk",
+    title: "Développeur Full-Stack",
+    description: "Étudiant en Bachelor Informatique, spécialisé dans le développement d'applications. Passionné par les technologies web modernes et l'intelligence artificielle.",
+    location: "France",
+    email: "contact@adam-marzuk.fr",
+    profileImage: "/assets/images/profile.png",
+    ctaButton1: "Découvrir mon profil",
+    ctaButton2: "Me contacter",
+    scrollText: "Scroll"
   }
 
   return (
@@ -36,12 +68,12 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-2"
             >
-              <p className="text-lg text-white/80 font-medium">Bonjour, je suis</p>
+              <p className="text-lg text-white/80 font-medium">{content.greeting}</p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-                <span className="gradient-text">Adam Marzuk</span>
+                <span className="gradient-text">{content.name}</span>
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white/90">
-                Développeur Full-Stack
+                {content.title}
               </h2>
             </motion.div>
 
@@ -51,8 +83,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-white/70 max-w-lg leading-relaxed"
             >
-              Étudiant en Bachelor Informatique, spécialisé dans le développement d&apos;applications.
-              Passionné par les technologies web modernes et l&apos;intelligence artificielle.
+              {content.description}
             </motion.p>
 
             <motion.div
@@ -63,11 +94,11 @@ const Hero = () => {
             >
               <div className="flex items-center text-white/60">
                 <MapPin size={20} className="mr-2 text-blue-400" />
-                <span>France</span>
+                <span>{content.location}</span>
               </div>
               <div className="flex items-center text-white/60">
                 <Mail size={20} className="mr-2 text-purple-400" />
-                <span>contact@adam-marzuk.fr</span>
+                <span>{content.email}</span>
               </div>
             </motion.div>
 
@@ -83,16 +114,16 @@ const Hero = () => {
                 onClick={scrollToAbout}
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Découvrir mon profil
+                {content.ctaButton1}
               </motion.button>
-              
+
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
                 className="px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition-all duration-300 text-center"
               >
-                Me contacter
+                {content.ctaButton2}
               </motion.a>
             </motion.div>
           </motion.div>
@@ -107,14 +138,14 @@ const Hero = () => {
             <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96">
               {/* Placeholder pour photo */}
               <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full border-4 border-white/10 flex items-center justify-center">
-                <Image 
-                  src="/assets/images/profile.png" 
-                  alt="Adam Marzuk" 
+                <Image
+                  src={content.profileImage || "/assets/images/profile.png"}
+                  alt={content.name}
                   width={400}
                   height={400}
                   className="w-full h-full object-cover rounded-full"
                   priority
-                />              
+                />
               </div>
               
               {/* Éléments décoratifs */}
@@ -145,7 +176,7 @@ const Hero = () => {
             onClick={scrollToAbout}
             className="flex flex-col items-center text-white/60 hover:text-white/80 transition-colors duration-300"
           >
-            <span className="text-sm mb-2">Scroll</span>
+            <span className="text-sm mb-2">{content.scrollText}</span>
             <ArrowDown size={20} />
           </motion.button>
         </motion.div>

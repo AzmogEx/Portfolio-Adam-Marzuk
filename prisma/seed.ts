@@ -154,6 +154,54 @@ async function main() {
   } else {
     console.log(`Found ${existingExperiencesCount} existing experiences, skipping experience seeding`)
   }
+
+  // Seeder le contenu Hero
+  console.log('Seeding Hero content...')
+
+  const existingHeroCount = await prisma.heroContent.count()
+
+  if (existingHeroCount === 0) {
+    console.log('No hero content found, creating default hero content...')
+    const heroContent = await prisma.heroContent.create({
+      data: {
+        greeting: "Bonjour, je suis",
+        name: "Adam Marzuk",
+        title: "Développeur Full-Stack",
+        description: "Étudiant en Bachelor Informatique, spécialisé dans le développement d'applications. Passionné par les technologies web modernes et l'intelligence artificielle.",
+        location: "France",
+        email: "contact@adam-marzuk.fr",
+        profileImage: "/assets/images/profile.png",
+        ctaButton1: "Découvrir mon profil",
+        ctaButton2: "Me contacter",
+        scrollText: "Scroll"
+      }
+    })
+    console.log(`Hero content created: ${heroContent.name}`)
+  } else {
+    console.log(`Found ${existingHeroCount} existing hero content, skipping hero seeding`)
+  }
+
+  // Seeder le contenu About
+  console.log('Seeding About content...')
+
+  const existingAboutCount = await prisma.aboutContent.count()
+
+  if (existingAboutCount === 0) {
+    console.log('No about content found, creating default about content...')
+    const aboutContent = await prisma.aboutContent.create({
+      data: {
+        sectionTitle: "À propos de moi",
+        sectionSubtitle: "Découvrez mon parcours, mes compétences et ma passion pour l'informatique",
+        parcourTitle: "Mon parcours",
+        parcourText1: "Étudiant en Bachelor informatique au CESI Orléans je me spécialise dans le développement d'applications. Ma passion pour les technologies web et l'intelligence artificielle m'a conduit à explorer diverses technologies et frameworks modernes.",
+        parcourText2: "J'ai acquis une expérience pratique grâce à des stages en entreprise et des projets personnels, me permettant de développer une approche complète du développement full-stack.",
+        skillsTitle: "Compétences principales"
+      }
+    })
+    console.log(`About content created: ${aboutContent.sectionTitle}`)
+  } else {
+    console.log(`Found ${existingAboutCount} existing about content, skipping about seeding`)
+  }
 }
 
 main()

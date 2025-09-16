@@ -14,7 +14,7 @@ interface DashboardCardProps {
     href: string
     icon?: LucideIcon
   }
-  variant?: 'primary' | 'secondary' | 'success' | 'warning'
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'info'
   delay?: number
 }
 
@@ -51,6 +51,12 @@ const DashboardCard = ({
       text: 'text-yellow-400 hover:text-yellow-300',
       iconBg: 'bg-yellow-500/20',
       iconText: 'text-yellow-400'
+    },
+    info: {
+      bg: 'bg-cyan-500/20 hover:bg-cyan-500/30 border-cyan-500/30',
+      text: 'text-cyan-400 hover:text-cyan-300',
+      iconBg: 'bg-cyan-500/20',
+      iconText: 'text-cyan-400'
     }
   }
 

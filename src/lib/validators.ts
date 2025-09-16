@@ -67,6 +67,36 @@ export const SoftSkillSchema = z.object({
 
 export const SoftSkillUpdateSchema = SoftSkillSchema.partial()
 
+// ===== HERO CONTENT SCHEMAS =====
+
+export const HeroContentSchema = z.object({
+  greeting: z.string().min(1, 'Greeting is required').max(100, 'Greeting is too long'),
+  name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
+  title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
+  description: z.string().min(1, 'Description is required').max(500, 'Description is too long'),
+  location: z.string().min(1, 'Location is required').max(100, 'Location is too long'),
+  email: z.string().email('Invalid email format').max(254, 'Email is too long'),
+  profileImage: z.string().nullable().optional().or(z.literal('')),
+  ctaButton1: z.string().min(1, 'CTA Button 1 is required').max(50, 'CTA Button 1 is too long'),
+  ctaButton2: z.string().min(1, 'CTA Button 2 is required').max(50, 'CTA Button 2 is too long'),
+  scrollText: z.string().min(1, 'Scroll text is required').max(50, 'Scroll text is too long'),
+})
+
+export const HeroContentUpdateSchema = HeroContentSchema.partial()
+
+// ===== ABOUT CONTENT SCHEMAS =====
+
+export const AboutContentSchema = z.object({
+  sectionTitle: z.string().min(1, 'Section title is required').max(100, 'Section title is too long'),
+  sectionSubtitle: z.string().min(1, 'Section subtitle is required').max(300, 'Section subtitle is too long'),
+  parcourTitle: z.string().min(1, 'Parcour title is required').max(100, 'Parcour title is too long'),
+  parcourText1: z.string().min(1, 'First paragraph is required').max(1000, 'First paragraph is too long'),
+  parcourText2: z.string().min(1, 'Second paragraph is required').max(1000, 'Second paragraph is too long'),
+  skillsTitle: z.string().min(1, 'Skills title is required').max(100, 'Skills title is too long'),
+})
+
+export const AboutContentUpdateSchema = AboutContentSchema.partial()
+
 // ===== CONTACT SCHEMAS =====
 
 export const ContactSchema = z.object({
@@ -104,6 +134,10 @@ export type ToolInput = z.infer<typeof ToolSchema>
 export type ToolUpdateInput = z.infer<typeof ToolUpdateSchema>
 export type SoftSkillInput = z.infer<typeof SoftSkillSchema>
 export type SoftSkillUpdateInput = z.infer<typeof SoftSkillUpdateSchema>
+export type HeroContentInput = z.infer<typeof HeroContentSchema>
+export type HeroContentUpdateInput = z.infer<typeof HeroContentUpdateSchema>
+export type AboutContentInput = z.infer<typeof AboutContentSchema>
+export type AboutContentUpdateInput = z.infer<typeof AboutContentUpdateSchema>
 export type ContactFormData = z.infer<typeof ContactSchema>
 
 // ===== LEGACY ALIASES (for backward compatibility) =====

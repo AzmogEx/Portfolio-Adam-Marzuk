@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart } from 'lucide-react'
+import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart, Home, UserCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import DashboardCard from './components/DashboardCard'
 import { useProjects } from '@/hooks/useProjects'
@@ -44,6 +44,28 @@ const AdminDashboard = () => {
         transition={{ delay: 0.1, duration: 0.6 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
       >
+        <DashboardCard
+          title="Hero"
+          description="Section d'accueil"
+          icon={<Home className="text-green-400" size={24} />}
+          action={{
+            label: "Modifier",
+            href: "/admin/hero"
+          }}
+          variant="success"
+        />
+
+        <DashboardCard
+          title="À propos"
+          description="Section à propos de moi"
+          icon={<UserCircle2 className="text-cyan-400" size={24} />}
+          action={{
+            label: "Modifier",
+            href: "/admin/about"
+          }}
+          variant="info"
+        />
+
         <DashboardCard
           title="Projets"
           description={`${projectStats.total} projet${projectStats.total !== 1 ? 's' : ''} total`}
@@ -117,8 +139,36 @@ const AdminDashboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
+        <div className="glass-card p-6">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <Home className="text-green-400" size={20} />
+            Contenu des Pages
+          </h2>
+          <div className="space-y-3">
+            <Link
+              href="/admin/hero"
+              className="flex items-center gap-3 p-3 bg-green-500/10 hover:bg-green-500/20 rounded-lg border border-green-500/20 text-green-400 hover:text-green-300 transition-all duration-300"
+            >
+              <Home size={16} />
+              <div>
+                <div className="font-medium">Modifier Hero</div>
+                <div className="text-sm text-green-400/70">Section d&apos;accueil</div>
+              </div>
+            </Link>
+            <Link
+              href="/admin/about"
+              className="flex items-center gap-3 p-3 bg-cyan-500/10 hover:bg-cyan-500/20 rounded-lg border border-cyan-500/20 text-cyan-400 hover:text-cyan-300 transition-all duration-300"
+            >
+              <UserCircle2 size={16} />
+              <div>
+                <div className="font-medium">Modifier À propos</div>
+                <div className="text-sm text-cyan-400/70">Contenu personnel</div>
+              </div>
+            </Link>
+          </div>
+        </div>
         <div className="glass-card p-6">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
             <FolderOpen className="text-blue-400" size={20} />

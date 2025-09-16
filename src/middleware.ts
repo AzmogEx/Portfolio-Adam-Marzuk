@@ -107,9 +107,11 @@ export async function middleware(request: NextRequest) {
   }
 
   // Check if it's a protected API route
-  if (pathname.startsWith('/api/admin') || 
+  if (pathname.startsWith('/api/admin') ||
       (pathname.startsWith('/api/projects') && request.method !== 'GET') ||
       (pathname.startsWith('/api/experiences') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/hero') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/about') && request.method !== 'GET') ||
       pathname.startsWith('/api/upload')) {
     const token = request.cookies.get('admin-token')?.value
     
@@ -130,6 +132,8 @@ export const config = {
     '/api/admin/:path*',
     '/api/projects/:path*',
     '/api/experiences/:path*',
+    '/api/hero/:path*',
+    '/api/about/:path*',
     '/api/upload/:path*'
   ]
 }

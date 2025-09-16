@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/skills";
 import { Skill } from "@/types";
+import { useAbout } from "@/hooks/useAbout";
 import React from "react";
 import {
   SiJavascript,
@@ -27,6 +28,40 @@ import { MdViewKanban } from "react-icons/md";
 import { TbBrandCSharp } from "react-icons/tb";
 
 const About = () => {
+  const { aboutContent, loading, error } = useAbout()
+
+  // État de chargement
+  if (loading) {
+    return (
+      <section id="about" className="section-padding relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center min-h-96">
+            <div className="text-white text-xl">Chargement...</div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Debug pour voir ce qui se passe
+  console.log('About component - loading:', loading, 'error:', error, 'aboutContent:', aboutContent)
+
+  // État d'erreur avec fallback
+  if (error || !aboutContent) {
+    console.error('About content error:', error)
+    // Continuer avec les valeurs par défaut en cas d'erreur
+  }
+
+  // Utiliser les données dynamiques ou fallback sur les valeurs par défaut
+  const content = aboutContent || {
+    sectionTitle: "À propos de moi",
+    sectionSubtitle: "Découvrez mon parcours, mes compétences et ma passion pour l'informatique",
+    parcourTitle: "Mon parcours",
+    parcourText1: "Étudiant en Bachelor informatique au CESI Orléans je me spécialise dans le développement d'applications. Ma passion pour les technologies web et l'intelligence artificielle m'a conduit à explorer diverses technologies et frameworks modernes.",
+    parcourText2: "J'ai acquis une expérience pratique grâce à des stages en entreprise et des projets personnels, me permettant de développer une approche complète du développement full-stack.",
+    skillsTitle: "Compétences principales"
+  }
+
   // Mapping des compétences vers leurs vraies icônes
   const getSkillIcon = (skillName: string) => {
     const iconMap: { [key: string]: React.ReactElement } = {
@@ -119,11 +154,16 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            À propos de <span className="gradient-text">moi</span>
+            {content.sectionTitle.includes('moi') ? (
+              <>
+                {content.sectionTitle.split(' moi')[0]} <span className="gradient-text">moi</span>
+              </>
+            ) : (
+              content.sectionTitle
+            )}
           </h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Découvrez mon parcours, mes compétences et ma passion pour
-            l&apos;informatique
+            {content.sectionSubtitle}
           </p>
         </motion.div>
 
@@ -134,18 +174,12 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Mon parcours</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">{content.parcourTitle}</h3>
             <p className="text-white/80 leading-relaxed">
-              Étudiant en Bachelor informatique au CESI Orléans
-              je me spécialise dans le développement
-              d&apos;applications. Ma passion pour les technologies web et
-              l&apos;intelligence artificielle m&apos;a conduit à explorer
-              diverses technologies et frameworks modernes.
+              {content.parcourText1}
             </p>
             <p className="text-white/80 leading-relaxed">
-              J&apos;ai acquis une expérience pratique grâce à des stages en
-              entreprise et des projets personnels, me permettant de développer
-              une approche complète du développement full-stack.
+              {content.parcourText2}
             </p>
           </motion.div>
 
@@ -156,7 +190,7 @@ const About = () => {
             className="space-y-6"
           >
             <h3 className="text-xl font-bold text-white mb-8 text-center">
-              Compétences principales
+              {content.skillsTitle}
             </h3>
             <div className="relative h-96 md:h-80 px-8 py-4">
               {mainSkills.map((skill, index) => {

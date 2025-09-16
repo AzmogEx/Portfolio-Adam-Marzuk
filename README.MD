@@ -188,7 +188,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 ## 📋 Roadmap
 
 - [ ] **Analytics Dashboard** - Métriques détaillées dans l'admin
-- [ ] **Blog Integration** - Section blog avec articles
 - [ ] **Multi-language Support** - Support français/anglais
 - [ ] **SEO Optimization** - Amélioration du référencement
 - [ ] **Performance Monitoring** - Monitoring des performances

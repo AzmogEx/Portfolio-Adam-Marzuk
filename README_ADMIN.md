@@ -206,30 +206,10 @@ NODE_ENV="production"
 - ✅ Middleware de protection routes
 
 ### Recommandations production
-- [ ] Changez tous les secrets par défaut
 - [ ] Utilisez HTTPS obligatoire
-- [ ] Configurez des backups DB
 - [ ] Limitez les tentatives de connexion
 - [ ] Monitoring des logs
 - [ ] Mise à jour régulière des dépendances
-
-## 🆘 Dépannage
-
-### Erreurs communes
-
-**"Authentication required"**
-- Vérifiez que vous êtes connecté
-- Videz les cookies du navigateur
-- Relancez le serveur
-
-**"Failed to fetch projects"**
-- Vérifiez que la DB est initialisée : `npm run db:seed`
-- Vérifiez les permissions de fichiers
-
-**Upload d'image échoue**
-- Vérifiez la taille < 5MB
-- Vérifiez le format (JPG, PNG, WebP, GIF)
-- Vérifiez les permissions du dossier `/public/uploads/`
 
 ### Reset complet
 ```bash
@@ -244,14 +224,4 @@ npm run db:seed
 - [ ] **Categories** : Organiser les projets par catégorie  
 - [ ] **SEO** : Meta tags dynamiques par projet
 - [ ] **Analytics** : Suivi des vues des projets
-- [ ] **API publique** : Endpoint pour applications tierces
-- [ ] **Sauvegarde** : Export/import des données
 - [ ] **Drag & Drop** : Réorganisation visuelle des projets
-- [ ] **Versions** : Historique des modifications
-- [ ] **Preview** : Mode aperçu avant publication
-
----
-
-🚀 **Votre portfolio dynamique est maintenant prêt !**
-
-En cas de problème, vérifiez les logs de la console et n'hésitez pas à consulter la documentation Next.js et Prisma.

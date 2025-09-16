@@ -28,7 +28,6 @@ export const useAbout = () => {
 
         if (response.ok) {
           const data = await response.json()
-          console.log('useAbout - API response success:', data)
           setAboutContent(data)
           setError(null)
         } else if (response.status === 404) {
@@ -49,7 +48,7 @@ export const useAbout = () => {
         }
       } catch (err) {
         setError('Erreur de connexion')
-        console.error('useAbout - Error fetching about content:', err)
+        console.error('Error fetching about content:', err)
       } finally {
         setLoading(false)
       }

@@ -43,9 +43,6 @@ const About = () => {
     )
   }
 
-  // Debug pour voir ce qui se passe
-  console.log('About component - loading:', loading, 'error:', error, 'aboutContent:', aboutContent)
-
   // État d'erreur avec fallback
   if (error || !aboutContent) {
     console.error('About content error:', error)

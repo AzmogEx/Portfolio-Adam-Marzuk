@@ -123,6 +123,23 @@ export const ContactSchema = z.object({
     .max(2000, 'Le message ne peut pas dépasser 2000 caractères')
 })
 
+// ===== FOOTER SCHEMAS =====
+
+export const FooterContentSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
+  description: z.string().min(1, 'Description is required').max(500, 'Description is too long'),
+  email: z.string().email('Invalid email address'),
+  githubUrl: z.string().url('Invalid GitHub URL'),
+  linkedinUrl: z.string().url('Invalid LinkedIn URL'),
+  copyrightText: z.string().min(1, 'Copyright text is required').max(200, 'Copyright text is too long'),
+  quickLinks: z.array(z.object({
+    name: z.string().min(1, 'Link name is required'),
+    href: z.string().min(1, 'Link href is required')
+  })).optional().default([])
+})
+
+export const FooterContentUpdateSchema = FooterContentSchema.partial()
+
 // ===== TYPE EXPORTS =====
 
 export type LoginInput = z.infer<typeof LoginSchema>
@@ -138,6 +155,8 @@ export type HeroContentInput = z.infer<typeof HeroContentSchema>
 export type HeroContentUpdateInput = z.infer<typeof HeroContentUpdateSchema>
 export type AboutContentInput = z.infer<typeof AboutContentSchema>
 export type AboutContentUpdateInput = z.infer<typeof AboutContentUpdateSchema>
+export type FooterContentInput = z.infer<typeof FooterContentSchema>
+export type FooterContentUpdateInput = z.infer<typeof FooterContentUpdateSchema>
 export type ContactFormData = z.infer<typeof ContactSchema>
 
 // ===== LEGACY ALIASES (for backward compatibility) =====

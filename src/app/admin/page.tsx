@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart, Home, UserCircle2 } from 'lucide-react'
+import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart, Home, UserCircle2, Layers, Mail } from 'lucide-react'
 import Link from 'next/link'
 import DashboardCard from './components/DashboardCard'
 import { useProjects } from '@/hooks/useProjects'
@@ -67,6 +67,17 @@ const AdminDashboard = () => {
         />
 
         <DashboardCard
+          title="Footer"
+          description="Pied de page"
+          icon={<Layers className="text-purple-400" size={24} />}
+          action={{
+            label: "Modifier",
+            href: "/admin/footer"
+          }}
+          variant="secondary"
+        />
+
+        <DashboardCard
           title="Projets"
           description={`${projectStats.total} projet${projectStats.total !== 1 ? 's' : ''} total`}
           icon={<FolderOpen className="text-blue-400" size={24} />}
@@ -111,14 +122,25 @@ const AdminDashboard = () => {
         />
 
         <DashboardCard
+          title="Contact"
+          description="Paramètres du formulaire"
+          icon={<Mail className="text-green-400" size={24} />}
+          action={{
+            label: "Gérer",
+            href: "/admin/contact"
+          }}
+          variant="success"
+        />
+
+        <DashboardCard
           title="Analytics"
           description="Statistiques et métriques"
-          icon={<BarChart3 className="text-green-400" size={24} />}
+          icon={<BarChart3 className="text-orange-400" size={24} />}
           action={{
             label: "Voir",
             href: "/admin/analytics"
           }}
-          variant="success"
+          variant="warning"
         />
 
         <DashboardCard
@@ -165,6 +187,16 @@ const AdminDashboard = () => {
               <div>
                 <div className="font-medium">Modifier À propos</div>
                 <div className="text-sm text-cyan-400/70">Contenu personnel</div>
+              </div>
+            </Link>
+            <Link
+              href="/admin/footer"
+              className="flex items-center gap-3 p-3 bg-purple-500/10 hover:bg-purple-500/20 rounded-lg border border-purple-500/20 text-purple-400 hover:text-purple-300 transition-all duration-300"
+            >
+              <Layers size={16} />
+              <div>
+                <div className="font-medium">Modifier Footer</div>
+                <div className="text-sm text-purple-400/70">Pied de page</div>
               </div>
             </Link>
           </div>

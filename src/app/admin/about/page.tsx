@@ -33,7 +33,7 @@ const AboutPage = () => {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, isDirty }
+    formState: { errors }
   } = useForm<AboutContentUpdateInput>({
     resolver: zodResolver(AboutContentUpdateSchema)
   })

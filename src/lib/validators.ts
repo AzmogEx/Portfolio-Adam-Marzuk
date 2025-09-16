@@ -140,6 +140,23 @@ export const FooterContentSchema = z.object({
 
 export const FooterContentUpdateSchema = FooterContentSchema.partial()
 
+// ===== SEO SETTINGS SCHEMAS =====
+
+export const SeoSettingsSchema = z.object({
+  title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
+  description: z.string().min(1, 'Description is required').max(500, 'Description is too long'),
+  keywords: z.array(z.string().min(1, 'Keyword cannot be empty')).max(20, 'Too many keywords (max 20)'),
+  ogTitle: z.string().max(200, 'OpenGraph title is too long').optional().nullable(),
+  ogDescription: z.string().max(500, 'OpenGraph description is too long').optional().nullable(),
+  ogImage: z.string().url('Invalid OpenGraph image URL').optional().nullable().or(z.literal('')),
+  googleAnalyticsId: z.string().regex(/^G-[A-Z0-9]+$/, 'Invalid Google Analytics ID format (should be G-XXXXXXXXXX)').optional().nullable().or(z.literal('')),
+  structuredData: z.string().optional().nullable(),
+  robotsMeta: z.string().min(1, 'Robots meta is required').max(100, 'Robots meta is too long').default('index,follow'),
+  canonicalUrl: z.string().url('Invalid canonical URL').optional().nullable().or(z.literal(''))
+})
+
+export const SeoSettingsUpdateSchema = SeoSettingsSchema.partial()
+
 // ===== TYPE EXPORTS =====
 
 export type LoginInput = z.infer<typeof LoginSchema>
@@ -157,6 +174,8 @@ export type AboutContentInput = z.infer<typeof AboutContentSchema>
 export type AboutContentUpdateInput = z.infer<typeof AboutContentUpdateSchema>
 export type FooterContentInput = z.infer<typeof FooterContentSchema>
 export type FooterContentUpdateInput = z.infer<typeof FooterContentUpdateSchema>
+export type SeoSettingsInput = z.infer<typeof SeoSettingsSchema>
+export type SeoSettingsUpdateInput = z.infer<typeof SeoSettingsUpdateSchema>
 export type ContactFormData = z.infer<typeof ContactSchema>
 
 // ===== LEGACY ALIASES (for backward compatibility) =====

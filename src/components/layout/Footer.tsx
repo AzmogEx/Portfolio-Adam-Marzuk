@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 import { useFooter } from '@/hooks/useFooter'
 
 const Footer = () => {
-  const { footerContent, loading, error } = useFooter()
+  const { footerContent, loading } = useFooter()
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)

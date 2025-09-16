@@ -135,3 +135,56 @@ model ContactSettings {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
+
+model SeoSettings {
+  id                String   @id @default(cuid())
+  title             String
+  description       String
+  keywords          String   // JSON array des mots-clés
+  ogTitle           String?
+  ogDescription     String?
+  ogImage           String?
+  googleAnalyticsId String?
+  structuredData    String?  // JSON-LD pour les données structurées
+  robotsMeta        String   @default("index,follow")
+  canonicalUrl      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model AnalyticsSettings {
+  id                    String   @id @default(cuid())
+  enabled               Boolean  @default(true)
+  trackPageViews        Boolean  @default(true)
+  trackProjectClicks    Boolean  @default(true)
+  trackContactForm      Boolean  @default(true)
+  trackDownloads        Boolean  @default(true)
+  customEvents          String?  // JSON array des événements personnalisés
+  retentionDays         Int      @default(365) // Durée de conservation des données
+  excludeAdminViews     Boolean  @default(true)
+  heatmapEnabled        Boolean  @default(false)
+  notificationEmail     String?  // Email pour les rapports
+  weeklyReports         Boolean  @default(false)
+  monthlyReports        Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id            String   @id @default(cuid())
+  eventType     String   // 'page_view', 'project_click', 'contact_form', 'download', 'custom'
+  eventName     String?  // Nom spécifique pour les événements personnalisés
+  page          String?  // Page où l'événement a eu lieu
+  projectId     String?  // ID du projet cliqué (si applicable)
+  userAgent     String?  // Navigateur de l'utilisateur
+  ipAddress     String?  // IP de l'utilisateur (hashée pour la privacy)
+  country       String?  // Pays dérivé de l'IP
+  referrer      String?  // Page de provenance
+  sessionId     String?  // ID de session utilisateur
+  metadata      String?  // Données additionnelles (JSON)
+  timestamp     DateTime @default(now())
+
+  @@index([eventType, timestamp])
+  @@index([page, timestamp])
+  @@index([projectId, timestamp])
+}

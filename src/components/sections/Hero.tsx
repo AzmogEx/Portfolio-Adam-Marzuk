@@ -18,7 +18,7 @@ const Hero = () => {
   // État de chargement
   if (loading) {
     return (
-      <section id="hero" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-16 md:pt-24 md:pb-24 relative overflow-hidden">
         <div className="text-white text-xl">Chargement...</div>
       </section>
     )
@@ -45,7 +45,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-16 md:pt-24 md:pb-24 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -163,12 +163,12 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - masqué sur mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block"
         >
           <motion.button
             animate={{ y: [0, 10, 0] }}

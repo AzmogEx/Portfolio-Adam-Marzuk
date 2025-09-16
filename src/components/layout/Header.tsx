@@ -109,9 +109,9 @@ const Header = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-white/80 hover:text-white transition-colors duration-300"
+              className="relative p-3 bg-white/10 backdrop-blur-sm rounded-lg text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 border border-white/10"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </motion.button>
           </div>
         </div>
@@ -119,49 +119,59 @@ const Header = () => {
         {/* Menu Mobile Dropdown */}
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/10 backdrop-blur-md border-t border-white/20 mt-2 rounded-b-2xl"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/100 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
+            <div className="p-4 space-y-2">
+              {navItems.map((item, index) => (
+                <motion.button
                   key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-3 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-300"
+                  className="block w-full text-left px-4 py-3 text-white/80 hover:text-white hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 rounded-lg transition-all duration-300 font-medium"
                 >
                   {item.name}
-                </button>
+                </motion.button>
               ))}
-              
-              <div className="border-t border-white/20 pt-2 mt-2">
+
+              <div className="border-t border-white/10 pt-3 mt-3">
                 <div className="flex items-center justify-center space-x-4 py-2">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                     href="https://github.com/AzmogEx"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-white/80 hover:text-white transition-colors duration-300"
+                    className="p-3 bg-white/5 hover:bg-white/10 rounded-lg text-white/80 hover:text-white transition-all duration-300"
                   >
-                    <Github size={20} />
-                  </a>
-                  <a
+                    <Github size={18} />
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                     href="https://www.linkedin.com/in/adam-marzuk-93804828a/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-white/80 hover:text-white transition-colors duration-300"
+                    className="p-3 bg-white/5 hover:bg-white/10 rounded-lg text-white/80 hover:text-white transition-all duration-300"
                   >
-                    <Linkedin size={20} />
-                  </a>
-                  <a
+                    <Linkedin size={18} />
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     href="/assets/cv.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-medium"
+                    className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
                   >
                     <FileText size={16} />
-                    <span>Mon CV</span>
-                  </a>
+                    <span>CV</span>
+                  </motion.a>
                 </div>
               </div>
             </div>

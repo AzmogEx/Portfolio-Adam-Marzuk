@@ -20,7 +20,7 @@
   }
   
   .glass-card {
-    @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/20 hover:scale-105;
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/20;
   }
   
   .gradient-text {

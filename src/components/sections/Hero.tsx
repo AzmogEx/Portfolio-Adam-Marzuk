@@ -51,7 +51,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-white/70 max-w-lg leading-relaxed"
             >
-              Étudiant en 2ème année de BUT Informatique, spécialisé dans le développement d&apos;applications.
+              Étudiant en Bachelor Informatique, spécialisé dans le développement d&apos;applications.
               Passionné par les technologies web modernes et l&apos;intelligence artificielle.
             </motion.p>
 

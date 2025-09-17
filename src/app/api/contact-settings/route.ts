@@ -18,7 +18,7 @@ const ContactSettingsUpdateSchema = z.object({
 // GET - Récupérer les paramètres de contact (public pour le formulaire)
 export async function GET() {
   try {
-    let contactSettings = await prisma.contactSettings.findFirst()
+    const contactSettings = await prisma.contactSettings.findFirst()
 
     // Si aucun paramètre n'existe, retourner les valeurs par défaut
     if (!contactSettings) {

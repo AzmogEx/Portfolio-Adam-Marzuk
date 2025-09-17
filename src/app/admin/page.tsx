@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart, Home, UserCircle2, Layers, Mail } from 'lucide-react'
+import { FolderOpen, User, BarChart3, Plus, ExternalLink, Star, Wrench, Heart, Home, UserCircle2, Layers, Mail, Search, Navigation } from 'lucide-react'
 import Link from 'next/link'
 import DashboardCard from './components/DashboardCard'
 import { useProjects } from '@/hooks/useProjects'
@@ -133,6 +133,17 @@ const AdminDashboard = () => {
         />
 
         <DashboardCard
+          title="SEO"
+          description="Référencement et métadonnées"
+          icon={<Search className="text-purple-400" size={24} />}
+          action={{
+            label: "Configurer",
+            href: "/admin/seo"
+          }}
+          variant="secondary"
+        />
+
+        <DashboardCard
           title="Analytics"
           description="Statistiques et métriques"
           icon={<BarChart3 className="text-orange-400" size={24} />}
@@ -141,6 +152,17 @@ const AdminDashboard = () => {
             href: "/admin/analytics"
           }}
           variant="warning"
+        />
+
+        <DashboardCard
+          title="Navigation"
+          description="Menu et identité de marque"
+          icon={<Navigation className="text-cyan-400" size={24} />}
+          action={{
+            label: "Configurer",
+            href: "/admin/navigation"
+          }}
+          variant="info"
         />
 
         <DashboardCard

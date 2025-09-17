@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Save, Plus, Trash2, Link } from 'lucide-react'
+import { Save, Plus, Trash2 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -22,7 +22,7 @@ interface FooterContent {
 }
 
 const FooterPage = () => {
-  const [footerContent, setFooterContent] = useState<FooterContent | null>(null)
+  const [_footerContent, setFooterContent] = useState<FooterContent | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const { toasts, showSuccess, showError, hideToast } = useToast()

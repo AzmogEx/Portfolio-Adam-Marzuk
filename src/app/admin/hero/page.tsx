@@ -39,7 +39,7 @@ const HeroPage = () => {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, isDirty }
+    formState: { errors }
   } = useForm<HeroContentUpdateInput>({
     resolver: zodResolver(HeroContentUpdateSchema)
   })

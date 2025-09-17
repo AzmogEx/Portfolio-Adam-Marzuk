@@ -3,23 +3,39 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X, Github, Linkedin, FileText } from 'lucide-react'
+import Image from 'next/image'
+import { useNavigation } from '@/hooks/useNavigation'
 
 const Header = () => {
+  const { settings, loading, error } = useNavigation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const navItems = [
-    { name: 'Accueil', href: '#hero' },
-    { name: 'À propos', href: '#about' },
-    { name: 'Outils', href: '#tools' },
-    { name: 'Projets', href: '#projects' },
-    { name: 'Parcours', href: '#experiences' },
-    { name: 'Contact', href: '#contact' },
+  // Fallback navigation si les paramètres ne sont pas encore chargés
+  const navItems = settings?.menuItems?.sort((a, b) => a.order - b.order) || [
+    { name: 'Accueil', href: '#hero', external: false, order: 0 },
+    { name: 'À propos', href: '#about', external: false, order: 1 },
+    { name: 'Outils', href: '#tools', external: false, order: 2 },
+    { name: 'Projets', href: '#projects', external: false, order: 3 },
+    { name: 'Parcours', href: '#experiences', external: false, order: 4 },
+    { name: 'Contact', href: '#contact', external: false, order: 5 },
   ]
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  const brandName = settings?.brandName || 'Adam Marzuk'
+  const showLogo = settings?.showLogo || false
+  const logo = settings?.logo
+  const ctaButton = settings?.ctaButton
+  const ctaButtonLink = settings?.ctaButtonLink
+  const ctaButtonEnabled = settings?.ctaButtonEnabled || false
+  const mobileMenuEnabled = settings?.mobileMenuEnabled !== false
+
+  const handleNavClick = (item: any) => {
+    if (item.external) {
+      window.open(item.href, '_blank', 'noopener,noreferrer')
+    } else {
+      const element = document.querySelector(item.href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
     setIsMenuOpen(false)
   }
@@ -39,10 +55,23 @@ const Header = () => {
             className="flex-shrink-0"
           >
             <button
-              onClick={() => scrollToSection('#hero')}
-              className="text-2xl font-bold gradient-text"
+              onClick={() => handleNavClick({ href: '#hero', external: false })}
+              className="flex items-center space-x-2"
             >
-              Adam Marzuk
+              {showLogo && logo ? (
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src={logo}
+                    alt={`${brandName} logo`}
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 object-contain"
+                  />
+                  <span className="text-xl font-bold gradient-text">{brandName}</span>
+                </div>
+              ) : (
+                <span className="text-2xl font-bold gradient-text">{brandName}</span>
+              )}
             </button>
           </motion.div>
 
@@ -54,7 +83,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavClick(item)}
                 className="text-white/80 hover:text-white transition-colors duration-300 relative group"
               >
                 {item.name}
@@ -65,6 +94,19 @@ const Header = () => {
 
           {/* Actions Desktop */}
           <div className="hidden xl:flex items-center space-x-4">
+            {/* Bouton CTA dynamique */}
+            {ctaButtonEnabled && ctaButton && ctaButtonLink && (
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={ctaButtonLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-500 to-teal-600 rounded-full text-white font-medium hover:from-green-600 hover:to-teal-700 transition-all duration-300"
+              >
+                <span>{ctaButton}</span>
+              </motion.a>
+            )}
             {/* Liens sociaux */}
             <motion.a
               whileHover={{ scale: 1.1 }}
@@ -104,6 +146,7 @@ const Header = () => {
           </div>
 
           {/* Menu Mobile */}
+          {mobileMenuEnabled && (
           <div className="xl:hidden">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -114,10 +157,11 @@ const Header = () => {
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </motion.button>
           </div>
+          )}
         </div>
 
         {/* Menu Mobile Dropdown */}
-        {isMenuOpen && (
+        {mobileMenuEnabled && isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -132,7 +176,7 @@ const Header = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavClick(item)}
                   className="block w-full text-left px-4 py-3 text-white/80 hover:text-white hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 rounded-lg transition-all duration-300 font-medium"
                 >
                   {item.name}

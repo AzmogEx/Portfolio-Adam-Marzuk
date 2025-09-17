@@ -188,3 +188,18 @@ model AnalyticsEvent {
   @@index([page, timestamp])
   @@index([projectId, timestamp])
 }
+
+model NavigationSettings {
+  id                String   @id @default(cuid())
+  brandName         String   @default("Adam Marzuk")
+  logo              String?  // URL ou chemin vers le logo
+  showLogo          Boolean  @default(false)
+  menuItems         String   // JSON array des éléments de menu
+  ctaButton         String?  // Texte du bouton CTA (optionnel)
+  ctaButtonLink     String?  // Lien du bouton CTA
+  ctaButtonEnabled  Boolean  @default(false)
+  mobileMenuEnabled Boolean  @default(true)
+  themeToggle       Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}

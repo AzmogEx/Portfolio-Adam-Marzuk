@@ -116,6 +116,9 @@ export async function middleware(request: NextRequest) {
       (pathname.startsWith('/api/skills') && request.method !== 'GET') ||
       (pathname.startsWith('/api/contact-settings') && request.method !== 'GET') ||
       (pathname.startsWith('/api/seo-settings') && request.method !== 'GET') ||
+      (pathname.startsWith('/api/navigation-settings') && request.method !== 'GET') ||
+      pathname.startsWith('/api/analytics-settings') ||
+      pathname.startsWith('/api/analytics/stats') ||
       pathname.startsWith('/api/upload')) {
     const token = request.cookies.get('admin-token')?.value
     
@@ -142,6 +145,9 @@ export const config = {
     '/api/skills/:path*',
     '/api/contact-settings/:path*',
     '/api/seo-settings/:path*',
+    '/api/navigation-settings/:path*',
+    '/api/analytics-settings/:path*',
+    '/api/analytics/:path*',
     '/api/upload/:path*'
   ]
 }

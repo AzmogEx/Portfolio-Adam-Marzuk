@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { prisma } from '@/lib/prisma'
 import Analytics from '@/components/Analytics'
+import AnalyticsTracker from '@/components/AnalyticsTracker'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -71,6 +72,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Analytics />
+        <AnalyticsTracker />
         {children}
       </body>
     </html>

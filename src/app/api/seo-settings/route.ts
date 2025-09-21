@@ -6,7 +6,7 @@ import { SeoSettingsUpdateSchema } from '@/lib/validators'
 // GET - Récupérer les paramètres SEO (public)
 export async function GET() {
   try {
-    let seoSettings = await prisma.seoSettings.findFirst()
+    const seoSettings = await prisma.seoSettings.findFirst()
 
     // Si aucun paramètre n'existe, retourner les valeurs par défaut
     if (!seoSettings) {

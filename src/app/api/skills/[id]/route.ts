@@ -21,10 +21,14 @@ const SkillUpdateSchema = z.object({
 }).partial()
 
 // GET - Récupérer une compétence spécifique (public)
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
+    const { id } = await params
     const skill = await prisma.skill.findUnique({
-      where: { id: params.id }
+      where: { id }
     })
 
     if (!skill) {
@@ -45,11 +49,15 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 }
 
 // PUT - Mettre à jour une compétence (admin uniquement)
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     // Vérification d'authentification
     await requireAuth()
 
+    const { id } = await params
     const body = await request.json()
     const validation = SkillUpdateSchema.safeParse(body)
 
@@ -65,7 +73,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     // Vérifier que la compétence existe
     const existingSkill = await prisma.skill.findUnique({
-      where: { id: params.id }
+      where: { id }
     })
 
     if (!existingSkill) {
@@ -76,7 +84,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     const skill = await prisma.skill.update({
-      where: { id: params.id },
+      where: { id },
       data: validation.data
     })
 
@@ -99,14 +107,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 // DELETE - Supprimer une compétence (admin uniquement)
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     // Vérification d'authentification
     await requireAuth()
 
+    const { id } = await params
     // Vérifier que la compétence existe
     const existingSkill = await prisma.skill.findUnique({
-      where: { id: params.id }
+      where: { id }
     })
 
     if (!existingSkill) {
@@ -117,7 +129,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     await prisma.skill.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     // Revalidate pages that show skills

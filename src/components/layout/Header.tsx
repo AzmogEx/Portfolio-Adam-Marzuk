@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useNavigation } from '@/hooks/useNavigation'
 
 const Header = () => {
-  const { settings, loading, error } = useNavigation()
+  const { settings, loading: _loading, error: _error } = useNavigation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Fallback navigation si les paramètres ne sont pas encore chargés
@@ -28,7 +28,7 @@ const Header = () => {
   const ctaButtonEnabled = settings?.ctaButtonEnabled || false
   const mobileMenuEnabled = settings?.mobileMenuEnabled !== false
 
-  const handleNavClick = (item: any) => {
+  const handleNavClick = (item: { name: string; href: string; external?: boolean; order: number }) => {
     if (item.external) {
       window.open(item.href, '_blank', 'noopener,noreferrer')
     } else {
@@ -55,7 +55,7 @@ const Header = () => {
             className="flex-shrink-0"
           >
             <button
-              onClick={() => handleNavClick({ href: '#hero', external: false })}
+              onClick={() => handleNavClick({ name: 'Accueil', href: '#hero', external: false, order: 0 })}
               className="flex items-center space-x-2"
             >
               {showLogo && logo ? (

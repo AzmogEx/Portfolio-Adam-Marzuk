@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { NavigationSettingsSchema, NavigationSettingsUpdateSchema } from '@/lib/validators'
 
 // GET /api/navigation-settings - Récupérer les paramètres de navigation
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const navigationSettings = await prisma.navigationSettings.findFirst({
       orderBy: { createdAt: 'desc' }
@@ -62,9 +62,7 @@ export async function PUT(request: NextRequest) {
     // Convertir menuItems en JSON si présent
     const dataToSave = {
       ...validatedData,
-      ...(validatedData.menuItems && {
-        menuItems: JSON.stringify(validatedData.menuItems)
-      })
+      menuItems: validatedData.menuItems ? JSON.stringify(validatedData.menuItems) : undefined
     }
 
     // Récupérer les paramètres existants

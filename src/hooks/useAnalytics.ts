@@ -151,7 +151,7 @@ export const useAnalytics = () => {
     page?: string
     projectId?: string
     sessionId?: string
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   }) => {
     try {
       // Ne pas tracker si les analytics sont désactivés

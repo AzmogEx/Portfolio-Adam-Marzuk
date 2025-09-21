@@ -7,7 +7,7 @@ import { useAnalytics } from '@/hooks/useAnalytics'
 const AnalyticsTracker = () => {
   const { settings, trackEvent } = useAnalytics()
   const pathname = usePathname()
-  const sessionId = useRef<string>()
+  const sessionId = useRef<string | null>(null)
 
   // Générer un ID de session unique
   useEffect(() => {
@@ -22,7 +22,7 @@ const AnalyticsTracker = () => {
       trackEvent({
         eventType: 'page_view',
         page: pathname,
-        sessionId: sessionId.current
+        sessionId: sessionId.current || undefined
       })
     }
   }, [pathname, settings, trackEvent])
@@ -43,7 +43,7 @@ const AnalyticsTracker = () => {
           eventType: 'project_click',
           page: pathname,
           projectId: projectId || undefined,
-          sessionId: sessionId.current,
+          sessionId: sessionId.current || undefined,
           metadata: {
             projectTitle,
             linkType: projectLink.getAttribute('data-link-type') || 'unknown'
@@ -67,7 +67,7 @@ const AnalyticsTracker = () => {
         trackEvent({
           eventType: 'contact_form',
           page: pathname,
-          sessionId: sessionId.current,
+          sessionId: sessionId.current || undefined,
           metadata: {
             formId: target.id || 'contact-form'
           }
@@ -94,7 +94,7 @@ const AnalyticsTracker = () => {
         trackEvent({
           eventType: 'download',
           page: pathname,
-          sessionId: sessionId.current,
+          sessionId: sessionId.current || undefined,
           metadata: {
             downloadType,
             fileName,
@@ -123,7 +123,7 @@ const AnalyticsTracker = () => {
               eventType: 'custom',
               eventName: customEvent.name,
               page: pathname,
-              sessionId: sessionId.current,
+              sessionId: sessionId.current || undefined,
               metadata: {
                 selector: customEvent.selector,
                 description: customEvent.description,

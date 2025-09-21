@@ -212,7 +212,7 @@ export const AnalyticsEventSchema = z.object({
   country: z.string().optional().nullable(),
   referrer: z.string().optional().nullable(),
   sessionId: z.string().optional().nullable(),
-  metadata: z.record(z.any()).optional().nullable()
+  metadata: z.record(z.string(), z.unknown()).optional().nullable()
 })
 
 // ===== TYPE EXPORTS =====

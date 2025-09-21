@@ -96,7 +96,7 @@ const About = () => {
   };
 
   // Fonction pour obtenir la taille selon le niveau de maîtrise
-  const getSizeFromLevel = (level: Skill["level"]) => {
+  const getSizeFromLevel = (level: "expert" | "advanced" | "intermediate" | "beginner") => {
     switch (level) {
       case "expert":
         return "w-20 h-20"; // 80px

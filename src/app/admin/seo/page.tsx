@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, Save, Plus, Trash2, Search, Globe, BarChart3 } from 'lucide-react'
+import { ArrowLeft, Save, Plus, Trash2, Search } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
@@ -9,7 +9,7 @@ import { useSeoSettings } from '@/hooks/useSeoSettings'
 
 const SeoSettingsPage = () => {
   const router = useRouter()
-  const { seoSettings, loading, error, updateSeoSettings } = useSeoSettings()
+  const { seoSettings, loading, updateSeoSettings } = useSeoSettings()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -61,7 +61,7 @@ const SeoSettingsPage = () => {
         document.body.removeChild(toast)
         router.push('/admin')
       }, 2000)
-    } catch (error) {
+    } catch (_error) {
       const toast = document.createElement('div')
       toast.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50'
       toast.textContent = 'Erreur lors de la mise à jour'

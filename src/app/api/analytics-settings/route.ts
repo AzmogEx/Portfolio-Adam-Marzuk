@@ -6,7 +6,7 @@ import { AnalyticsSettingsUpdateSchema } from '@/lib/validators'
 // GET - Récupérer les paramètres Analytics (admin uniquement)
 export async function GET() {
   try {
-    let analyticsSettings = await prisma.analyticsSettings.findFirst()
+    const analyticsSettings = await prisma.analyticsSettings.findFirst()
 
     // Si aucun paramètre n'existe, retourner les valeurs par défaut
     if (!analyticsSettings) {

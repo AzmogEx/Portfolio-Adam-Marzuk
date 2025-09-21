@@ -151,7 +151,7 @@ const AnalyticsPage = () => {
 
               {stats.dailyViews.length > 0 ? (
                 <div className="space-y-2">
-                  {stats.dailyViews.slice(-7).map((day, index) => (
+                  {stats.dailyViews.slice(-7).map((day, _index) => (
                     <div key={day.date} className="flex items-center justify-between">
                       <span className="text-white/70 text-sm">
                         {new Date(day.date).toLocaleDateString('fr-FR', {
@@ -197,10 +197,10 @@ const AnalyticsPage = () => {
 
               {stats.topProjects.length > 0 ? (
                 <div className="space-y-3">
-                  {stats.topProjects.slice(0, 5).map((project, index) => (
+                  {stats.topProjects.slice(0, 5).map((project, _index) => (
                     <div key={project.projectId} className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-xs w-4">#{index + 1}</span>
+                        <span className="text-white/40 text-xs w-4">#{_index + 1}</span>
                         <span className="text-white text-sm truncate">{project.title}</span>
                       </div>
                       <span className="text-purple-400 text-sm font-medium">{project.clicks} clics</span>
@@ -231,12 +231,12 @@ const AnalyticsPage = () => {
             </h2>
 
             <div className="space-y-4">
-              {stats.technologies.slice(0, 8).map((tech, index) => (
+              {stats.technologies.slice(0, 8).map((tech, _index) => (
                 <motion.div
                   key={tech.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
+                  transition={{ delay: 0.5 + _index * 0.1, duration: 0.6 }}
                   className="flex items-center justify-between"
                 >
                   <div className="flex-1">
@@ -248,7 +248,7 @@ const AnalyticsPage = () => {
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${tech.percentage}%` }}
-                        transition={{ delay: 0.6 + index * 0.1, duration: 1, ease: "easeOut" }}
+                        transition={{ delay: 0.6 + _index * 0.1, duration: 1, ease: "easeOut" }}
                         className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
                       />
                     </div>
@@ -274,7 +274,7 @@ const AnalyticsPage = () => {
 
               {stats.topPages.length > 0 ? (
                 <div className="space-y-3">
-                  {stats.topPages.slice(0, 5).map((page, index) => (
+                  {stats.topPages.slice(0, 5).map((page, _index) => (
                     <div key={page.page} className="flex items-center justify-between">
                       <span className="text-white text-sm truncate">{page.page || 'Page d\'accueil'}</span>
                       <span className="text-blue-400 text-sm font-medium">{page.views} vues</span>
@@ -302,7 +302,7 @@ const AnalyticsPage = () => {
 
               {stats.topCountries.length > 0 ? (
                 <div className="space-y-3">
-                  {stats.topCountries.slice(0, 5).map((country, index) => (
+                  {stats.topCountries.slice(0, 5).map((country, _index) => (
                     <div key={country.country} className="flex items-center justify-between">
                       <span className="text-white text-sm">{country.country || 'Inconnu'}</span>
                       <span className="text-green-400 text-sm font-medium">{country.visits} visites</span>

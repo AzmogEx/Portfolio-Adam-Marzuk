@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 import { useFooter } from '@/hooks/useFooter'
 
 const Footer = () => {
-  const { footerContent, loading, error } = useFooter()
+  const { footerContent } = useFooter()
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -14,11 +14,7 @@ const Footer = () => {
     }
   }
 
-  // État d'erreur avec fallback
-  if (error) {
-    console.error('Footer content error:', error)
-    // Continuer avec les valeurs par défaut en cas d'erreur
-  }
+  // Fallback sur les valeurs par défaut
 
   // Utiliser les données dynamiques ou fallback sur les valeurs par défaut
   const content = footerContent || {

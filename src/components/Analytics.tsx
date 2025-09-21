@@ -11,14 +11,14 @@ const Analytics = () => {
     // Si Google Analytics est configuré, initialiser gtag
     if (seoSettings?.googleAnalyticsId && typeof window !== 'undefined') {
       // Fonction gtag pour Google Analytics
-      const gtag = function (...args: any[]) {
-        // @ts-ignore
+      const gtag = function (...args: unknown[]) {
+        // @ts-expect-error - Adding to window object
         window.dataLayer = window.dataLayer || []
-        // @ts-ignore
-        window.dataLayer.push(arguments)
+        // @ts-expect-error - Using arguments object for gtag
+        window.dataLayer.push(args)
       }
 
-      // @ts-ignore
+      // @ts-expect-error - Adding gtag to window object
       window.gtag = gtag
 
       // Initialiser avec la configuration

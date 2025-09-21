@@ -9,7 +9,7 @@ import { useContactSettings } from '@/hooks/useContactSettings'
 
 const ContactSettingsPage = () => {
   const router = useRouter()
-  const { contactSettings, loading, error, updateContactSettings } = useContactSettings()
+  const { contactSettings, loading, updateContactSettings } = useContactSettings()
 
   const [formData, setFormData] = useState({
     successMessage: '',
@@ -59,7 +59,7 @@ const ContactSettingsPage = () => {
         document.body.removeChild(toast)
         router.push('/admin')
       }, 2000)
-    } catch (error) {
+    } catch {
       const toast = document.createElement('div')
       toast.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50'
       toast.textContent = 'Erreur lors de la mise à jour'
@@ -150,7 +150,7 @@ const ContactSettingsPage = () => {
 
             <div>
               <label htmlFor="errorMessage" className="block text-sm font-medium text-white/90 mb-2">
-                Message d'erreur
+                Message d&apos;erreur
               </label>
               <textarea
                 id="errorMessage"
@@ -186,7 +186,7 @@ const ContactSettingsPage = () => {
 
             <div>
               <label htmlFor="emailSubject" className="block text-sm font-medium text-white/90 mb-2">
-                Objet de l'email
+                Objet de l&apos;email
               </label>
               <input
                 type="text"
@@ -201,7 +201,7 @@ const ContactSettingsPage = () => {
 
             <div>
               <label htmlFor="emailTemplate" className="block text-sm font-medium text-white/90 mb-2">
-                Template de l'email
+                Template de l&apos;email
               </label>
               <textarea
                 id="emailTemplate"

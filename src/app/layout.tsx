@@ -1,23 +1,62 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { prisma } from '@/lib/prisma'
+import Analytics from '@/components/Analytics'
+import AnalyticsTracker from '@/components/AnalyticsTracker'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   preload: true
 })
 
-export const metadata: Metadata = {
-  title: 'Adam Marzuk - Portfolio',
-  description: '2nd-year BUT Computer Science student specializing in application development. Explore my projects, skills, and experience.',
-  keywords: ['Adam Marzuk', 'Portfolio', 'Developer', 'Computer Science', 'React', 'Next.js', 'TypeScript'],
-  authors: [{ name: 'Adam Marzuk' }],
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    // Récupérer les paramètres SEO depuis la base de données
+    const seoSettings = await prisma.seoSettings.findFirst()
+
+    if (seoSettings) {
+      // Parser les keywords
+      const keywords = JSON.parse(seoSettings.keywords || '[]')
+
+      return {
+        title: seoSettings.title,
+        description: seoSettings.description,
+        keywords,
+        authors: [{ name: 'Adam Marzuk' }],
+        robots: seoSettings.robotsMeta,
+        alternates: seoSettings.canonicalUrl ? {
+          canonical: seoSettings.canonicalUrl
+        } : undefined,
+        openGraph: {
+          title: seoSettings.ogTitle || seoSettings.title,
+          description: seoSettings.ogDescription || seoSettings.description,
+          type: 'website',
+          images: seoSettings.ogImage ? [{ url: seoSettings.ogImage }] : undefined,
+        },
+        other: seoSettings.structuredData ? {
+          'application/ld+json': seoSettings.structuredData
+        } : undefined
+      }
+    }
+  } catch (error) {
+    console.error('Error loading SEO settings:', error)
+  }
+
+  // Fallback vers les métadonnées par défaut si erreur ou pas de settings
+  return {
     title: 'Adam Marzuk - Portfolio',
-    description: '2nd-year BUT Computer Science student specializing in application development.',
-    type: 'website',
-  },
+    description: 'Développeur Full-Stack passionné par l\'innovation et les technologies web modernes. Découvrez mes projets, compétences et expériences.',
+    keywords: ['Adam Marzuk', 'Portfolio', 'Développeur', 'Full-Stack', 'React', 'Next.js', 'TypeScript'],
+    authors: [{ name: 'Adam Marzuk' }],
+    robots: 'index,follow',
+    openGraph: {
+      title: 'Adam Marzuk - Portfolio',
+      description: 'Développeur Full-Stack spécialisé en React, Next.js et TypeScript.',
+      type: 'website',
+    },
+  }
 }
 
 export default function RootLayout({
@@ -31,7 +70,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Analytics />
+        <AnalyticsTracker />
+        {children}
+      </body>
     </html>
   )
 }

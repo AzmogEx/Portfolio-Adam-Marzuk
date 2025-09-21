@@ -52,7 +52,7 @@ const Contact = () => {
           message: contactSettings?.errorMessage || result.error || 'Une erreur est survenue'
         })
       }
-    } catch (error) {
+    } catch {
       setSubmitMessage({
         type: 'error',
         message: contactSettings?.errorMessage || 'Erreur de connexion. Veuillez réessayer.'

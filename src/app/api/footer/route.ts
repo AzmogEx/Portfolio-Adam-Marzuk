@@ -6,7 +6,7 @@ import { FooterContentUpdateSchema } from '@/lib/validators'
 // GET - Récupérer le contenu du footer (public)
 export async function GET() {
   try {
-    let footerContent = await prisma.footerContent.findFirst()
+    const footerContent = await prisma.footerContent.findFirst()
 
     // Si aucun contenu n'existe, retourner les valeurs par défaut
     if (!footerContent) {

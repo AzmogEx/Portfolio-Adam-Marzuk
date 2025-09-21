@@ -20,7 +20,7 @@ const SkillSchema = z.object({
   order: z.number().int().min(0).optional().default(0),
 })
 
-const SkillUpdateSchema = SkillSchema.partial()
+const _SkillUpdateSchema = SkillSchema.partial()
 
 // GET - Récupérer toutes les compétences (public)
 export async function GET(request: NextRequest) {

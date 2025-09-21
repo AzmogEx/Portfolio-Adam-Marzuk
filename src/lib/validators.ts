@@ -140,6 +140,81 @@ export const FooterContentSchema = z.object({
 
 export const FooterContentUpdateSchema = FooterContentSchema.partial()
 
+// ===== SEO SETTINGS SCHEMAS =====
+
+export const SeoSettingsSchema = z.object({
+  title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
+  description: z.string().min(1, 'Description is required').max(500, 'Description is too long'),
+  keywords: z.array(z.string().min(1, 'Keyword cannot be empty')).max(20, 'Too many keywords (max 20)'),
+  ogTitle: z.string().max(200, 'OpenGraph title is too long').optional().nullable(),
+  ogDescription: z.string().max(500, 'OpenGraph description is too long').optional().nullable(),
+  ogImage: z.string().url('Invalid OpenGraph image URL').optional().nullable().or(z.literal('')),
+  googleAnalyticsId: z.string().regex(/^G-[A-Z0-9]+$/, 'Invalid Google Analytics ID format (should be G-XXXXXXXXXX)').optional().nullable().or(z.literal('')),
+  structuredData: z.string().optional().nullable(),
+  robotsMeta: z.string().min(1, 'Robots meta is required').max(100, 'Robots meta is too long').default('index,follow'),
+  canonicalUrl: z.string().url('Invalid canonical URL').optional().nullable().or(z.literal(''))
+})
+
+export const SeoSettingsUpdateSchema = SeoSettingsSchema.partial()
+
+// ===== NAVIGATION SETTINGS SCHEMAS =====
+
+export const NavigationSettingsSchema = z.object({
+  brandName: z.string().min(1, "Le nom de la marque est requis").max(100, "Le nom de la marque est trop long"),
+  logo: z.string().url("URL du logo invalide").optional().nullable().or(z.literal('')),
+  showLogo: z.boolean().default(false),
+  menuItems: z.array(z.object({
+    name: z.string().min(1, "Le nom est requis").max(50, "Le nom est trop long"),
+    href: z.string().min(1, "Le lien est requis").max(200, "Le lien est trop long"),
+    external: z.boolean().optional().default(false),
+    order: z.number().int().min(0).default(0)
+  })).min(1, "Au moins un élément de menu est requis").max(10, "Trop d'éléments de menu (max 10)"),
+  ctaButton: z.string().max(50, "Le texte du bouton CTA est trop long").optional().nullable(),
+  ctaButtonLink: z.string().url("URL du bouton CTA invalide").optional().nullable().or(z.literal('')),
+  ctaButtonEnabled: z.boolean().default(false),
+  mobileMenuEnabled: z.boolean().default(true),
+  themeToggle: z.boolean().default(true)
+})
+
+export const NavigationSettingsUpdateSchema = NavigationSettingsSchema.partial()
+
+// ===== ANALYTICS SETTINGS SCHEMAS =====
+
+export const AnalyticsSettingsSchema = z.object({
+  enabled: z.boolean().default(true),
+  trackPageViews: z.boolean().default(true),
+  trackProjectClicks: z.boolean().default(true),
+  trackContactForm: z.boolean().default(true),
+  trackDownloads: z.boolean().default(true),
+  customEvents: z.array(z.object({
+    name: z.string().min(1, 'Event name is required'),
+    description: z.string().optional(),
+    selector: z.string().min(1, 'CSS selector is required'),
+    eventType: z.enum(['click', 'submit', 'scroll', 'timer']).default('click')
+  })).optional().default([]),
+  retentionDays: z.number().int().min(1).max(3650).default(365),
+  excludeAdminViews: z.boolean().default(true),
+  heatmapEnabled: z.boolean().default(false),
+  notificationEmail: z.string().email('Invalid email address').optional().nullable(),
+  weeklyReports: z.boolean().default(false),
+  monthlyReports: z.boolean().default(true)
+})
+
+export const AnalyticsSettingsUpdateSchema = AnalyticsSettingsSchema.partial()
+
+export const AnalyticsEventSchema = z.object({
+  eventType: z.enum(['page_view', 'project_click', 'contact_form', 'download', 'custom']),
+  eventName: z.string().optional().nullable(),
+  page: z.string().optional().nullable(),
+  projectId: z.string().optional().nullable(),
+  userAgent: z.string().optional().nullable(),
+  ipAddress: z.string().optional().nullable(),
+  country: z.string().optional().nullable(),
+  referrer: z.string().optional().nullable(),
+  sessionId: z.string().optional().nullable(),
+  metadata: z.record(z.any()).optional().nullable()
+})
+
 // ===== TYPE EXPORTS =====
 
 export type LoginInput = z.infer<typeof LoginSchema>
@@ -157,6 +232,13 @@ export type AboutContentInput = z.infer<typeof AboutContentSchema>
 export type AboutContentUpdateInput = z.infer<typeof AboutContentUpdateSchema>
 export type FooterContentInput = z.infer<typeof FooterContentSchema>
 export type FooterContentUpdateInput = z.infer<typeof FooterContentUpdateSchema>
+export type SeoSettingsInput = z.infer<typeof SeoSettingsSchema>
+export type SeoSettingsUpdateInput = z.infer<typeof SeoSettingsUpdateSchema>
+export type NavigationSettingsInput = z.infer<typeof NavigationSettingsSchema>
+export type NavigationSettingsUpdateInput = z.infer<typeof NavigationSettingsUpdateSchema>
+export type AnalyticsSettingsInput = z.infer<typeof AnalyticsSettingsSchema>
+export type AnalyticsSettingsUpdateInput = z.infer<typeof AnalyticsSettingsUpdateSchema>
+export type AnalyticsEventInput = z.infer<typeof AnalyticsEventSchema>
 export type ContactFormData = z.infer<typeof ContactSchema>
 
 // ===== LEGACY ALIASES (for backward compatibility) =====

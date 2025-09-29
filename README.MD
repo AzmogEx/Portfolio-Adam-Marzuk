@@ -185,38 +185,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 4. Push sur la branche (`git push origin feature/AmazingFeature`)
 5. Ouvrir une Pull Request
 
-## 📋 Roadmap
-
-- [ ] **Analytics Dashboard** - Métriques détaillées dans l'admin
-- [ ] **Multi-language Support** - Support français/anglais
-- [ ] **SEO Optimization** - Amélioration du référencement
-- [ ] **Performance Monitoring** - Monitoring des performances
-- [ ] **Contact Form Enhancement** - Captcha et validation avancée
-
-## 🐛 Résolution de Problèmes
-
-### Problèmes courants
-
-**Erreur de connexion à la base de données**
-```bash
-# Vérifier que PostgreSQL est en cours d'exécution
-sudo service postgresql status
-
-# Régénérer le client Prisma
-npx prisma generate
-```
-
-**Erreurs de build**
-```bash
-# Nettoyer le cache Next.js
-rm -rf .next
-npm run build
-```
-
-**Problèmes d'authentification**
-- Vérifier la variable `JWT_SECRET` dans `.env.local`
-- S'assurer que le mot de passe admin est correctement hashé
-
 ## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
